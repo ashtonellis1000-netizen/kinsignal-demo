@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why It Matters — KinSignal | The OSHA Injury Response Problem</title>
+  <meta name="description" content="2.6 million workplace injuries per year. $181.4 billion in annual costs. Why supervisors miss OSHA deadlines — and why existing EHS software wasn't built for the first 30 minutes." />
+  <meta name="keywords" content="OSHA workplace injury reporting, incident documentation problems, workplace injury statistics 2024, OSHA compliance software comparison, workplace safety management, EHS software alternatives" />
+  <link rel="canonical" href="https://kinsignal.com/why.html" />
+  <meta property="og:title" content="Why It Matters — The OSHA Injury Response Crisis | KinSignal" />
+  <meta property="og:description" content="2.6M injuries. $181.4B in costs. Existing safety software was built for desks, not the supervisor on the floor in the first 30 minutes." />
+  <meta property="og:type" content="article" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --navy: #0f2d52;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --blue-mid: #bfdbfe;
+      --green: #16a34a;
+      --green-soft: #f0fdf4;
+      --amber: #d97706;
+      --amber-soft: #fffbeb;
+      --amber-mid: #fde68a;
+      --red: #dc2626;
+      --red-soft: #fef2f2;
+      --red-mid: #fecaca;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; line-height: 1.6; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .nav-logo { font-weight: 800; font-size: 1.2rem; color: var(--navy); text-decoration: none; }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a.active { color: var(--navy); font-weight: 600; }
+    .nav-cta { background: var(--blue); color: #fff !important; padding: 8px 18px; border-radius: 8px; font-weight: 600 !important; transition: background 0.2s; }
+    .nav-cta:hover { background: #1d4ed8 !important; color: #fff !important; }
+
+    /* HERO */
+    .hero { background: var(--white); border-bottom: 1px solid var(--border); padding: 72px 24px 56px; text-align: center; }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .hero-tag { display: inline-block; background: var(--red-soft); border: 1px solid var(--red-mid); color: var(--red); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 900; line-height: 1.15; color: var(--navy); margin-bottom: 20px; }
+    .hero h1 em { font-style: normal; color: var(--red); }
+    .hero p { font-size: 1.1rem; color: var(--muted); max-width: 580px; margin: 0 auto 36px; }
+    .toc { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .toc a { background: var(--bg); border: 1px solid var(--border); color: var(--muted); text-decoration: none; padding: 7px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+    .toc a:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
+
+    /* SECTION WRAPPER */
+    .section-wrap { max-width: 920px; margin: 0 auto; padding: 64px 24px; }
+    .section-wrap + .section-wrap { border-top: 1px solid var(--border); }
+    .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+    .section-title { font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 800; color: var(--navy); margin-bottom: 14px; }
+    .section-sub { font-size: 1rem; color: var(--muted); margin-bottom: 36px; max-width: 620px; }
+
+    /* STAT GRID */
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+    .stat-card .num { font-size: 2.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 8px; }
+    .stat-card .num.red { color: var(--red); }
+    .stat-card .num.amber { color: var(--amber); }
+    .stat-card .num.blue { color: var(--blue); }
+    .stat-card .lbl { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
+    .stat-card .src { font-size: 0.68rem; color: #94a3b8; margin-top: 8px; }
+
+    /* CALLOUT BOXES */
+    .callout { border-radius: 12px; padding: 22px 26px; margin: 28px 0; }
+    .callout-red { background: var(--red-soft); border: 1px solid var(--red-mid); }
+    .callout-blue { background: var(--blue-soft); border: 1px solid var(--blue-mid); }
+    .callout-amber { background: var(--amber-soft); border: 1px solid var(--amber-mid); }
+    .callout-green { background: var(--green-soft); border: 1px solid #bbf7d0; }
+    .callout p { font-size: 1rem; color: var(--text); line-height: 1.7; }
+    .callout strong { color: var(--navy); }
+
+    /* PAIN POINTS */
+    .pain-list { display: flex; flex-direction: column; gap: 14px; }
+    .pain-item { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--red); border-radius: 12px; padding: 22px 26px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .pain-item h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .pain-item p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* COMPETITOR TABLE */
+    .comp-table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+    .comp-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; background: var(--white); }
+    .comp-table thead tr { background: var(--bg); }
+    .comp-table th { padding: 14px 18px; text-align: left; font-weight: 700; color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; border-bottom: 1px solid var(--border); }
+    .comp-table td { padding: 14px 18px; border-top: 1px solid var(--border-light); vertical-align: top; }
+    .comp-table tr:nth-child(even) td { background: #fafcff; }
+    .comp-table .comp-name { font-weight: 700; color: var(--navy); white-space: nowrap; }
+    .comp-table .comp-seg { color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
+    .comp-table .con { color: var(--red); font-size: 0.8rem; }
+    .comp-table .pro { color: var(--green); font-size: 0.8rem; }
+    .comp-ks { background: var(--blue-soft) !important; }
+    .comp-ks .comp-name { color: var(--blue) !important; }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-red { background: var(--red-soft); color: var(--red); border: 1px solid var(--red-mid); }
+    .badge-amber { background: var(--amber-soft); color: var(--amber); border: 1px solid var(--amber-mid); }
+    .badge-green { background: var(--green-soft); color: var(--green); border: 1px solid #bbf7d0; }
+    .badge-blue { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-mid); }
+
+    /* COST SECTION */
+    .cost-bars { display: flex; flex-direction: column; gap: 14px; margin-bottom: 12px; }
+    .cost-bar-item { display: flex; align-items: center; gap: 14px; }
+    .cost-label { width: 210px; flex-shrink: 0; font-size: 0.85rem; color: var(--text); font-weight: 500; }
+    .cost-bar-track { flex: 1; background: var(--border); border-radius: 100px; height: 10px; overflow: hidden; }
+    .cost-bar-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--red), #f97316); }
+    .cost-bar-val { width: 80px; text-align: right; font-size: 0.85rem; font-weight: 700; color: var(--red); flex-shrink: 0; }
+
+    /* MINI STAT CARDS */
+    .mini-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 28px; }
+    .mini-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .mini-card .mnum { font-size: 1.7rem; font-weight: 900; line-height: 1.1; margin-bottom: 8px; }
+    .mini-card .mnum.red { color: var(--red); }
+    .mini-card .mnum.amber { color: var(--amber); }
+    .mini-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
+
+    /* WHO GRID */
+    .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .who-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .who-card .icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .who-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .who-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+    /* SOLUTION CARD */
+    .solution-card { background: var(--navy); border-radius: 20px; padding: 48px 40px; text-align: center; }
+    .solution-card .section-label { color: #93c5fd; }
+    .solution-card h2 { font-size: 1.9rem; font-weight: 800; color: #fff; margin-bottom: 14px; }
+    .solution-card p { color: #94a3b8; font-size: 1rem; max-width: 560px; margin: 0 auto 28px; }
+    .btn-primary { display: inline-block; background: var(--blue); color: #fff; padding: 14px 32px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: background 0.2s; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-ghost { display: inline-block; border: 1px solid rgba(255,255,255,0.25); color: #cbd5e1; padding: 13px 28px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; text-decoration: none; margin-left: 12px; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+    /* SOURCES */
+    .sources { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 22px 26px; margin-top: 40px; }
+    .sources strong { font-size: 0.85rem; color: var(--navy); display: block; margin-bottom: 10px; }
+    .sources p { font-size: 0.78rem; color: var(--muted); margin-bottom: 4px; }
+
+    /* DISCLAIMER */
+    .disclaimer { background: var(--amber-soft); border-top: 1px solid var(--amber-mid); border-bottom: 1px solid var(--amber-mid); padding: 14px 24px; text-align: center; font-size: 0.78rem; color: #92400e; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: #94a3b8; padding: 48px 24px 36px; text-align: center; }
+    .footer-inner { max-width: 800px; margin: 0 auto; }
+    .footer-logo { font-weight: 800; font-size: 1.2rem; color: #fff; margin-bottom: 18px; }
+    .footer-logo span { color: #60a5fa; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-links a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: 0.78rem; color: #64748b; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .cost-label { width: 130px; font-size: 0.78rem; }
+      .btn-ghost { margin-left: 0; margin-top: 10px; display: block; }
+      .solution-card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="demo.html" class="nav-logo">Kin<span>Signal</span></a>
+  <div class="nav-links">
+    <a href="demo.html">Product</a>
+    <a href="why.html" class="active">Why It Matters</a>
+    <a href="articles.html">Articles</a>
+    <a href="demo.html#signup" class="nav-cta">Request Pilot</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">The OSHA Injury Response Crisis</div>
+    <h1>Millions of injuries. <em>Zero system</em> for most supervisors.</h1>
+    <p>The gap between "incident happened" and "packet filed correctly" costs businesses billions every year — and it still runs on paper, memory, and panic.</p>
+    <div class="toc">
+      <a href="#stats">The Numbers</a>
+      <a href="#costs">Financial Impact</a>
+      <a href="#pain">Real Pain Points</a>
+      <a href="#competitors">What Exists Today</a>
+      <a href="#who">Who's Affected</a>
+      <a href="#solution">The Fix</a>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="section-wrap" id="stats">
+  <div class="section-label">By the Numbers</div>
+  <div class="section-title">The scale of the problem is staggering</div>
+  <p class="section-sub">These aren't estimates. These are government-reported figures from BLS, OSHA, and peer-reviewed occupational health research.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="num red">2.6M</div>
+      <div class="lbl">Nonfatal workplace injuries and illnesses (private industry)</div>
+      <div class="src">BLS, 2023</div>
+    </div>
+    <div class="stat-card">
+      <div class="num amber">$181.4B</div>
+      <div class="lbl">Total annual cost of work injuries in the U.S.</div>
+      <div class="src">NSC Injury Facts, 2024</div>
+    </div>
+    <div class="stat-card">
+      <div class="num red">5,283</div>
+      <div class="lbl">Fatal work injuries — about one every 99 minutes</div>
+      <div class="src">BLS Census of Fatal Occupational Injuries, 2023</div>
+    </div>
+    <div class="stat-card">
+      <div class="num amber">Significant</div>
+      <div class="lbl">Share of serious injuries that go unreported, per peer-reviewed occupational health research</div>
+      <div class="src">Multiple academic studies</div>
+    </div>
+    <div class="stat-card">
+      <div class="num red">$165,514</div>
+      <div class="lbl">Max OSHA penalty per willful or repeat violation</div>
+      <div class="src">OSHA, 2025 penalty schedule</div>
+    </div>
+    <div class="stat-card">
+      <div class="num blue">8 hrs</div>
+      <div class="lbl">Window to report a fatality to OSHA</div>
+      <div class="src">29 CFR 1904.39</div>
+    </div>
+  </div>
+
+  <div class="callout callout-red">
+    <p><strong>A significant share of serious workplace injuries are not reported to OSHA.</strong> Multiple peer-reviewed occupational health studies have found substantial under-capture in national surveillance data. This isn't because companies are hiding events — it's because <strong>supervisors rarely have a reliable system to follow when it's chaos on the floor.</strong></p>
+  </div>
+</div>
+
+<!-- FINANCIAL COST -->
+<div class="section-wrap" id="costs">
+  <div class="section-label">Financial Impact</div>
+  <div class="section-title">$181 billion — and that's just the reported injuries</div>
+  <p class="section-sub">Every workplace injury triggers a cascade of direct and indirect costs. Most businesses only track the obvious ones.</p>
+
+  <div class="cost-bars">
+    <div class="cost-bar-item">
+      <div class="cost-label">Wage &amp; productivity losses</div>
+      <div class="cost-bar-track"><div class="cost-bar-fill" style="width:75%"></div></div>
+      <div class="cost-bar-val">Largest</div>
+    </div>
+    <div class="cost-bar-item">
+      <div class="cost-label">Medical expenses</div>
+      <div class="cost-bar-track"><div class="cost-bar-fill" style="width:55%"></div></div>
+      <div class="cost-bar-val">Major</div>
+    </div>
+    <div class="cost-bar-item">
+      <div class="cost-label">Administrative &amp; legal</div>
+      <div class="cost-bar-track"><div class="cost-bar-fill" style="width:40%"></div></div>
+      <div class="cost-bar-val">Significant</div>
+    </div>
+    <div class="cost-bar-item">
+      <div class="cost-label">Employer overhead</div>
+      <div class="cost-bar-track"><div class="cost-bar-fill" style="width:25%"></div></div>
+      <div class="cost-bar-val">Notable</div>
+    </div>
+  </div>
+  <p style="font-size:0.76rem;color:var(--muted);margin-top:10px;">Cost categories per National Safety Council, Injury Facts (2024). Relative magnitudes shown; see NSC for current dollar figures.</p>
+
+  <div class="callout callout-amber" style="margin-top: 28px;">
+    <p><strong>The hidden cost multiplier: poor documentation.</strong> Insurers and defense counsel consistently emphasize that contemporaneous, timestamped records are far stronger evidence than reconstructed accounts written later from memory. <strong>Documentation isn't bureaucracy — it's your legal protection.</strong></p>
+  </div>
+
+  <div class="mini-stats">
+    <div class="mini-card">
+      <div class="mnum red">4–10×</div>
+      <p>Indirect-to-direct cost ratio for a workplace injury (OSHA Safety Pays Estimator)</p>
+    </div>
+    <div class="mini-card">
+      <div class="mnum amber">$16,550</div>
+      <p>Max OSHA penalty per serious violation (2025 schedule)</p>
+    </div>
+    <div class="mini-card">
+      <div class="mnum red">$165,514</div>
+      <p>Max OSHA penalty per willful or repeat violation (2025 schedule)</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAIN POINTS -->
+<div class="section-wrap" id="pain">
+  <div class="section-label">What Supervisors Tell Us</div>
+  <div class="section-title">What we keep hearing in interviews</div>
+  <p class="section-sub">These are paraphrased from conversations with safety managers, warehouse supervisors, construction foremen, and staffing agency operators. Customer voice — not statistics.</p>
+
+  <div class="pain-list">
+    <div class="pain-item">
+      <h3>"I didn't know the 8-hour rule."</h3>
+      <p>OSHA requires employers to report workplace fatalities within 8 hours and in-patient hospitalizations, amputations, or eye losses within 24 hours. Most front-line supervisors have never been told this — and their company isn't checking the clock during a crisis.</p>
+    </div>
+    <div class="pain-item">
+      <h3>"I couldn't find the emergency contact."</h3>
+      <p>Paper binders get left at the office. HR systems require a desktop login. Supervisors end up calling the main office, then HR, then the worker's cell, then waiting. Meanwhile OSHA's clock is running and the family still doesn't know.</p>
+    </div>
+    <div class="pain-item">
+      <h3>"We wrote the report two days later from memory."</h3>
+      <p>Reports are routinely written hours or days after the event, from memory. Details get compressed, witness accounts drift, and the timeline loses precision — exactly the information you need if the case is later disputed.</p>
+    </div>
+    <div class="pain-item">
+      <h3>"I didn't know if it was OSHA-recordable."</h3>
+      <p>The line between "first aid" and "recordable" isn't always obvious. A trip to the ER doesn't automatically mean recordable. But many supervisors either over-report (wasting resources) or under-report (creating liability). There's no guidance in the moment.</p>
+    </div>
+    <div class="pain-item">
+      <h3>"The forms were scattered everywhere."</h3>
+      <p>The injury description is in one place. The contact log is in another. The witness statement is on someone's phone. When legal or HR needs the full picture six months later, nobody can reconstruct it — and the company is exposed.</p>
+    </div>
+    <div class="pain-item">
+      <h3>"We didn't get a witness statement in time."</h3>
+      <p>Witnesses move on, get transferred, or simply forget. Statements collected close to the event are far more accurate and legally defensible than those collected the next day. But nobody reminds supervisors to collect them while everyone is still on-site.</p>
+    </div>
+  </div>
+</div>
+
+<!-- COMPETITORS -->
+<div class="section-wrap" id="competitors">
+  <div class="section-label">Competitive Landscape</div>
+  <div class="section-title">What else exists — and why it falls short</div>
+  <p class="section-sub">There are enterprise EHS platforms, but none of them are built for the supervisor on the floor during a crisis. They're built for safety directors behind desks.</p>
+
+  <div class="comp-table-wrap">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Who It's For</th>
+          <th>What It Gets Right</th>
+          <th>Where It Falls Short</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="comp-name">Intelex</div>
+            <div class="comp-seg">Enterprise EHS</div>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted);">Fortune 500 safety teams, large manufacturers</td>
+          <td><span class="pro">✓ Deep analytics, audit trails, multi-site</span></td>
+          <td><span class="con">✗ $30K–$100K/yr. 6–12 month implementations. No mobile-first supervisor workflow. Requires dedicated EHS staff.</span></td>
+          <td><span class="badge badge-red">$$$$$</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comp-name">Cority</div>
+            <div class="comp-seg">Enterprise EHS Suite</div>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted);">Mid-large enterprises, pharma, manufacturing</td>
+          <td><span class="pro">✓ Comprehensive compliance, strong reporting</span></td>
+          <td><span class="con">✗ Complex UI requires training. Emergency contacts buried 4+ screens deep. Not usable under pressure.</span></td>
+          <td><span class="badge badge-red">$$$$$</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comp-name">SafetyCulture (iAuditor)</div>
+            <div class="comp-seg">Inspection &amp; Audit App</div>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted);">Mid-market, field teams, inspections</td>
+          <td><span class="pro">✓ Mobile-friendly, easy forms, good UX</span></td>
+          <td><span class="con">✗ Built for routine audits, not crisis response. No emergency contact workflow. No OSHA-specific guidance.</span></td>
+          <td><span class="badge badge-amber">$$$</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comp-name">Origami Risk</div>
+            <div class="comp-seg">Risk &amp; Insurance Platform</div>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted);">Insurance, large enterprise risk teams</td>
+          <td><span class="pro">✓ Insurance integration, strong data model</span></td>
+          <td><span class="con">✗ Designed for risk managers, not supervisors. No real-time incident workflow. Implementation is months-long.</span></td>
+          <td><span class="badge badge-red">$$$$$</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="comp-name">Paper / Spreadsheets</div>
+            <div class="comp-seg">Default for most SMBs</div>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted);">Construction, warehouses, staffing, small business</td>
+          <td><span class="pro">✓ Zero learning curve, always accessible</span></td>
+          <td><span class="con">✗ Lost binders, no timeline, no emergency contacts at point of need, zero audit trail, legally indefensible.</span></td>
+          <td><span class="badge badge-green">$0</span></td>
+        </tr>
+        <tr class="comp-ks">
+          <td>
+            <div class="comp-name">KinSignal</div>
+            <div class="comp-seg">Supervisor-first response</div>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted);">SMB to mid-market: construction, warehouses, field teams, staffing</td>
+          <td><span class="pro">✓ Mobile-first, guided in-the-moment workflow, emergency contacts at step 1, OSHA flag logic, audit-ready packet</span></td>
+          <td><span class="con">✗ Early stage — no enterprise analytics yet</span></td>
+          <td><span class="badge badge-blue">$$</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-blue" style="margin-top: 28px;">
+    <p><strong>The real gap:</strong> Enterprise EHS platforms are built for safety directors — people with dedicated time, training, and IT support. <strong>But most incidents are first managed by a front-line supervisor with no EHS background, under stress, on a mobile phone.</strong> That's the person no existing software is designed for. That's who KinSignal is built for.</p>
+  </div>
+</div>
+
+<!-- WHO SUFFERS -->
+<div class="section-wrap" id="who">
+  <div class="section-label">Who's Most Exposed</div>
+  <div class="section-title">Industries where the documentation gap is widest</div>
+  <p class="section-sub">BLS injury data shows that certain industries face both higher incident rates and lower documentation quality — the worst of both worlds.</p>
+
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="icon">🏗️</div>
+      <h4>Construction</h4>
+      <p>Among the highest fatality rates in private industry (BLS). Job sites change weekly; no centralized record system. Supervisors often manage crews across multiple active sites.</p>
+    </div>
+    <div class="who-card">
+      <div class="icon">📦</div>
+      <h4>Warehousing &amp; Logistics</h4>
+      <p>One of the highest nonfatal injury rates in private industry (BLS). High turnover means supervisors often manage workers they barely know. Emergency contacts rarely accessible on the floor.</p>
+    </div>
+    <div class="who-card">
+      <div class="icon">⚡</div>
+      <h4>Field Services &amp; Trades</h4>
+      <p>Electricians, plumbers, HVAC crews. Work in isolated environments with no on-site HR support. One supervisor often covers multiple crews across a metro area simultaneously.</p>
+    </div>
+    <div class="who-card">
+      <div class="icon">👷</div>
+      <h4>Staffing Agencies</h4>
+      <p>Temp workers placed at client sites — but the staffing agency retains OSHA responsibility. Incidents cross two organizations with no shared system. Coordination breakdown is the norm.</p>
+    </div>
+    <div class="who-card">
+      <div class="icon">🏭</div>
+      <h4>Light Manufacturing</h4>
+      <p>High incident volume, paper-based processes. Supervisors on night shifts often have no access to HR systems or emergency contact binders stored in daytime offices.</p>
+    </div>
+    <div class="who-card">
+      <div class="icon">🚛</div>
+      <h4>Transportation &amp; Fleet</h4>
+      <p>Incidents happen remotely. Drivers are alone when injured. Emergency contacts may be the only lifeline — and getting them in seconds is not solved by any current system.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTION -->
+<div class="section-wrap" id="solution">
+  <div class="solution-card">
+    <div class="section-label">The Fix</div>
+    <h2>Supervisors need a system, not a form</h2>
+    <p>KinSignal gives any supervisor — regardless of safety training background — a clear step-by-step process the moment an incident happens. Emergency contacts instantly available. OSHA logic built in. Audit packet generated automatically.</p>
+    <a href="demo.html#demo" class="btn-primary">See the Product Demo</a>
+    <a href="demo.html#signup" class="btn-ghost">Request Pilot</a>
+  </div>
+
+  <div class="sources">
+    <strong>Sources</strong>
+    <p>Bureau of Labor Statistics — Occupational Injuries, Illnesses, and Fatalities (2023 reference year)</p>
+    <p>National Safety Council — Injury Facts, Work Injury Costs (2024)</p>
+    <p>OSHA — 2025 Annual Adjustments to OSHA Civil Penalties (Federal Register, Jan. 2025)</p>
+    <p>OSHA Safety Pays Estimator — Indirect-to-direct cost ratios</p>
+    <p>29 CFR Part 1904 — OSHA Recordkeeping and Reporting Requirements</p>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  KinSignal is a documentation and workflow tool. Nothing on this page constitutes legal advice. Consult your safety lead or legal/compliance team for OSHA reporting decisions.
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Kin<span>Signal</span></div>
+    <div class="footer-links">
+      <a href="demo.html">Product</a>
+      <a href="why.html">Why It Matters</a>
+      <a href="articles.html">Articles</a>
+      <a href="demo.html#signup">Request Pilot</a>
+    </div>
+    <div class="footer-copy">© 2025 KinSignal. All rights reserved. &nbsp;·&nbsp; Built for the supervisor in the moment.</div>
+  </div>
+</footer>
+
+</body>
+</html>

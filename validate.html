@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KinSignal — Share Your Feedback</title>
+<meta name="robots" content="noindex, nofollow"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8fafc;--white:#fff;--navy:#0f2d52;--blue:#2563eb;--blue-h:#1d4ed8;
+  --blue-soft:#eff6ff;--blue-mid:#dbeafe;--muted:#64748b;--text:#0f172a;
+  --border:#e2e8f0;--border2:#cbd5e1;--slate:#334155;
+  --red:#dc2626;--red-soft:#fef2f2;--red-mid:#fecaca;
+  --green:#15803d;--green-soft:#f0fdf4;--green-mid:#bbf7d0;--green-text:#16a34a;
+  --amber:#d97706;--amber-soft:#fffbeb;--amber-mid:#fcd34d;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* NAV */
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.topbar-logo{font-weight:800;font-size:1.1rem;color:var(--navy);text-decoration:none}
+.topbar-logo span{color:var(--blue)}
+.topbar-note{font-size:.78rem;color:var(--muted)}
+
+/* PAGE */
+.page{max-width:680px;margin:0 auto;padding:56px 24px 80px}
+
+/* HERO */
+.v-tag{display:inline-flex;align-items:center;gap:7px;background:var(--blue-soft);border:1px solid var(--blue-mid);color:var(--blue);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:24px}
+.v-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.v-h1{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900;line-height:1.15;color:var(--navy);margin-bottom:16px;letter-spacing:-.02em}
+.v-h1 em{font-style:normal;color:var(--blue)}
+.v-sub{font-size:1.05rem;color:var(--muted);line-height:1.75;margin-bottom:40px;max-width:560px}
+
+/* PAIN SECTION */
+.pain-intro{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:16px}
+.pain-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
+.pain-card{background:var(--white);border:1.5px solid var(--border);border-left:4px solid var(--red-mid);border-radius:12px;padding:18px 20px}
+.pain-card.amber{border-left-color:var(--amber-mid)}
+.pain-card.blue{border-left-color:var(--blue-mid)}
+.pain-q{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.pain-a{font-size:.85rem;color:var(--muted);line-height:1.6}
+
+/* DIVIDER */
+.section-div{border:none;border-top:1px solid var(--border);margin:40px 0}
+
+/* FORM */
+.form-title{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.form-sub{font-size:.88rem;color:var(--muted);margin-bottom:28px;line-height:1.6}
+
+.q-block{margin-bottom:28px}
+.q-label{font-size:.88rem;font-weight:700;color:var(--slate);margin-bottom:10px;display:block}
+.q-note{font-size:.78rem;color:var(--muted);margin-top:4px}
+
+/* Radio cards */
+.radio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.radio-card{position:relative}
+.radio-card input{position:absolute;opacity:0;width:0;height:0}
+.radio-card label{display:block;background:var(--white);border:1.5px solid var(--border2);border-radius:10px;padding:12px 14px;font-size:.85rem;font-weight:600;color:var(--slate);cursor:pointer;transition:all .15s;user-select:none}
+.radio-card label:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
+.radio-card input:checked+label{background:var(--blue);border-color:var(--blue);color:#fff}
+
+/* Checkboxes */
+.check-grid{display:flex;flex-direction:column;gap:8px}
+.check-item-v{position:relative}
+.check-item-v input{position:absolute;opacity:0;width:0;height:0}
+.check-item-v label{display:flex;align-items:center;gap:10px;background:var(--white);border:1.5px solid var(--border2);border-radius:10px;padding:12px 14px;font-size:.85rem;font-weight:600;color:var(--slate);cursor:pointer;transition:all .15s}
+.check-item-v label:hover{border-color:var(--blue);background:var(--blue-soft)}
+.check-item-v input:checked+label{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.check-item-v input:checked+label::before{content:'✓';width:20px;height:20px;background:var(--blue);color:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.check-item-v label .cbox{width:20px;height:20px;border:2px solid var(--border2);border-radius:5px;flex-shrink:0;transition:all .15s}
+.check-item-v input:checked+label .cbox{display:none}
+
+/* Textarea */
+.v-textarea{width:100%;padding:12px 14px;border:1.5px solid var(--border2);border-radius:10px;font-family:var(--font);font-size:.9rem;color:var(--text);background:var(--white);outline:none;resize:vertical;min-height:100px;transition:border-color .15s;line-height:1.6}
+.v-textarea:focus{border-color:var(--blue)}
+
+/* Text input */
+.v-input{width:100%;padding:12px 14px;border:1.5px solid var(--border2);border-radius:10px;font-family:var(--font);font-size:.9rem;color:var(--text);background:var(--white);outline:none;transition:border-color .15s}
+.v-input:focus{border-color:var(--blue)}
+
+/* Range slider */
+.range-wrap{margin-top:8px}
+.range-slider{width:100%;accent-color:var(--blue);cursor:pointer}
+.range-labels{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:6px}
+.range-val{text-align:center;font-size:1.1rem;font-weight:800;color:var(--blue);margin-top:4px}
+
+/* BOOK CALL */
+.book-card{background:var(--navy);border-radius:16px;padding:32px;margin-bottom:24px;text-align:center}
+.book-tag{display:inline-block;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:14px}
+.book-h{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:8px}
+.book-sub{font-size:.88rem;color:#94a3b8;margin-bottom:20px;line-height:1.6}
+.book-btn{display:inline-block;background:var(--blue);color:#fff;padding:13px 32px;border-radius:10px;font-weight:700;font-size:.95rem;text-decoration:none;transition:background .15s;cursor:pointer;border:none;font-family:var(--font)}
+.book-btn:hover{background:var(--blue-h)}
+.book-or{font-size:.78rem;color:#64748b;margin-top:14px}
+
+/* SUBMIT */
+.v-submit{width:100%;background:var(--blue);color:#fff;border:none;font-family:var(--font);font-size:1rem;font-weight:700;padding:15px;border-radius:10px;cursor:pointer;transition:background .15s;margin-top:8px}
+.v-submit:hover{background:var(--blue-h)}
+.v-fine{font-size:.75rem;color:var(--muted);text-align:center;margin-top:10px;line-height:1.6}
+
+/* SUCCESS */
+.success-wrap{display:none;text-align:center;padding:40px 0}
+.success-icon{font-size:3rem;margin-bottom:16px}
+.success-h{font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:10px}
+.success-p{font-size:.95rem;color:var(--muted);line-height:1.7;max-width:420px;margin:0 auto 24px}
+.success-next{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:20px 24px;text-align:left;margin-top:24px}
+.success-next-t{font-size:.85rem;font-weight:700;color:var(--slate);margin-bottom:10px}
+.success-next-item{display:flex;align-items:flex-start;gap:10px;font-size:.85rem;color:var(--muted);margin-bottom:8px}
+.success-next-num{width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* FOOTER */
+.v-footer{text-align:center;padding-top:40px;border-top:1px solid var(--border);font-size:.78rem;color:var(--muted);line-height:1.7}
+.v-footer a{color:var(--blue);text-decoration:none}
+
+@media(max-width:560px){
+  .page{padding:40px 20px 60px}
+  .radio-grid{grid-template-columns:1fr 1fr}
+  .book-card{padding:24px 20px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="demo.html" class="topbar-logo">Kin<span>Signal</span></a>
+  <span class="topbar-note">Early Validation · Private</span>
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="v-tag"><span class="v-dot"></span> Founder Research</div>
+  <h1 class="v-h1">We're building something for <em>your exact problem</em>. Would you give us 20 minutes?</h1>
+  <p class="v-sub">I'm the founder of KinSignal. I'm talking to safety managers, site supervisors, and ops leaders at construction, warehouse, staffing, and field service companies — <strong>before I finish building anything</strong>. I want to understand your current workflow, not pitch you mine.</p>
+
+  <!-- PAIN CARDS -->
+  <div class="pain-intro">Does any of this sound familiar?</div>
+  <div class="pain-cards">
+    <div class="pain-card">
+      <div class="pain-q">"I couldn't find the emergency contact when it happened."</div>
+      <div class="pain-a">Paper binders at the front office. HR system needs a desktop login. The supervisor is on the floor with a phone and no number.</div>
+    </div>
+    <div class="pain-card amber">
+      <div class="pain-q">"The report was written two days later from memory."</div>
+      <div class="pain-a">By the time anyone sat down to document it, timestamps were guesses, witnesses had scattered, and the account was already different from what actually happened.</div>
+    </div>
+    <div class="pain-card blue">
+      <div class="pain-q">"I didn't know there was an 8-hour deadline."</div>
+      <div class="pain-a">OSHA requires fatalities reported within 8 hours. In-patient hospitalizations, amputations, and eye loss within 24 hours. Most supervisors have never been told these rules exist.</div>
+    </div>
+  </div>
+
+  <hr class="section-div"/>
+
+  <!-- QUICK SURVEY -->
+  <div id="vForm">
+    <div class="form-title">Two minutes. Helps me build the right thing.</div>
+    <div class="form-sub">This isn't a sales form. I read every response and follow up personally. If your answers match what I'm hearing from others, I'll reach out to schedule a 20-minute call.</div>
+
+    <!-- Q1: Role -->
+    <div class="q-block">
+      <label class="q-label">What best describes your role? *</label>
+      <div class="radio-grid">
+        <div class="radio-card"><input type="radio" name="role" id="r1" value="Safety Manager / EHS"/><label for="r1">Safety Manager / EHS</label></div>
+        <div class="radio-card"><input type="radio" name="role" id="r2" value="Site Supervisor / Foreman"/><label for="r2">Site Supervisor / Foreman</label></div>
+        <div class="radio-card"><input type="radio" name="role" id="r3" value="Operations Manager"/><label for="r3">Operations Manager</label></div>
+        <div class="radio-card"><input type="radio" name="role" id="r4" value="HR / People Ops"/><label for="r4">HR / People Ops</label></div>
+        <div class="radio-card"><input type="radio" name="role" id="r5" value="Owner / Founder"/><label for="r5">Owner / Founder</label></div>
+        <div class="radio-card"><input type="radio" name="role" id="r6" value="Other"/><label for="r6">Other</label></div>
+      </div>
+    </div>
+
+    <!-- Q2: Industry -->
+    <div class="q-block">
+      <label class="q-label">What's your industry? *</label>
+      <div class="radio-grid">
+        <div class="radio-card"><input type="radio" name="industry" id="i1" value="Construction"/><label for="i1">🏗 Construction</label></div>
+        <div class="radio-card"><input type="radio" name="industry" id="i2" value="Warehousing / Logistics"/><label for="i2">📦 Warehousing</label></div>
+        <div class="radio-card"><input type="radio" name="industry" id="i3" value="Staffing Agency"/><label for="i3">👷 Staffing</label></div>
+        <div class="radio-card"><input type="radio" name="industry" id="i4" value="Field Services / Trades"/><label for="i4">⚡ Field Services</label></div>
+        <div class="radio-card"><input type="radio" name="industry" id="i5" value="Manufacturing"/><label for="i5">🏭 Manufacturing</label></div>
+        <div class="radio-card"><input type="radio" name="industry" id="i6" value="Other"/><label for="i6">Other</label></div>
+      </div>
+    </div>
+
+    <!-- Q3: Company size -->
+    <div class="q-block">
+      <label class="q-label">How many employees does your company have? *</label>
+      <div class="radio-grid">
+        <div class="radio-card"><input type="radio" name="size" id="s1" value="1–10"/><label for="s1">1–10</label></div>
+        <div class="radio-card"><input type="radio" name="size" id="s2" value="11–50"/><label for="s2">11–50</label></div>
+        <div class="radio-card"><input type="radio" name="size" id="s3" value="51–200"/><label for="s3">51–200</label></div>
+        <div class="radio-card"><input type="radio" name="size" id="s4" value="201–500"/><label for="s4">201–500</label></div>
+        <div class="radio-card"><input type="radio" name="size" id="s5" value="500+"/><label for="s5">500+</label></div>
+      </div>
+    </div>
+
+    <!-- Q4: Incidents -->
+    <div class="q-block">
+      <label class="q-label">Roughly how many workplace incidents (any severity) does your team document per year?</label>
+      <div class="radio-grid">
+        <div class="radio-card"><input type="radio" name="incidents" id="inc1" value="0–5"/><label for="inc1">0–5</label></div>
+        <div class="radio-card"><input type="radio" name="incidents" id="inc2" value="6–20"/><label for="inc2">6–20</label></div>
+        <div class="radio-card"><input type="radio" name="incidents" id="inc3" value="21–50"/><label for="inc3">21–50</label></div>
+        <div class="radio-card"><input type="radio" name="incidents" id="inc4" value="51–100"/><label for="inc4">51–100</label></div>
+        <div class="radio-card"><input type="radio" name="incidents" id="inc5" value="100+"/><label for="inc5">100+</label></div>
+      </div>
+    </div>
+
+    <!-- Q5: Biggest pain -->
+    <div class="q-block">
+      <label class="q-label">When an incident happens, what's the hardest part to get right? Check all that apply.</label>
+      <div class="check-grid">
+        <div class="check-item-v"><input type="checkbox" id="p1" value="Getting emergency contacts fast"/><label for="p1"><span class="cbox"></span>Getting emergency contacts fast</label></div>
+        <div class="check-item-v"><input type="checkbox" id="p2" value="Knowing what steps the supervisor should take"/><label for="p2"><span class="cbox"></span>Knowing what steps the supervisor should take</label></div>
+        <div class="check-item-v"><input type="checkbox" id="p3" value="Documenting everything in the moment"/><label for="p3"><span class="cbox"></span>Documenting everything in the moment</label></div>
+        <div class="check-item-v"><input type="checkbox" id="p4" value="Knowing if it needs to be reported to OSHA"/><label for="p4"><span class="cbox"></span>Knowing if it needs to be reported to OSHA</label></div>
+        <div class="check-item-v"><input type="checkbox" id="p5" value="Getting a clean report to HR or legal afterward"/><label for="p5"><span class="cbox"></span>Getting a clean report to HR or legal afterward</label></div>
+        <div class="check-item-v"><input type="checkbox" id="p6" value="None of these — we have a solid system"/><label for="p6"><span class="cbox"></span>None of these — we have a solid system</label></div>
+      </div>
+    </div>
+
+    <!-- Q6: Pain score -->
+    <div class="q-block">
+      <label class="q-label">How big of a problem is incident response documentation for you right now?</label>
+      <div class="range-wrap">
+        <input type="range" class="range-slider" id="painScore" min="1" max="10" value="5" oninput="document.getElementById('painVal').textContent=this.value"/>
+        <div class="range-labels"><span>1 — It's fine</span><span>10 — Major liability concern</span></div>
+        <div class="range-val" id="painVal">5</div>
+      </div>
+    </div>
+
+    <!-- Q7: Current system -->
+    <div class="q-block">
+      <label class="q-label">What does your team currently use for incident documentation? (Be brutally honest)</label>
+      <textarea class="v-textarea" id="currentSystem" placeholder="e.g. Paper form + email to HR. Or SafetyCulture for audits but not for incidents. Or honestly just my own notes and memory..."></textarea>
+    </div>
+
+    <!-- Q8: Open response -->
+    <div class="q-block">
+      <label class="q-label">Is there anything specific about incident response that you think I'll miss if I don't hear it? Anything about your situation that's different from what you'd expect me to assume?</label>
+      <textarea class="v-textarea" id="openResponse" placeholder="This is the most important question. Surprises are valuable."></textarea>
+    </div>
+
+    <!-- Contact -->
+    <div class="q-block">
+      <label class="q-label">Your name *</label>
+      <input type="text" class="v-input" id="vName" placeholder="Mike Torres"/>
+    </div>
+    <div class="q-block">
+      <label class="q-label">Work email *</label>
+      <input type="email" class="v-input" id="vEmail" placeholder="mike@company.com"/>
+      <div class="q-note">I'll reply personally within 24 hours. No marketing. No newsletters. Just a follow-up from me.</div>
+    </div>
+    <div class="q-block">
+      <label class="q-label">Company name (optional)</label>
+      <input type="text" class="v-input" id="vCompany" placeholder="Acme Construction LLC"/>
+    </div>
+
+    <button class="v-submit" onclick="submitValidation()">Send My Responses →</button>
+    <div class="v-fine">Your answers go directly to the founder. We will not share your information with anyone.</div>
+
+  </div><!-- end vForm -->
+
+  <!-- SUCCESS -->
+  <div class="success-wrap" id="vSuccess">
+    <div class="success-icon">🙏</div>
+    <h2 class="success-h">Thank you — this is exactly what I needed.</h2>
+    <p class="success-p">I read every response personally. If your situation matches what I'm solving, I'll reach out within 24 hours to schedule a 20-minute call.</p>
+
+    <div class="book-card">
+      <div class="book-tag">Optional — But Worth It</div>
+      <div class="book-h">Skip the email tag — book a call directly</div>
+      <div class="book-sub">20 minutes. I'll ask about your current workflow. You get to help shape what this becomes. No pitch, no follow-up sales cycle.</div>
+      <a href="https://calendly.com/kinsignal/discovery" class="book-btn" target="_blank">Book a 20-Minute Call →</a>
+      <div class="book-or">Or wait for my email — I'll send a link anyway.</div>
+    </div>
+
+    <div class="success-next">
+      <div class="success-next-t">What happens next</div>
+      <div class="success-next-item"><div class="success-next-num">1</div> I review your answers within 24 hours</div>
+      <div class="success-next-item"><div class="success-next-num">2</div> If there's a match, I reach out to schedule 20 minutes</div>
+      <div class="success-next-item"><div class="success-next-num">3</div> If you're a fit for the pilot program, you get free access while we build it together</div>
+    </div>
+
+    <div style="margin-top:24px">
+      <a href="demo.html" style="color:var(--blue);font-size:.88rem;font-weight:600;text-decoration:none">← See the product demo</a>
+    </div>
+  </div>
+
+  <hr class="section-div"/>
+
+  <!-- BOOK A CALL SECTION (before form) -->
+  <div class="book-card" style="margin-bottom:40px">
+    <div class="book-tag">Prefer to skip the form?</div>
+    <div class="book-h">Book a 20-minute discovery call directly</div>
+    <div class="book-sub">I'd rather have a real conversation than read form responses. If you're a safety manager, supervisor, or ops lead at a company with workers in the field — I'd love 20 minutes of your time.</div>
+    <a href="https://calendly.com/kinsignal/discovery" class="book-btn" target="_blank">Book a Call →</a>
+    <div class="book-or">Or fill out the form above — I'll reach out within 24 hours.</div>
+  </div>
+
+  <div class="v-footer">
+    <strong style="color:var(--navy)">KinSignal</strong><br>
+    Building the 30-minute injury response system for front-line supervisors.<br>
+    Questions? <a href="mailto:hello@kinsignal.com">hello@kinsignal.com</a><br><br>
+    <a href="demo.html">See the product →</a> &nbsp;·&nbsp; <a href="why.html">Why this matters →</a>
+  </div>
+
+</div><!-- end page -->
+
+<!-- TOAST -->
+<div id="toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--navy);color:#fff;border-radius:10px;padding:10px 20px;font-size:.85rem;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:all .25s;white-space:nowrap"></div>
+
+<script>
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.opacity='1';
+  t.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(16px)'},3000);
+}
+
+function submitValidation(){
+  const name=document.getElementById('vName').value.trim();
+  const email=document.getElementById('vEmail').value.trim();
+  const role=document.querySelector('input[name="role"]:checked');
+  const industry=document.querySelector('input[name="industry"]:checked');
+
+  if(!name){showToast('Please enter your name');return}
+  if(!email||!email.includes('@')){showToast('Please enter a valid email');return}
+  if(!role){showToast('Please select your role');return}
+  if(!industry){showToast('Please select your industry');return}
+
+  // Collect all form data
+  const size=document.querySelector('input[name="size"]:checked');
+  const incidents=document.querySelector('input[name="incidents"]:checked');
+  const painScore=document.getElementById('painScore').value;
+  const pains=Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(c=>c.value);
+  const currentSystem=document.getElementById('currentSystem').value;
+  const openResponse=document.getElementById('openResponse').value;
+  const company=document.getElementById('vCompany').value;
+
+  const payload={
+    name, email, company,
+    role:role.value,
+    industry:industry.value,
+    size:size?size.value:'',
+    incidents:incidents?incidents.value:'',
+    pain_score:painScore,
+    pain_points:pains.join(', '),
+    current_system:currentSystem,
+    open_response:openResponse,
+    source:'KinSignal validation survey',
+    submitted_at:new Date().toISOString()
+  };
+
+  fetch('https://formsubmit.co/ajax/ashtonellis1000@gmail.com', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(r=>{
+    if(r.ok){showSuccess(name, painScore)}
+    else{showToast('Something went wrong — email hello@kinsignal.com directly')}
+  })
+  .catch(()=>showToast('Something went wrong — email hello@kinsignal.com directly'));
+}
+
+function showSuccess(name, score){
+  document.getElementById('vForm').style.display='none';
+  const success=document.getElementById('vSuccess');
+  success.style.display='block';
+  success.scrollIntoView({behavior:'smooth',block:'start'});
+
+  // High pain score — show extra urgency
+  if(parseInt(score)>=7){
+    document.querySelector('.success-h').textContent='Your situation sounds exactly like what we\'re solving.';
+    document.querySelector('.success-p').textContent='Pain score of '+score+'/10 tells me this is real. I\'ll reach out within a few hours — not 24.';
+  }
+}
+
+// Prevent "none of these" from being selected with other options
+document.getElementById('p6').addEventListener('change',function(){
+  if(this.checked){
+    ['p1','p2','p3','p4','p5'].forEach(id=>{
+      const el=document.getElementById(id);
+      el.checked=false;
+    });
+  }
+});
+['p1','p2','p3','p4','p5'].forEach(id=>{
+  document.getElementById(id).addEventListener('change',function(){
+    if(this.checked)document.getElementById('p6').checked=false;
+  });
+});
+</script>
+
+</body>
+</html>

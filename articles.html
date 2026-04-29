@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OSHA Injury Reporting Articles — KinSignal</title>
+<meta name="description" content="Plain-language answers to the most common OSHA workplace injury reporting questions — recordable injuries, 8-hour fatality reporting, hospitalization rules, temp workers, 300A, retention, and 2025 fines."/>
+<meta name="keywords" content="OSHA recordable injury, OSHA 300 log, workplace injury reporting requirements, OSHA 8 hour reporting deadline, OSHA hospitalization reporting, OSHA temp worker recording, OSHA 300A form, OSHA fines 2025"/>
+<link rel="canonical" href="https://kinsignal.com/articles.html"/>
+<meta property="og:title" content="OSHA Injury Reporting — Plain Language Answers | KinSignal"/>
+<meta property="og:description" content="Eight short articles answering the OSHA injury-reporting questions safety managers and supervisors actually search for."/>
+<meta property="og:type" content="article"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8fafc;--white:#ffffff;
+  --navy:#0f2d52;--navy2:#1e3a5f;
+  --blue:#2563eb;--blue-h:#1d4ed8;--blue-soft:#eff6ff;--blue-mid:#dbeafe;
+  --slate:#334155;--muted:#64748b;--faint:#94a3b8;--border:#e2e8f0;--border2:#cbd5e1;
+  --text:#0f172a;
+  --amber:#92400e;--amber-bg:#fffbeb;--amber-border:#fcd34d;--amber-text:#b45309;
+  --red:#b91c1c;--red-bg:#fef2f2;--red-border:#fecaca;--red-text:#dc2626;
+  --green:#15803d;--green-bg:#f0fdf4;--green-border:#bbf7d0;--green-text:#16a34a;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;
+  --sh-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --sh-md:0 4px 16px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:62px}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-weight:800;font-size:1.15rem;color:var(--navy);text-decoration:none;letter-spacing:-.02em}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a.active{color:var(--navy);font-weight:600}
+.nav-cta{background:var(--blue);color:#fff!important;padding:9px 20px;border-radius:var(--r-sm);font-weight:700!important;font-size:.85rem!important;transition:background .15s;white-space:nowrap}
+.nav-cta:hover{background:var(--blue-h)!important}
+
+/* LAYOUT */
+.page-wrap{max-width:1100px;margin:0 auto;padding:40px 24px 80px;display:grid;grid-template-columns:260px 1fr;gap:40px}
+@media(max-width:768px){.page-wrap{grid-template-columns:1fr}.sidebar{display:none}}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:80px;height:fit-content}
+.sidebar-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin-bottom:10px}
+.sidebar-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.sidebar-list li a{display:block;padding:9px 12px;border-radius:var(--r-sm);color:var(--muted);text-decoration:none;font-size:.84rem;transition:all .15s;border:1px solid transparent}
+.sidebar-list li a:hover{background:var(--white);border-color:var(--border);color:var(--slate)}
+.sidebar-list li a.active{background:var(--blue-soft);border-color:var(--blue-mid);color:var(--blue);font-weight:600}
+.sidebar-cta{margin-top:24px;background:var(--blue-soft);border:1.5px solid var(--blue-mid);border-radius:var(--r-lg);padding:18px}
+.sidebar-cta p{font-size:.82rem;color:var(--slate);margin-bottom:12px;line-height:1.5}
+.sidebar-cta a{display:block;background:var(--blue);color:#fff;text-align:center;padding:10px;border-radius:var(--r-sm);text-decoration:none;font-size:.85rem;font-weight:700;transition:background .15s}
+.sidebar-cta a:hover{background:var(--blue-h)}
+
+/* CONTENT HEADER */
+.content-header{margin-bottom:36px}
+.page-tag{display:inline-block;background:var(--blue-soft);border:1px solid var(--blue-mid);color:var(--blue);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:14px}
+.content-header h1{font-size:1.9rem;font-weight:900;letter-spacing:-.02em;color:var(--navy);margin-bottom:8px}
+.content-header p{font-size:.92rem;color:var(--muted);line-height:1.65}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:4px 11px;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.badge-blue{background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-mid)}
+.badge-red{background:var(--red-bg);color:var(--red-text);border:1px solid var(--red-border)}
+.badge-amber{background:var(--amber-bg);color:var(--amber-text);border:1px solid var(--amber-border)}
+.badge-green{background:var(--green-bg);color:var(--green-text);border:1px solid var(--green-border)}
+.badge-gray{background:#f1f5f9;color:var(--muted);border:1px solid var(--border)}
+
+/* ARTICLES */
+.article{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:32px 36px;margin-bottom:24px;scroll-margin-top:80px}
+.art-meta{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.read-time{font-size:.78rem;color:var(--faint)}
+.article h2{font-size:1.35rem;font-weight:800;color:var(--navy);line-height:1.25;margin-bottom:14px;letter-spacing:-.01em}
+.article h3{font-size:1rem;font-weight:700;color:var(--navy);margin:22px 0 9px}
+.article p{font-size:.9rem;color:var(--muted);margin-bottom:14px;line-height:1.75}
+.article p:last-child{margin-bottom:0}
+.article strong{color:var(--slate)}
+.article ul,.article ol{padding-left:20px;margin-bottom:14px}
+.article li{font-size:.9rem;color:var(--muted);margin-bottom:7px;line-height:1.65}
+.article li strong{color:var(--slate)}
+
+/* CALLOUTS */
+.callout{border-radius:var(--r-md);padding:16px 20px;margin:18px 0}
+.callout-red{background:var(--red-bg);border:1.5px solid var(--red-border)}
+.callout-amber{background:var(--amber-bg);border:1.5px solid var(--amber-border)}
+.callout-blue{background:var(--blue-soft);border:1.5px solid var(--blue-mid)}
+.callout-green{background:var(--green-bg);border:1.5px solid var(--green-border)}
+.callout-title{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.callout-red .callout-title{color:var(--red-text)}
+.callout-amber .callout-title{color:var(--amber-text)}
+.callout-blue .callout-title{color:var(--blue)}
+.callout-green .callout-title{color:var(--green-text)}
+.callout p{font-size:.86rem!important;margin-bottom:0!important;line-height:1.6!important;color:var(--slate)!important}
+
+/* YES/NO GRID */
+.quick-rule{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+@media(max-width:560px){.quick-rule{grid-template-columns:1fr}}
+.rule-box{border-radius:var(--r-md);padding:14px 16px}
+.rule-yes{background:var(--green-bg);border:1.5px solid var(--green-border)}
+.rule-no{background:var(--red-bg);border:1.5px solid var(--red-border)}
+.rule-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+.rule-yes .rule-label{color:var(--green-text)}
+.rule-no .rule-label{color:var(--red-text)}
+.rule-box ul{padding-left:16px;margin:0}
+.rule-box li{font-size:.82rem;color:var(--muted)!important;margin-bottom:4px}
+
+/* DISCLAIMER */
+.disclaimer{font-size:.78rem;color:var(--faint);border-top:1px solid var(--border);padding-top:14px;margin-top:20px;line-height:1.6}
+
+/* BOTTOM CTA */
+.bottom-cta{background:var(--blue-soft);border:1.5px solid var(--blue-mid);border-radius:var(--r-lg);padding:32px;text-align:center;margin-top:12px}
+.bottom-cta .eyebrow{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:10px}
+.bottom-cta h2{font-size:1.35rem;font-weight:800;color:var(--navy);margin-bottom:10px;letter-spacing:-.01em}
+.bottom-cta p{font-size:.9rem;color:var(--muted);max-width:520px;margin:0 auto 22px;line-height:1.65}
+.btn-primary{display:inline-block;background:var(--blue);color:#fff;padding:13px 28px;border-radius:var(--r-md);font-weight:700;font-size:.9rem;text-decoration:none;transition:background .15s}
+.btn-primary:hover{background:var(--blue-h)}
+.btn-ghost{display:inline-block;border:1.5px solid var(--border2);color:var(--muted);padding:12px 24px;border-radius:var(--r-md);font-weight:600;font-size:.9rem;text-decoration:none;margin-left:10px;transition:all .15s}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+
+/* DISCLAIMER BAR */
+.disclaimer-bar{background:var(--amber-bg);border-top:1px solid var(--amber-border);padding:14px 24px;text-align:center;font-size:.78rem;color:var(--amber);line-height:1.6}
+.disclaimer-bar a{color:var(--amber);font-weight:600}
+
+/* FOOTER */
+footer{background:var(--navy);color:#fff;padding:36px 24px}
+.foot-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.foot-logo{font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
+.foot-logo span{color:#60a5fa}
+.foot-tagline{font-size:.8rem;color:#94a3b8;margin-top:3px}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap}
+.foot-links a{color:#94a3b8;text-decoration:none;font-size:.85rem;transition:color .15s}
+.foot-links a:hover{color:#fff}
+.foot-copy{width:100%;text-align:center;font-size:.75rem;color:#475569;padding-top:18px;border-top:1px solid #1e3a5f;margin-top:14px}
+
+@media(max-width:640px){.article{padding:22px 18px}.btn-ghost{margin-left:0;margin-top:10px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="demo.html" class="nav-logo">Kin<span>Signal</span></a>
+    <div class="nav-links">
+      <a href="demo.html">Product</a>
+      <a href="why.html">Why It Matters</a>
+      <a href="articles.html" class="active">Articles</a>
+      <a href="demo.html#signup" class="nav-cta">Request Pilot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-label">Articles</div>
+    <ul class="sidebar-list">
+      <li><a href="#recordable">What counts as a recordable injury?</a></li>
+      <li><a href="#8hour">The 8-hour fatality rule</a></li>
+      <li><a href="#24hour">The 24-hour severe injury rule</a></li>
+      <li><a href="#er-vs-hospital">ER vs. hospitalization</a></li>
+      <li><a href="#temp-workers">Temp worker recording rules</a></li>
+      <li><a href="#300a">The OSHA 300A annual summary</a></li>
+      <li><a href="#retention">5-year record retention</a></li>
+      <li><a href="#fines">OSHA fines and how to avoid them</a></li>
+    </ul>
+    <div class="sidebar-cta">
+      <p>KinSignal handles OSHA risk flagging automatically — so supervisors don't need to memorize these rules.</p>
+      <a href="demo.html#signup">Request Pilot</a>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main>
+    <div class="content-header">
+      <div class="page-tag">OSHA Compliance Guide</div>
+      <h1>OSHA Injury Reporting — Plain Language Answers</h1>
+      <p>No legalese. No vague "consult your safety professional" deflections. These are direct, accurate answers to the questions supervisors and safety managers actually search for.</p>
+    </div>
+
+    <!-- ARTICLE 1 -->
+    <article class="article" id="recordable">
+      <div class="art-meta">
+        <span class="badge badge-blue">Recordable Injuries</span>
+        <span class="read-time">5 min read</span>
+      </div>
+      <h2>What Counts as an OSHA Recordable Injury? (The Complete Guide)</h2>
+      <p>This is the most searched OSHA question for a reason — the line between "first aid" and "recordable" isn't always obvious, and getting it wrong creates real liability in both directions.</p>
+
+      <h3>The basic rule</h3>
+      <p>Under <strong>29 CFR 1904.7</strong>, a work-related injury or illness is recordable if it results in any of the following:</p>
+      <ul>
+        <li>Days away from work</li>
+        <li>Restricted work or job transfer</li>
+        <li>Medical treatment beyond first aid</li>
+        <li>Loss of consciousness</li>
+        <li>Diagnosis of a significant injury or illness by a healthcare professional</li>
+      </ul>
+
+      <h3>What is "first aid" vs. "medical treatment"?</h3>
+      <p>OSHA defines first aid specifically. If treatment stays within this list, it's first aid — not recordable:</p>
+      <ul>
+        <li>Using nonprescription medication at nonprescription strength</li>
+        <li>Tetanus immunizations</li>
+        <li>Cleaning, flushing, or soaking wounds on the surface of the skin</li>
+        <li>Wound closures — bandages, butterfly bandages, or Steri-Strips (not sutures)</li>
+        <li>Using hot or cold therapy</li>
+        <li>Using any totally non-rigid means of support — elastic bandages, wraps</li>
+        <li>Drilling a fingernail or toenail to relieve pressure</li>
+        <li>Using eye patches</li>
+        <li>Removing splinters or foreign material by irrigation, tweezers, or cotton swabs</li>
+        <li>Using finger guards, massages, drinking fluids for heat stress relief</li>
+      </ul>
+
+      <div class="callout callout-amber">
+        <div class="callout-title">⚠️ Common Mistake</div>
+        <p>Visiting an urgent care clinic or ER does <strong>not</strong> automatically make an injury recordable. It depends on what treatment was administered. If the doctor prescribed medication or performed sutures, it becomes recordable. If they cleaned the wound and sent the worker home, it may still be first aid.</p>
+      </div>
+
+      <h3>The "work-relatedness" test</h3>
+      <p>The injury must also be work-related — meaning the work environment or activities caused or contributed to the injury, or significantly aggravated a pre-existing condition. Injuries during commutes, personal tasks during work hours, or purely personal health events (heart attack unrelated to work) are generally not recordable.</p>
+
+      <div class="callout callout-blue">
+        <div class="callout-title">📋 Practical Test</div>
+        <p>Ask three questions: (1) Did the injury happen at work or while performing a work task? (2) Did treatment go beyond first aid? (3) Did it result in lost time, restricted duty, or a significant diagnosis? If yes to any two — it's likely recordable.</p>
+      </div>
+
+      <p class="disclaimer"><strong>Source:</strong> 29 CFR 1904.7. This guidance is educational. Final recordability determinations should be reviewed by a qualified safety professional or legal counsel.</p>
+    </article>
+
+    <!-- ARTICLE 2 -->
+    <article class="article" id="8hour">
+      <div class="art-meta">
+        <span class="badge badge-red">Critical Deadline</span>
+        <span class="read-time">3 min read</span>
+      </div>
+      <h2>The OSHA 8-Hour Fatality Reporting Rule — What It Is and What Happens If You Miss It</h2>
+      <p>This rule catches more employers off guard than almost any other OSHA requirement. The penalty for missing it is immediate and severe.</p>
+
+      <h3>The rule</h3>
+      <p>Under <strong>29 CFR 1904.39(a)(1)</strong>, employers must report any work-related fatality to OSHA <strong>within 8 hours</strong> of learning about it. The clock starts from when any supervisor, manager, or company representative becomes aware — not from when the event occurred.</p>
+
+      <div class="callout callout-red">
+        <div class="callout-title">🚨 Critical</div>
+        <p>The 8-hour clock starts the moment <strong>any</strong> supervisor, manager, or company representative learns of the fatality. It does not restart if someone forgets to notify HR, or if the incident happens overnight and is discovered in the morning.</p>
+      </div>
+
+      <h3>How to report</h3>
+      <ul>
+        <li><strong>By phone:</strong> Call the nearest OSHA area office during business hours</li>
+        <li><strong>OSHA hotline:</strong> 1-800-321-OSHA (1-800-321-6742) — available 24/7</li>
+        <li><strong>Online:</strong> OSHA's reporting form at osha.gov (available outside phone hours)</li>
+      </ul>
+
+      <h3>What happens if you miss it?</h3>
+      <p>Missing the 8-hour window is itself a recordkeeping violation. OSHA can issue a citation up to <strong>$16,550 per violation</strong> (2025 schedule) for the late report alone — separate from investigation of the underlying event. Willful failures can reach <strong>$165,514</strong>.</p>
+
+      <div class="callout callout-amber">
+        <div class="callout-title">⚠️ Late is better than never</div>
+        <p>If you miss the window, report immediately anyway. Unreported events are treated more seriously than late reports, and voluntary disclosure is a mitigating factor during OSHA penalty assessment.</p>
+      </div>
+
+      <p class="disclaimer"><strong>Source:</strong> 29 CFR 1904.39, OSHA 2025 penalty schedule.</p>
+    </article>
+
+    <!-- ARTICLE 3 -->
+    <article class="article" id="24hour">
+      <div class="art-meta">
+        <span class="badge badge-red">Critical Deadline</span>
+        <span class="read-time">3 min read</span>
+      </div>
+      <h2>The 24-Hour Rule for Hospitalizations, Amputations, and Eye Loss</h2>
+      <p>Fatalities get the 8-hour rule. Three other severe injury types get 24 hours. Here's exactly what qualifies.</p>
+
+      <h3>The rule</h3>
+      <p>Under <strong>29 CFR 1904.39(a)(2)</strong>, employers must report the following within <strong>24 hours</strong> of learning about them:</p>
+      <ul>
+        <li><strong>In-patient hospitalization</strong> of one or more employees</li>
+        <li><strong>Amputation</strong> — traumatic loss of a limb or other external body part</li>
+        <li><strong>Loss of an eye</strong></li>
+      </ul>
+
+      <div class="callout callout-blue">
+        <div class="callout-title">📋 Key Distinction</div>
+        <p>This applies only to <strong>in-patient hospitalization</strong> — meaning the employee is admitted to the hospital. Going to the ER for outpatient treatment that doesn't result in admission does <strong>not</strong> trigger the 24-hour rule. This is one of the most commonly confused points in OSHA recordkeeping.</p>
+      </div>
+
+      <h3>What counts as an amputation?</h3>
+      <p>OSHA's definition includes traumatic loss of any external body part — including fingertips and parts of fingers. Even if a surgeon later repairs or reattaches the part, the event is still reportable under the 24-hour rule.</p>
+
+      <p class="disclaimer"><strong>Source:</strong> 29 CFR 1904.39(a)(2).</p>
+    </article>
+
+    <!-- ARTICLE 4 -->
+    <article class="article" id="er-vs-hospital">
+      <div class="art-meta">
+        <span class="badge badge-blue">Recordable Injuries</span>
+        <span class="read-time">4 min read</span>
+      </div>
+      <h2>ER Visit vs. Hospital Admission — Why the Difference Matters for OSHA Reporting</h2>
+      <p>This single distinction causes more compliance confusion than almost anything else in OSHA recordkeeping. Many employers incorrectly assume any ER visit triggers a 24-hour report. It doesn't.</p>
+
+      <div class="quick-rule">
+        <div class="rule-box rule-yes">
+          <div class="rule-label">✓ Triggers 24-hour report</div>
+          <ul>
+            <li>Employee admitted to the hospital as an in-patient</li>
+            <li>Admitted for observation overnight</li>
+            <li>Admitted for surgery requiring a hospital bed</li>
+          </ul>
+        </div>
+        <div class="rule-box rule-no">
+          <div class="rule-label">✗ Does NOT trigger 24-hour report</div>
+          <ul>
+            <li>Treated and released from ER same day</li>
+            <li>Held for ER observation only (not formally admitted)</li>
+            <li>Outpatient clinic or urgent care visit</li>
+            <li>Transported by ambulance but not admitted</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>What supervisors should do</h3>
+      <p>When an employee is transported to a hospital, find out as soon as possible whether they were admitted as an in-patient. That single question — <strong>"were they admitted?"</strong> — is what determines whether OSHA's 24-hour clock is running.</p>
+
+      <div class="callout callout-amber">
+        <div class="callout-title">⚠️ When in doubt, report</div>
+        <p>OSHA has stated that an employer who reports an event that turns out to be non-reportable will not be penalized. An employer who fails to report a reportable event will be cited. If you're unsure, report and note the uncertainty in your documentation.</p>
+      </div>
+
+      <p class="disclaimer"><strong>Source:</strong> 29 CFR 1904.39, OSHA Letters of Interpretation.</p>
+    </article>
+
+    <!-- ARTICLE 5 -->
+    <article class="article" id="temp-workers">
+      <div class="art-meta">
+        <span class="badge badge-amber">Temp Workers</span>
+        <span class="read-time">4 min read</span>
+      </div>
+      <h2>OSHA Recordkeeping for Temp Workers — Who's Responsible?</h2>
+      <p>Temp workers are one of the most legally complicated categories in OSHA recordkeeping. Two organizations — a staffing agency and a host employer — both have responsibilities, and they're different.</p>
+
+      <h3>The general rule</h3>
+      <p><strong>The employer who supervises day-to-day work records the injury.</strong> Per OSHA guidance and a 2014 enforcement directive, the host employer — the company where the temp worker performs tasks — is generally responsible for recording work-related injuries on their OSHA 300 log.</p>
+
+      <div class="callout callout-blue">
+        <div class="callout-title">📋 The Practical Test</div>
+        <p>Who directed the temp worker's day-to-day activities? Who told them what to do, when, and how? That entity records the injury. If it's the host employer's foreman or supervisor — it goes on the host's 300 log.</p>
+      </div>
+
+      <h3>The shared responsibility problem</h3>
+      <p>Temp worker injuries are chronically under-documented because each party assumes the other has it handled. Staffing agencies should have a written agreement with each host employer specifying who records injuries, plus a notification system so the agency learns of any injury within 24 hours.</p>
+
+      <div class="callout callout-amber">
+        <div class="callout-title">⚠️ Fatality reporting is different</div>
+        <p>For fatality and severe injury <strong>reporting</strong> (8-hour and 24-hour rules), both the host employer and the staffing agency may have obligations. OSHA's position is that both should report — the host because it controls the site, the agency because it employs the worker.</p>
+      </div>
+
+      <p class="disclaimer"><strong>Sources:</strong> OSHA Directive CPL 02-00-144 (2014), 29 CFR 1904.31.</p>
+    </article>
+
+    <!-- ARTICLE 6 -->
+    <article class="article" id="300a">
+      <div class="art-meta">
+        <span class="badge badge-gray">Forms & Deadlines</span>
+        <span class="read-time">3 min read</span>
+      </div>
+      <h2>The OSHA 300A Annual Summary — What It Is, When It's Due, and What Happens If You Skip It</h2>
+      <p>Many employers who maintain their 300 log correctly still violate 300A requirements because they don't realize it's a separate obligation with its own deadlines.</p>
+
+      <h3>Key deadlines</h3>
+      <ul>
+        <li><strong>Complete and certify:</strong> February 1 (for the prior calendar year's data)</li>
+        <li><strong>Post in the workplace:</strong> Must be displayed where employee notices are posted — <strong>February 1 through April 30</strong></li>
+        <li><strong>Electronic submission:</strong> Certain employers must submit through OSHA's Injury Tracking Application (ITA) by <strong>March 2</strong></li>
+      </ul>
+
+      <div class="callout callout-red">
+        <div class="callout-title">🚨 Electronic Submission Requirement</div>
+        <p>Establishments with <strong>100+ employees</strong> in high-hazard industries must submit Forms 300, 300A, and 301 electronically. Establishments with <strong>20–99 employees</strong> in specific high-hazard industries must submit 300A data only. Check OSHA's current list of covered NAICS codes.</p>
+      </div>
+
+      <h3>Who must certify it?</h3>
+      <p>The 300A must be signed by a company executive — owner, officer of the corporation, or the highest-ranking company official at the establishment. An HR generalist or safety manager cannot sign alone unless they are the highest-ranking official at that location.</p>
+
+      <p class="disclaimer"><strong>Sources:</strong> 29 CFR 1904.32, OSHA ITA, 29 CFR 1904.41.</p>
+    </article>
+
+    <!-- ARTICLE 7 -->
+    <article class="article" id="retention">
+      <div class="art-meta">
+        <span class="badge badge-gray">Forms & Deadlines</span>
+        <span class="read-time">2 min read</span>
+      </div>
+      <h2>OSHA Record Retention — The 5-Year Rule Explained</h2>
+      <p>OSHA recordkeeping documents don't go away after the year ends. Specific retention requirements catch small businesses during inspections.</p>
+
+      <h3>How long must you keep OSHA records?</h3>
+      <p>Under <strong>29 CFR 1904.33</strong>, employers must retain the following for <strong>5 years</strong> following the end of the calendar year they cover: OSHA 300 Log, OSHA 300A Annual Summary, OSHA 301 Incident Reports, and any privacy case list.</p>
+
+      <div class="callout callout-amber">
+        <div class="callout-title">⚠️ Update requirements during retention</div>
+        <p>You must <strong>update</strong> the 300 Log during the 5-year period if new information changes the outcome — for example, if days-away status changes after further medical review. The log must reflect accurate final outcomes, not just what was known at initial entry.</p>
+      </div>
+
+      <p>Records must also be accessible to employees and former employees. If an employee requests their own records, you must provide them by the end of the next business day.</p>
+
+      <p class="disclaimer"><strong>Source:</strong> 29 CFR 1904.33, 29 CFR 1904.35.</p>
+    </article>
+
+    <!-- ARTICLE 8 -->
+    <article class="article" id="fines">
+      <div class="art-meta">
+        <span class="badge badge-red">Fines & Penalties</span>
+        <span class="read-time">4 min read</span>
+      </div>
+      <h2>OSHA Fines in 2025 — Current Penalty Amounts, How They're Calculated, and How to Reduce Them</h2>
+      <p>OSHA adjusts its penalty structure annually for inflation. Here are the current figures and how penalty assessments work in practice.</p>
+
+      <h3>Maximum penalties (2025 schedule)</h3>
+      <ul>
+        <li><strong>Serious violation:</strong> $16,550 per violation</li>
+        <li><strong>Other-than-serious violation:</strong> $16,550 per violation</li>
+        <li><strong>Willful or repeat violation:</strong> $165,514 per violation</li>
+        <li><strong>Failure to abate:</strong> $16,550 per day past the abatement deadline</li>
+        <li><strong>Posting violations:</strong> $16,550 per violation</li>
+      </ul>
+      <p style="font-size:.78rem;color:var(--faint);margin-top:-6px">Source: OSHA 2025 Annual Adjustments to OSHA Civil Penalties, effective Jan. 15, 2025.</p>
+
+      <div class="callout callout-red">
+        <div class="callout-title">🚨 "Per violation" means per finding — not per incident</div>
+        <p>A single inspection can result in dozens of violations, each with its own penalty. Recordkeeping failures across multiple employees, missed 300A posting, and inadequate documentation can produce aggregate fines exceeding $100,000 from a single inspection.</p>
+      </div>
+
+      <h3>How OSHA calculates actual penalties</h3>
+      <p>The maximum is rarely the actual penalty. OSHA adjusts downward based on: gravity of the violation (1–10 scale), employer size (small employers can receive up to 70% reduction), good faith (written safety programs can reduce by up to 25%), and prior violation history.</p>
+
+      <div class="quick-rule">
+        <div class="rule-box rule-yes">
+          <div class="rule-label">✓ Reduces penalties</div>
+          <ul>
+            <li>Written incident response procedures</li>
+            <li>Completed 300 logs and 300A summaries</li>
+            <li>Prompt self-reporting of incidents</li>
+            <li>Immediate corrective actions</li>
+            <li>No prior violation history</li>
+          </ul>
+        </div>
+        <div class="rule-box rule-no">
+          <div class="rule-label">✗ Increases penalties</div>
+          <ul>
+            <li>Prior violations in last 3 years</li>
+            <li>Failure to report severe injuries in time</li>
+            <li>Missing or incomplete 300 logs</li>
+            <li>No written safety program</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-green">
+        <div class="callout-title">✓ The best defense is documentation</div>
+        <p>OSHA inspectors look for two things: (1) that you had a process, and (2) that you followed it. A timestamped, complete incident packet demonstrating that your supervisor followed a proper response workflow is your single best defense against maximum penalties.</p>
+      </div>
+
+      <p class="disclaimer"><strong>Sources:</strong> OSHA 2025 Annual Adjustments to OSHA Civil Penalties, 29 CFR 1903.15, OSHA Field Operations Manual.</p>
+    </article>
+
+    <!-- BOTTOM CTA -->
+    <div class="bottom-cta">
+      <div class="eyebrow">Ready to stop relying on memory?</div>
+      <h2>KinSignal handles the OSHA logic so your supervisors don't have to memorize it.</h2>
+      <p>Mobile-first, guided in the moment, audit-ready output. Built for the supervisor on the floor — not the safety director behind a desk.</p>
+      <a href="demo.html#demo" class="btn-primary">See the Live Demo</a>
+      <a href="demo.html#signup" class="btn-ghost">Request Pilot</a>
+    </div>
+
+  </main>
+</div>
+
+<div class="disclaimer-bar">
+  <strong>Important:</strong> This content is educational and not legal advice. Final OSHA recordkeeping and reporting decisions should be reviewed by qualified safety, HR, or legal professionals. See <a href="why.html">Why It Matters</a> for full source citations.
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div class="foot-logo">Kin<span>Signal</span></div>
+      <div class="foot-tagline">The first 30-minute injury response system for supervisors.</div>
+    </div>
+    <div class="foot-links">
+      <a href="demo.html">Product</a>
+      <a href="why.html">Why It Matters</a>
+      <a href="articles.html">Articles</a>
+      <a href="demo.html#signup">Request Pilot</a>
+    </div>
+  </div>
+  <div class="foot-inner" style="padding-top:0">
+    <div class="foot-copy">© 2026 KinSignal · Educational content — not legal advice. Consult your safety professional for specific compliance guidance.</div>
+  </div>
+</footer>
+
+</body>
+</html>
