@@ -3,454 +3,288 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>KinSignal — The 30-Minute Injury Response System for Supervisors</title>
-<meta name="description" content="KinSignal guides supervisors through the first 30 minutes of workplace injury response: emergency contacts, response checklist, OSHA risk flags, and a timestamped audit-ready incident packet."/>
-<meta name="keywords" content="workplace injury response software, OSHA incident reporting, supervisor safety app, emergency contact notification, audit-ready incident packet, workplace injury documentation"/>
-<meta property="og:title" content="KinSignal — The first 30-minute injury response system for supervisors"/>
-<meta property="og:description" content="When a worker gets hurt, your supervisor needs a system — not a paper form. Emergency contacts, response checklist, OSHA risk flags, timestamped packet."/>
-<meta property="og:type" content="website"/>
-<link rel="canonical" href="https://kinsignal.com/"/>
+<title>KinSignal — Workplace Injury Response, Automated</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f8fafc;--white:#ffffff;
+  --bg:#f8fafc;--white:#fff;
   --navy:#0f2d52;--navy2:#1e3a5f;
-  --blue:#2563eb;--blue-h:#1d4ed8;--blue-soft:#eff6ff;--blue-mid:#dbeafe;
-  --slate:#334155;--muted:#64748b;--faint:#94a3b8;--border:#e2e8f0;--border2:#cbd5e1;
-  --text:#0f172a;
-  --amber:#92400e;--amber-bg:#fffbeb;--amber-border:#fcd34d;--amber-text:#b45309;
-  --red:#b91c1c;--red-bg:#fef2f2;--red-border:#fecaca;--red-text:#dc2626;
-  --green:#15803d;--green-bg:#f0fdf4;--green-border:#bbf7d0;--green-text:#16a34a;
+  --blue:#2563eb;--blue-h:#1d4ed8;--blue-soft:#eff6ff;--blue-mid:#bfdbfe;
+  --green:#16a34a;--green-bg:#f0fdf4;--green-border:#bbf7d0;
+  --red:#dc2626;--red-bg:#fef2f2;--red-border:#fecaca;
+  --amber:#d97706;--amber-bg:#fffbeb;--amber-border:#fde68a;
+  --muted:#64748b;--border:#e2e8f0;--border2:#cbd5e1;--text:#0f172a;
+  --sh-sm:0 1px 4px rgba(0,0,0,.07);--sh-md:0 4px 20px rgba(0,0,0,.09);--sh-lg:0 12px 48px rgba(0,0,0,.13);
   --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;
-  --sh-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
-  --sh-md:0 4px 16px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
-  --sh-lg:0 12px 40px rgba(0,0,0,.10),0 4px 12px rgba(0,0,0,.05);
-  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
-a{color:inherit}
-
-/* ── LAYOUT ── */
-.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
-.section{padding:80px 0}
-.section+.section{border-top:1px solid var(--border)}
-hr.divider{border:none;border-top:1px solid var(--border);margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none}
 
 /* ── NAV ── */
-nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
-.nav-inner{display:contents}
-.nav-logo{font-weight:800;font-size:1.15rem;color:var(--navy);text-decoration:none;letter-spacing:-.02em}
+nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 32px}
+.nav-logo{font-weight:800;font-size:1.15rem;color:var(--navy);letter-spacing:-.02em}
 .nav-logo span{color:var(--blue)}
 .nav-links{display:flex;gap:24px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .15s}
+.nav-links a{color:var(--muted);font-size:.875rem;font-weight:500;transition:color .15s}
 .nav-links a:hover{color:var(--navy)}
 .nav-links a.active{color:var(--navy);font-weight:600}
 .nav-cta{background:var(--blue);color:#fff!important;padding:9px 20px;border-radius:var(--r-sm);font-weight:700!important;font-size:.85rem!important;transition:background .15s;white-space:nowrap}
 .nav-cta:hover{background:var(--blue-h)!important}
+@media(max-width:640px){.nav-links .desktop-only{display:none}.nav-cta{padding:8px 14px}}
 
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:var(--r-md);font-weight:700;font-size:.95rem;padding:13px 28px;cursor:pointer;transition:all .15s;border:none;text-decoration:none;white-space:nowrap}
-.btn-primary{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.25)}
-.btn-primary:hover{background:var(--blue-h);box-shadow:0 4px 16px rgba(37,99,235,.35)}
-.btn-ghost{background:#fff;color:var(--slate);border:1.5px solid var(--border2)}
-.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
-.btn-sm{padding:8px 18px;font-size:.85rem;border-radius:var(--r-sm)}
+/* ── HERO ── */
+.hero{background:var(--navy);padding:80px 32px 72px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-30%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(37,99,235,.12) 0%,transparent 65%);pointer-events:none}
+.hero-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 460px;gap:72px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.8);font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:26px}
+.eyebrow-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(2.3rem,4.5vw,3.5rem);font-weight:900;line-height:1.04;letter-spacing:-.035em;color:#fff;margin-bottom:22px}
+.hero h1 em{font-style:normal;color:#93c5fd}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.68);line-height:1.8;margin-bottom:38px;max-width:480px}
+.hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-size:.95rem;font-weight:700;padding:14px 26px;border-radius:var(--r-md);border:none;cursor:pointer;transition:all .18s;white-space:nowrap;font-family:inherit}
+.btn-primary:hover{background:var(--blue-h);transform:translateY(-1px);box-shadow:0 6px 24px rgba(37,99,235,.45)}
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:transparent;color:rgba(255,255,255,.75);font-size:.9rem;font-weight:500;padding:14px 22px;border-radius:var(--r-md);border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:all .18s;font-family:inherit;text-decoration:none}
+.btn-ghost:hover{border-color:rgba(255,255,255,.45);color:#fff}
+.hero-proof{display:flex;flex-wrap:wrap;gap:18px}
+.proof-item{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.5);font-size:.8rem}
+.proof-check{color:#4ade80;font-size:.85rem}
 
-/* ── BADGE/CHIP ── */
-.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
-.badge-blue{background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-mid)}
-.badge-navy{background:#e8eef7;color:var(--navy);border:1px solid #c7d6ea}
-.badge-amber{background:var(--amber-bg);color:var(--amber-text);border:1px solid var(--amber-border)}
-.badge-red{background:var(--red-bg);color:var(--red-text);border:1px solid var(--red-border)}
-.badge-green{background:var(--green-bg);color:var(--green-text);border:1px solid var(--green-border)}
-.badge-gray{background:#f1f5f9;color:var(--muted);border:1px solid var(--border)}
-.dot-pulse{width:7px;height:7px;border-radius:50%;background:var(--green-text);animation:dp 1.8s infinite}
-@keyframes dp{0%,100%{opacity:1}50%{opacity:.4}}
+/* HERO RIGHT — LIVE ALERT CARD */
+.alert-card{background:#fff;border-radius:var(--r-xl);box-shadow:0 24px 80px rgba(0,0,0,.4);overflow:hidden;animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.ac-bar{background:var(--red-bg);border-bottom:1px solid var(--red-border);padding:14px 20px;display:flex;align-items:center;gap:10px}
+.ac-pulse{width:9px;height:9px;background:var(--red);border-radius:50%;animation:pulse-r 1.5s ease-out infinite}
+@keyframes pulse-r{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.5)}70%{box-shadow:0 0 0 10px rgba(220,38,38,0)}}
+.ac-bar-label{font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--red)}
+.ac-bar-time{margin-left:auto;font-size:.74rem;color:var(--muted)}
+.ac-body{padding:20px}
+.ac-employee{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.ac-avatar{width:40px;height:40px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.82rem;flex-shrink:0}
+.ac-name{font-size:.9rem;font-weight:700;color:var(--navy)}
+.ac-detail{font-size:.76rem;color:var(--muted)}
+.ac-location{background:var(--bg);border-radius:var(--r-sm);padding:9px 14px;font-size:.8rem;color:var(--muted);margin-bottom:14px}
+.ac-location strong{color:var(--text)}
+.ac-osha{background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:var(--r-sm);padding:11px 14px;display:flex;gap:10px;margin-bottom:14px}
+.ac-osha-text{font-size:.76rem;font-weight:600;color:#92400e;line-height:1.5}
+.ac-notifs{display:flex;flex-direction:column;gap:7px}
+.ac-notif{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:var(--r-sm);padding:9px 12px;font-size:.76rem;opacity:0;animation:slide-r .4s ease-out forwards}
+.ac-notif:nth-child(1){animation-delay:.4s}
+.ac-notif:nth-child(2){animation-delay:.8s}
+.ac-notif:nth-child(3){animation-delay:1.2s}
+@keyframes slide-r{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+.an-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.65rem;color:#fff;flex-shrink:0}
+.an-name{font-weight:600;color:var(--text)}
+.an-role{color:var(--muted);margin-left:4px}
+.an-status{margin-left:auto;font-size:.68rem;font-weight:700}
+.an-green{color:var(--green)}
+.an-amber{color:var(--amber)}
+.ac-footer{background:var(--blue);color:#fff;text-align:center;padding:12px;font-size:.8rem;font-weight:700}
 
-/* ── SECTION LABELS ── */
-.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.section-title{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:900;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px}
-.section-sub{font-size:1rem;color:var(--muted);max-width:580px;line-height:1.7}
+/* ── DEMO SECTION ── */
+.demo-section{padding:80px 32px;background:var(--bg)}
+.section-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:center;margin-bottom:10px}
+.section-title{font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:900;color:var(--navy);text-align:center;letter-spacing:-.025em;margin-bottom:10px;line-height:1.2}
+.section-sub{font-size:1rem;color:var(--muted);text-align:center;max-width:520px;margin:0 auto 48px;line-height:1.7}
 
-/* ══════════════════════
-   1. HERO
-══════════════════════ */
-.hero{background:var(--white);padding:80px 0 60px}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blue-soft);border:1px solid var(--blue-mid);color:var(--blue);font-size:.78rem;font-weight:700;padding:6px 14px;border-radius:100px;margin-bottom:22px}
-.hero-h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:900;line-height:1.1;letter-spacing:-.03em;color:var(--navy);margin-bottom:18px}
-.hero-h1 span{color:var(--blue)}
-.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.75;margin-bottom:30px;max-width:480px}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
-.hero-trust{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--muted)}
-.industry-icons{display:flex;gap:6px;flex-wrap:wrap}
-.ind-chip{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:4px 11px;font-size:.75rem;color:var(--slate);font-weight:500}
+/* STEPPER */
+.stepper{display:flex;align-items:flex-start;justify-content:center;margin-bottom:36px;overflow-x:auto;padding:0 8px 4px}
+.step-col{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.step-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;border:2px solid var(--border2);color:var(--muted);background:var(--white);transition:all .3s;flex-shrink:0}
+.step-circle.active{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 0 0 4px rgba(15,45,82,.15)}
+.step-circle.done{background:var(--blue);border-color:var(--blue);color:#fff}
+.step-label{font-size:.7rem;font-weight:600;color:var(--muted);margin-top:7px;white-space:nowrap;transition:color .3s;text-align:center;max-width:72px;line-height:1.3}
+.step-label.active{color:var(--navy)}
+.step-label.done{color:var(--blue)}
+.step-line{width:56px;height:2px;background:var(--border);margin-top:17px;transition:background .3s;flex-shrink:0}
+.step-line.done{background:var(--blue)}
 
-/* Scenario switcher */
-.scenario-row{margin:20px 0 24px}
-.scenario-label{font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:8px;display:block;letter-spacing:.02em}
-.scenario-chips{display:flex;flex-wrap:wrap;gap:8px}
-.scen-chip{background:var(--white);border:1.5px solid var(--border2);border-radius:100px;padding:6px 14px;font-size:.76rem;font-weight:600;color:var(--slate);cursor:pointer;transition:all .15s;font-family:var(--font);white-space:nowrap}
-.scen-chip:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
-.scen-chip.active{background:var(--navy);border-color:var(--navy);color:#fff}
+/* DEMO PANEL */
+.demo-panel-wrap{max-width:860px;margin:0 auto}
+.demo-panel{background:var(--white);border-radius:var(--r-xl);box-shadow:var(--sh-lg);border:1px solid var(--border);overflow:hidden;display:none}
+.demo-panel.active{display:block;animation:panel-in .3s ease-out}
+@keyframes panel-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.dp-head{padding:20px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#fff}
+.dp-badge{font-size:.65rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-soft);padding:4px 10px;border-radius:100px;display:inline-block;margin-bottom:6px}
+.dp-title{font-size:1.1rem;font-weight:800;color:var(--navy)}
+.dp-time{font-size:.74rem;color:var(--muted);font-weight:500;text-align:right;white-space:nowrap}
+.dp-body{padding:28px}
+.dp-foot{padding:18px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fafafa}
+.dp-foot-note{font-size:.78rem;color:var(--muted);line-height:1.45}
 
-/* Waitlist social proof */
-.waitlist-proof{display:flex;align-items:center;gap:12px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:12px;padding:14px 18px;margin-bottom:24px}
-.wp-avatars{display:flex}
-.wp-av{width:28px;height:28px;border-radius:50%;border:2px solid var(--white);margin-right:-8px;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff}
-.wp-text{font-size:.82rem;color:var(--green-text);font-weight:600;flex:1}
-.wp-text span{font-weight:800}
-.wp-badge{background:var(--green-text);color:#fff;font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:100px;white-space:nowrap}
+/* STEP 1 — INCIDENT */
+.incident-alert{background:var(--red-bg);border:1.5px solid var(--red-border);border-radius:var(--r-lg);padding:20px 24px;margin-bottom:18px}
+.ia-top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.ia-pulse{width:9px;height:9px;background:var(--red);border-radius:50%;animation:pulse-r 1.5s infinite;flex-shrink:0}
+.ia-badge{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+.ia-ts{margin-left:auto;font-size:.75rem;color:var(--red);opacity:.7;font-weight:600}
+.ia-emp{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.ia-av{width:44px;height:44px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.88rem;flex-shrink:0}
+.ia-name{font-size:1rem;font-weight:800;color:var(--navy)}
+.ia-role{font-size:.78rem;color:var(--muted)}
+.ia-field{display:flex;gap:8px;font-size:.84rem;margin-bottom:7px}
+.ia-label{color:var(--muted);font-weight:500;min-width:88px;flex-shrink:0}
+.ia-value{color:var(--text);font-weight:600}
+.ia-value.alert{color:var(--red)}
+.osha-flag{background:var(--amber-bg);border:1.5px solid var(--amber-border);border-radius:var(--r-md);padding:14px 18px;display:flex;gap:12px;align-items:flex-start}
+.osha-flag-body{font-size:.82rem;font-weight:600;color:#92400e;line-height:1.55}
+.osha-deadline{font-size:.74rem;color:var(--amber);font-weight:600;margin-top:3px}
 
-/* Phone mockup */
-.phone-wrap{position:relative;display:flex;justify-content:center;align-items:flex-start;overflow:visible}
-.phone-frame{width:320px;background:#111827;border-radius:48px;padding:16px 14px;box-shadow:0 30px 80px rgba(0,0,0,.18),0 0 0 1.5px rgba(255,255,255,.06),0 0 0 10px #1f2937,0 0 0 11px rgba(0,0,0,.3);position:relative;flex-shrink:0;overflow:visible}
-.phone-notch{width:100px;height:26px;background:#111827;border-radius:0 0 18px 18px;margin:0 auto 12px;position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:8px}
-.phone-camera{width:10px;height:10px;border-radius:50%;background:#0f172a;border:2px solid #374151}
-.phone-speaker{width:36px;height:5px;background:#1f2937;border-radius:100px}
-.phone-screen{background:var(--white);border-radius:34px;overflow:hidden;min-height:560px}
+/* STEP 2 — TEAM NOTIFIED */
+.speed-banner{text-align:center;margin-bottom:22px}
+.speed-pill{display:inline-flex;align-items:center;gap:8px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:100px;padding:8px 18px;font-size:.82rem;font-weight:700;color:var(--green)}
+.notif-list{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.notif-row{display:flex;align-items:center;gap:14px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:14px 18px;opacity:0;animation:slide-r .5s ease-out forwards}
+.notif-row:nth-child(1){animation-delay:.1s}
+.notif-row:nth-child(2){animation-delay:.55s}
+.notif-row:nth-child(3){animation-delay:1s}
+.nr-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;color:#fff;flex-shrink:0}
+.nr-name{font-size:.9rem;font-weight:700;color:var(--navy)}
+.nr-role{font-size:.74rem;color:var(--muted);margin-top:1px}
+.nr-right{margin-left:auto;text-align:right;flex-shrink:0}
+.nr-status{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.nr-ts{font-size:.7rem;color:var(--muted);margin-top:2px}
+.auto-note{background:var(--blue-soft);border:1px solid var(--blue-mid);border-radius:var(--r-md);padding:13px 17px;font-size:.82rem;color:#1e40af;line-height:1.6}
 
-/* Annotation bubbles — positioned relative to phone-frame, float outside it */
-.annot{position:absolute;background:var(--white);border:1.5px solid var(--border2);border-radius:10px;padding:8px 13px;font-size:.74rem;font-weight:600;color:var(--navy);line-height:1.3;box-shadow:var(--sh-md);white-space:nowrap;display:flex;align-items:center;gap:7px;z-index:10;pointer-events:none}
-.annot::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0}
-/* left side: right edge sits 20px left of phone */
-.annot-1{top:72px;right:calc(100% + 20px)}
-.annot-3{top:360px;left:calc(100% + 20px)}
-/* right side: left edge sits 20px right of phone */
-.annot-2{top:208px;left:calc(100% + 20px)}
-.annot-4{bottom:96px;left:calc(100% + 20px)}
-
-/* App screen content */
-.app-bar{background:var(--navy);padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
-.app-bar-t{color:#fff;font-size:12px;font-weight:700}
-.app-bar-s{color:#94a3b8;font-size:10px;margin-top:2px}
-.app-section{padding:14px 16px}
-.app-section+.app-section{border-top:1px solid var(--border)}
-.app-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);margin-bottom:8px}
-.app-chip{display:inline-flex;align-items:center;gap:4px;background:var(--red-bg);border:1px solid var(--red-border);color:var(--red-text);border-radius:6px;padding:5px 10px;font-size:10px;font-weight:700}
-.check-item{display:flex;align-items:center;gap:9px;padding:8px 0;font-size:11px;color:var(--text);border-bottom:1px solid var(--border)}
-.check-item:last-child{border-bottom:none}
-.check-icon{width:18px;height:18px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px}
-.ci-done{background:var(--green-bg);border:1.5px solid var(--green-border);color:var(--green-text)}
-.ci-todo{border:1.5px solid var(--border2)}
-.check-ts{margin-left:auto;font-size:9px;color:var(--green-text);font-weight:600}
-.check-todo-ts{margin-left:auto;font-size:9px;color:var(--faint)}
-.contact-card{background:var(--blue-soft);border:1px solid var(--blue-mid);border-radius:10px;padding:12px;margin-top:8px}
-.cc-name{font-size:11px;font-weight:700;color:var(--navy)}
-.cc-rel{font-size:10px;color:var(--muted);margin-top:1px}
-.cc-btns{display:flex;gap:6px;margin-top:10px}
-.cc-btn{font-size:9px;font-weight:700;padding:5px 10px;border-radius:5px;border:1px solid var(--blue-mid);background:var(--white);color:var(--blue);cursor:pointer}
-.osha-flag{background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:8px;padding:10px 12px;margin-top:8px;font-size:10px;color:var(--amber);font-weight:600;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
-.pkt-bar{background:var(--border);border-radius:100px;height:6px;margin-top:6px;overflow:hidden}
-.pkt-fill{background:var(--blue);height:100%;border-radius:100px;width:60%;transition:width .4s}
-
-/* ══════════════════════
-   2. PROBLEM
-══════════════════════ */
-.prob-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:36px}
-.prob-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:24px;position:relative;overflow:hidden}
-.prob-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red-border)}
-.prob-icon{font-size:1.5rem;margin-bottom:12px}
-.prob-h{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:7px}
-.prob-p{font-size:.85rem;color:var(--muted);line-height:1.6}
-
-/* ══════════════════════
-   3. PRODUCT FLOW
-══════════════════════ */
-.flow-wrap{margin-top:48px}
-.flow-steps{display:flex;flex-direction:column;gap:0}
-.flow-step{display:grid;grid-template-columns:auto 1fr;gap:0 24px;position:relative}
-.flow-left{display:flex;flex-direction:column;align-items:center;padding-top:2px}
-.flow-num{width:40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;font-size:1rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 0 4px var(--blue-soft)}
-.flow-line{width:2px;flex:1;background:var(--blue-mid);margin:6px 0}
-.flow-step:last-child .flow-line{display:none}
-.flow-right{padding:0 0 36px 0}
-.flow-title{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:5px}
-.flow-desc{font-size:.88rem;color:var(--muted);line-height:1.6;margin-bottom:10px}
-.flow-chips{display:flex;flex-wrap:wrap;gap:6px}
-.flow-chip{display:inline-block;background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-mid);border-radius:100px;padding:3px 11px;font-size:.72rem;font-weight:600}
-.flow-preview{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-md);padding:12px 16px;margin-top:10px;max-width:420px}
-.fp-row{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--text);padding:4px 0}
-.fp-row+.fp-row{border-top:1px solid var(--border)}
-.fp-check{width:18px;height:18px;border-radius:5px;background:var(--green-bg);border:1.5px solid var(--green-border);color:var(--green-text);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
-
-/* ══════════════════════
-   4. INTERACTIVE DEMO
-══════════════════════ */
-.demo-outer{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--sh-lg);overflow:hidden;margin-top:40px}
-.demo-tabs-bar{background:#f8fafc;border-bottom:1px solid var(--border);padding:0 16px;display:flex;gap:4px;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
-.demo-tabs-bar::-webkit-scrollbar{display:none}
-.dtab{background:none;border:none;padding:14px 18px;font-size:.875rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap;font-family:var(--font)}
-.dtab:hover{color:var(--navy)}
-.dtab.active{color:var(--blue);border-bottom-color:var(--blue)}
-.demo-body{padding:24px;min-height:380px}
-.dview{display:none}
-.dview.active{display:block}
-
-/* Dashboard */
-.db-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.db-stat{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:14px}
-.db-sv{font-size:1.5rem;font-weight:900;color:var(--navy)}
-.db-sl{font-size:.75rem;color:var(--muted);margin-top:2px}
-.db-alert{background:var(--amber-bg);border:1.5px solid var(--amber-border);border-radius:var(--r-md);padding:14px 16px;margin-bottom:20px;display:flex;align-items:flex-start;gap:12px}
-.db-alert-icon{font-size:1.1rem;flex-shrink:0}
-.db-alert-t{font-size:.875rem;font-weight:700;color:var(--amber);margin-bottom:2px}
-.db-alert-s{font-size:.8rem;color:var(--amber-text)}
-.db-table{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden}
-.db-row{display:grid;grid-template-columns:120px 1fr 100px 80px;gap:8px;padding:11px 14px;align-items:center;font-size:.82rem;cursor:pointer;transition:background .1s}
-.db-row:not(:last-child){border-bottom:1px solid var(--border)}
-.db-row:hover{background:var(--bg)}
-.db-row-hd{background:var(--bg);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);cursor:default}
-.db-row-hd:hover{background:var(--bg)}
-.dbn{font-weight:600;color:var(--navy)}
-.dbs{font-size:.78rem;color:var(--muted)}
-
-/* Response checklist */
-.checklist-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
-.checklist-name{font-size:1rem;font-weight:800;color:var(--navy)}
-.checklist-sub{font-size:.8rem;color:var(--muted);margin-top:2px}
-.prog-bar-wrap{margin-bottom:20px}
-.prog-top{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-bottom:6px}
-.prog-bar{background:var(--border);border-radius:100px;height:7px;overflow:hidden}
-.prog-fill{background:var(--blue);height:100%;border-radius:100px;transition:width .4s}
-.cl-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
-.cl-item:last-child{border-bottom:none}
-.cl-cb{width:22px;height:22px;border-radius:6px;border:2px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .15s}
-.cl-cb.done{background:var(--green-bg);border-color:var(--green-border);color:var(--green-text)}
-.cl-cb.active-step{border-color:var(--blue);background:var(--blue-soft)}
+/* STEP 3 — RESPONSE CHECKLIST */
+.cl-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.cl-count{font-size:1.6rem;font-weight:900;color:var(--navy);line-height:1}
+.cl-of{font-size:.78rem;color:var(--muted)}
+.cl-items{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.cl-item{display:flex;align-items:flex-start;gap:13px;background:var(--bg);border-radius:var(--r-md);padding:13px 16px;border:1.5px solid var(--border);transition:all .4s ease}
+.cl-item.checked{background:var(--green-bg);border-color:var(--green-border)}
+.cl-box{width:24px;height:24px;border-radius:6px;border:2px solid var(--border2);background:var(--white);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .3s}
+.cl-item.checked .cl-box{background:var(--green);border-color:var(--green)}
+.cl-check{color:#fff;font-size:.8rem;opacity:0;transform:scale(.4);transition:all .25s}
+.cl-item.checked .cl-check{opacity:1;transform:scale(1)}
 .cl-text{flex:1}
-.cl-t{font-size:.9rem;font-weight:600;color:var(--text)}
-.cl-s{font-size:.78rem;color:var(--muted);margin-top:2px}
-.cl-ts{font-size:.75rem;font-weight:600;color:var(--green-text);white-space:nowrap;padding-top:4px}
-.osha-inline{background:var(--amber-bg);border:1.5px solid var(--amber-border);border-radius:var(--r-md);padding:14px 16px;margin-top:16px;display:flex;gap:12px;align-items:flex-start}
-.oi-icon{font-size:1.2rem;flex-shrink:0}
-.oi-t{font-size:.875rem;font-weight:700;color:var(--amber)}
-.oi-s{font-size:.8rem;color:var(--amber-text);margin-top:3px;line-height:1.5}
+.cl-label{font-size:.88rem;font-weight:600;color:var(--navy);transition:color .3s}
+.cl-item.checked .cl-label{color:var(--green)}
+.cl-ts{font-size:.74rem;color:var(--muted);margin-top:2px;transition:color .3s}
+.cl-item.checked .cl-ts{color:var(--green);opacity:.8}
 
-/* Contacts */
-.contact-header{margin-bottom:18px}
-.emp-chip{display:inline-flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:10px 14px;margin-bottom:16px}
-.emp-av{width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.emp-n{font-size:.9rem;font-weight:700;color:var(--navy)}
-.emp-s{font-size:.78rem;color:var(--muted)}
-.contact-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
-.ccard{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-md);padding:16px;overflow:hidden;position:relative}
-.ccard.reached{border-color:var(--green-border)}
-.ccard-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
-.ccard-name{font-size:.9rem;font-weight:700;color:var(--navy)}
-.ccard-rel{font-size:.78rem;color:var(--muted);margin-top:1px}
-.ccard-phone{font-size:.82rem;color:var(--slate);font-weight:500}
-.ccard-btns{display:flex;gap:8px;flex-wrap:wrap}
-.ccard-btn{font-size:.78rem;font-weight:700;padding:7px 13px;border-radius:var(--r-sm);border:1.5px solid var(--border2);background:var(--white);color:var(--slate);cursor:pointer;transition:all .15s;font-family:var(--font)}
-.ccard-btn:hover{border-color:var(--blue);color:var(--blue)}
-.ccard-btn.success{background:var(--green-bg);border-color:var(--green-border);color:var(--green-text)}
-.ccard-btn.warn{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber-text)}
-.ccard-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
-.contact-tl{border-left:2px solid var(--blue-mid);padding-left:16px;display:flex;flex-direction:column;gap:10px}
-.tl-item{position:relative;font-size:.8rem;color:var(--slate);line-height:1.5}
-.tl-item::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--white);border:2px solid var(--blue);position:absolute;left:-21px;top:3px}
-.tl-item.green::before{background:var(--green-bg);border-color:var(--green-text)}
-.tl-item.amber::before{background:var(--amber-bg);border-color:var(--amber-text)}
-.tl-time{font-size:.72rem;color:var(--faint);font-weight:600;margin-top:1px}
+/* STEP 4 — AUTO-DOC (WOW MOMENT) */
+.wow-loading{text-align:center;padding:48px 0}
+.wow-spin{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wow-loading-h{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:5px}
+.wow-loading-s{font-size:.8rem;color:var(--muted)}
+.wow-banner{background:linear-gradient(135deg,#0f2d52 0%,#1a3a6a 100%);border-radius:var(--r-lg);padding:20px 24px;margin-bottom:20px;display:flex;gap:16px;align-items:flex-start}
+.wow-icon{font-size:1.5rem;flex-shrink:0;line-height:1}
+.wow-title{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:4px}
+.wow-sub{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.55}
+.tl-list{display:flex;flex-direction:column}
+.tl-item{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--border);opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
+.tl-item.visible{opacity:1;transform:translateY(0)}
+.tl-item:last-child{border-bottom:none}
+.tl-time{font-size:.74rem;font-weight:700;color:var(--blue);white-space:nowrap;min-width:48px;padding-top:3px}
+.tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.td-red{background:var(--red)}
+.td-amber{background:var(--amber)}
+.td-navy{background:var(--navy)}
+.td-green{background:var(--green)}
+.tl-event{font-size:.86rem;font-weight:600;color:var(--text);line-height:1.45}
+.tl-by{font-size:.74rem;color:var(--muted);margin-top:2px}
+.auto-build-note{background:var(--blue-soft);border:1px solid var(--blue-mid);border-radius:var(--r-md);padding:13px 17px;font-size:.83rem;color:#1e40af;font-weight:600;text-align:center;margin-top:14px;line-height:1.55}
 
-/* Packet */
-.pkt-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
-.pkt-id{font-size:1rem;font-weight:800;color:var(--navy)}
-.pkt-sub{font-size:.8rem;color:var(--muted);margin-top:2px}
-.pkt-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:20px}
-.ptab{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:7px 14px;font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;font-family:var(--font)}
-.ptab:hover{border-color:var(--blue);color:var(--blue)}
-.ptab.active{background:var(--blue);border-color:var(--blue);color:#fff}
-.pkt-section{display:none}
-.pkt-section.active{display:block}
-.pkt-field-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}
-.pkt-field{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:12px}
-.pkt-fl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);margin-bottom:4px}
-.pkt-fv{font-size:.88rem;font-weight:600;color:var(--navy)}
-.pkt-tl{display:flex;flex-direction:column;gap:12px}
-.ptl-item{display:flex;gap:12px;align-items:flex-start}
-.ptl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
-.ptl-body{font-size:.85rem;color:var(--slate);flex:1}
-.ptl-t{font-size:.75rem;color:var(--faint);margin-top:2px}
-.pkt-cta{display:flex;gap:10px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--border);margin-top:16px}
+/* STEP 5 — PACKET READY */
+.ready-banner{background:linear-gradient(135deg,var(--green) 0%,#15803d 100%);border-radius:var(--r-lg);padding:24px 28px;text-align:center;margin-bottom:22px;animation:pop-in .45s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes pop-in{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.rb-icon{font-size:2.4rem;margin-bottom:8px}
+.rb-title{font-size:1.35rem;font-weight:900;color:#fff;margin-bottom:3px}
+.rb-sub{font-size:.85rem;color:rgba(255,255,255,.75)}
+.rb-time{font-size:2.2rem;font-weight:900;color:#fff;margin:10px 0 3px;letter-spacing:-.03em}
+.rb-time-label{font-size:.76rem;color:rgba(255,255,255,.65);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.packet-rows{display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+.packet-row{display:flex;align-items:center;gap:13px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-md);padding:13px 17px}
+.pr-ico{font-size:1.1rem;flex-shrink:0}
+.pr-name{font-size:.88rem;font-weight:700;color:var(--navy)}
+.pr-detail{font-size:.74rem;color:var(--muted);margin-top:2px}
+.pr-status{margin-left:auto;font-size:.68rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.pkt-actions{display:flex;gap:9px;margin-bottom:20px;flex-wrap:wrap}
+.btn-export{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--navy);color:#fff;font-size:.85rem;font-weight:700;padding:12px 18px;border-radius:var(--r-md);border:none;cursor:pointer;transition:background .15s;min-width:130px;font-family:inherit}
+.btn-export:hover{background:var(--navy2)}
+.btn-send-s{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--white);color:var(--navy);font-size:.85rem;font-weight:700;padding:12px 18px;border-radius:var(--r-md);border:1.5px solid var(--border2);cursor:pointer;transition:all .15s;min-width:130px;font-family:inherit}
+.btn-send-s:hover{border-color:var(--navy)}
+.vs-box{background:var(--red-bg);border:1.5px solid var(--red-border);border-radius:var(--r-lg);padding:18px 22px}
+.vs-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--red);margin-bottom:12px}
+.vs-cols{display:flex;gap:20px;flex-wrap:wrap}
+.vs-col{flex:1;min-width:180px}
+.vs-col-h{font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.vs-text{font-size:.85rem;font-weight:600;line-height:1.6}
+.vs-bad{color:var(--red)}
+.vs-good{color:var(--green)}
 
-/* ══════════════════════
-   FORM 301 / 300 / 300A
-══════════════════════ */
-.f301-header{background:var(--navy);color:#fff;border-radius:var(--r-md);padding:13px 16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px}
-.f301-htitle{font-size:.88rem;font-weight:800;letter-spacing:-.01em}
-.f301-hmeta{font-size:.71rem;color:#94a3b8;margin-top:2px}
-.f301-hbadge{background:#1e3a5f;border:1px solid #3b82f6;color:#93c5fd;font-size:.65rem;font-weight:700;padding:3px 9px;border-radius:100px;white-space:nowrap}
-.f301-deadline{background:var(--red-bg);border:1.5px solid var(--red-border);border-radius:var(--r-sm);padding:9px 13px;font-size:.78rem;font-weight:700;color:var(--red-text);margin-bottom:14px}
-.f301-section-hd{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--blue);padding:10px 0 6px;border-bottom:2px solid var(--blue-mid);margin:14px 0 10px}
-.f301-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:8px}
-.f301-field{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 11px}
-.f301-fl{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-bottom:3px}
-.f301-fv{font-size:.82rem;font-weight:600;color:var(--navy);line-height:1.4}
-.f301-fv.na{color:var(--faint);font-style:italic;font-weight:400}
-.f301-text{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:9px 11px;margin-bottom:7px}
-.f301-text .f301-fv{font-size:.82rem;font-weight:400;color:var(--slate);line-height:1.6}
-.f301-flag-row{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:10px}
-.f301-flag{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;color:var(--slate)}
-.f301-flag-box{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px}
-.f301-flag-box.checked{background:var(--navy);border-color:var(--navy);color:#fff}
-.f301-flag-box.unchecked{background:var(--white)}
-.f301-note{background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:var(--r-sm);padding:8px 11px;font-size:.74rem;color:var(--amber-text);display:flex;align-items:flex-start;gap:6px;line-height:1.5;margin-top:10px}
-/* Dashboard view tabs */
-.db-vtabs{display:flex;gap:2px;margin-bottom:16px;border-bottom:1.5px solid var(--border)}
-.db-vtab{background:none;border:none;padding:8px 16px;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:var(--font);transition:all .15s;white-space:nowrap}
-.db-vtab:hover{color:var(--navy)}
-.db-vtab.active{color:var(--blue);border-bottom-color:var(--blue)}
-.db-view{display:none}.db-view.active{display:block}
-/* Form 300 table */
-.f300-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.f300-table{width:100%;border-collapse:collapse;font-size:.74rem;min-width:740px}
-.f300-table th{background:var(--bg);padding:7px 9px;text-align:left;font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border:1px solid var(--border);white-space:nowrap}
-.f300-table td{padding:8px 9px;border:1px solid var(--border);color:var(--slate);vertical-align:middle}
-.f300-table tr:nth-child(even) td{background:#f9fafb}
-.f300-case{font-weight:700;color:var(--navy);white-space:nowrap}
-.f300-note{font-size:.68rem;color:var(--muted);margin-top:8px}
-/* Form 300A */
-.f300a-header{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--blue-mid)}
-.f300a-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:14px}
-.f300a-cell{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px}
-.f300a-label{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-bottom:4px}
-.f300a-val{font-size:1.25rem;font-weight:900;color:var(--navy)}
-.f300a-sub{font-size:.68rem;color:var(--muted);margin-top:1px}
-.f300a-sign{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-md);padding:12px 14px;font-size:.78rem;color:var(--muted);line-height:1.7;margin-top:4px}
-/* Form 301 detail in guided response */
-.f301-resp{background:var(--white);border:1.5px solid var(--blue-mid);border-radius:var(--r-md);padding:14px 16px;margin-top:14px}
-.f301-resp-hd{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--blue);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.f301-resp-badge{font-size:.63rem;background:var(--amber-bg);color:var(--amber-text);border:1px solid var(--amber-border);padding:2px 8px;border-radius:100px;font-weight:700}
-.f301-resp-field{margin-bottom:10px}
-.f301-resp-label{font-size:.68rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
-.f301-resp-val{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:7px 10px;font-size:.81rem;color:var(--slate);line-height:1.5}
+/* ── STATS ── */
+.stats-bar{background:var(--navy);padding:56px 32px}
+.stats-wrap{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat-block{text-align:center}
+.stat-num{font-size:2.3rem;font-weight:900;color:#fff;letter-spacing:-.04em;line-height:1;margin-bottom:8px}
+.stat-accent{color:#93c5fd}
+.stat-label{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.5;font-weight:500}
 
-/* ══════════════════════
-   5. WHY IT MATTERS
-══════════════════════ */
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:36px 0}
-.stat-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:24px;text-align:center}
-.stat-num{font-size:2.2rem;font-weight:900;letter-spacing:-.02em;margin-bottom:6px}
-.stat-num.blue{color:var(--blue)}
-.stat-num.red{color:var(--red)}
-.stat-num.amber{color:var(--amber-text)}
-.stat-num.navy{color:var(--navy)}
-.stat-lbl{font-size:.82rem;color:var(--muted);line-height:1.5}
-.stat-src{font-size:.7rem;color:var(--faint);margin-top:6px}
-.why-note{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 20px;font-size:.82rem;color:var(--muted);line-height:1.6;margin-top:28px}
-.why-note strong{color:var(--slate)}
+/* ── WHO ── */
+.who-section{background:var(--white);padding:80px 32px}
+.who-grid{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.who-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:24px}
+.who-icon{font-size:1.4rem;margin-bottom:10px}
+.who-title{font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:7px}
+.who-pain{font-size:.85rem;color:var(--muted);line-height:1.65;margin-bottom:10px}
+.who-fix{font-size:.83rem;font-weight:600;color:var(--blue);line-height:1.55}
 
-/* ══════════════════════
-   6. WHO IT'S FOR
-══════════════════════ */
-.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:36px}
-.who-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:22px}
-.who-icon{font-size:1.6rem;margin-bottom:10px}
-.who-h{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:6px}
-.who-p{font-size:.83rem;color:var(--muted);line-height:1.6}
+/* ── SIGNUP ── */
+.cta-section{padding:80px 32px;background:var(--bg)}
+.cta-wrap{max-width:580px;margin:0 auto;text-align:center}
+.cta-title{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;color:var(--navy);letter-spacing:-.025em;margin-bottom:12px;line-height:1.15}
+.cta-sub{font-size:1rem;color:var(--muted);line-height:1.75;margin-bottom:32px}
+.signup-form{display:flex;flex-direction:column;gap:11px;text-align:left}
+.form-row{display:flex;gap:10px}
+.finput{background:var(--white);border:1.5px solid var(--border2);border-radius:var(--r-md);padding:13px 16px;font-size:.9rem;color:var(--text);outline:none;transition:border .15s;font-family:inherit;width:100%}
+.finput:focus{border-color:var(--blue)}
+.finput::placeholder{color:#94a3b8}
+.fselect{background:var(--white);border:1.5px solid var(--border2);border-radius:var(--r-md);padding:13px 16px;font-size:.9rem;color:var(--text);outline:none;cursor:pointer;font-family:inherit;width:100%;transition:border .15s;-webkit-appearance:none}
+.fselect:focus{border-color:var(--blue)}
+.btn-submit{background:var(--blue);color:#fff;font-size:1rem;font-weight:700;padding:15px 32px;border-radius:var(--r-md);border:none;cursor:pointer;transition:background .15s;width:100%;font-family:inherit;letter-spacing:-.01em}
+.btn-submit:hover{background:var(--blue-h)}
+.form-note{font-size:.74rem;color:var(--muted);text-align:center;line-height:1.6}
 
-/* ══════════════════════
-   7. WHY NOT EXISTING TOOLS
-══════════════════════ */
-.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
-.comp-col{border-radius:var(--r-lg);padding:24px;border:1.5px solid var(--border)}
-.comp-col.highlight{background:var(--blue);border-color:var(--blue);color:#fff}
-.comp-head{font-size:.95rem;font-weight:800;margin-bottom:14px;color:var(--navy)}
-.comp-col.highlight .comp-head{color:#fff}
-.comp-item{display:flex;align-items:flex-start;gap:9px;font-size:.83rem;color:var(--muted);margin-bottom:9px;line-height:1.5}
-.comp-col.highlight .comp-item{color:rgba(255,255,255,.85)}
-.comp-x{color:var(--red-text);font-size:.9rem;flex-shrink:0;font-weight:700;line-height:1.4}
-.comp-ck{color:var(--green-text);font-size:.9rem;flex-shrink:0;font-weight:700;line-height:1.4}
-.comp-col.highlight .comp-ck{color:#86efac}
-
-/* ══════════════════════
-   8. ARTICLES
-══════════════════════ */
-.articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:36px}
-.art-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:22px;text-decoration:none;color:inherit;display:block;transition:border-color .15s,box-shadow .15s}
-.art-card:hover{border-color:var(--blue);box-shadow:var(--sh-md)}
-.art-cat{margin-bottom:10px}
-.art-title{font-size:.95rem;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:7px}
-.art-desc{font-size:.82rem;color:var(--muted);line-height:1.5;margin-bottom:10px}
-.art-meta{font-size:.72rem;color:var(--faint)}
-.art-link{font-size:.8rem;font-weight:700;color:var(--blue);margin-top:10px;display:block}
-
-/* ══════════════════════
-   9. FINAL CTA / SIGNUP
-══════════════════════ */
-.signup-section{background:var(--white);padding:80px 0;border-top:1px solid var(--border)}
-.signup-wrap{max-width:560px;margin:0 auto;text-align:center}
-.signup-title{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:900;letter-spacing:-.02em;color:var(--navy);margin-bottom:14px}
-.signup-sub{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:32px}
-.signup-box{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-xl);padding:28px;text-align:left}
-.sfield{margin-bottom:16px}
-.sfield label{display:block;font-size:.8rem;font-weight:700;color:var(--slate);margin-bottom:6px}
-.sinput{width:100%;padding:11px 14px;border:1.5px solid var(--border2);border-radius:var(--r-md);font-family:var(--font);font-size:.9rem;color:var(--text);background:var(--white);outline:none;transition:border-color .15s}
-.sinput:focus{border-color:var(--blue)}
-.ssubmit{width:100%;background:var(--blue);color:#fff;border:none;font-family:var(--font);font-size:.95rem;font-weight:700;padding:14px;border-radius:var(--r-md);cursor:pointer;transition:background .15s;margin-bottom:10px}
-.ssubmit:hover{background:var(--blue-h)}
-.sfine{font-size:.75rem;color:var(--muted);text-align:center;line-height:1.6}
-.ref-label{font-size:.8rem;font-weight:700;color:var(--slate);margin-bottom:4px}
-.ref-note{font-size:.75rem;color:var(--muted);margin-bottom:8px}
-.ref-row{display:flex;gap:8px}
-.refinput{flex:1;padding:10px 14px;border:1.5px solid var(--border2);border-radius:var(--r-md);font-family:var(--font);font-size:.88rem;color:var(--text);background:var(--white);outline:none;transition:border-color .15s}
-.refinput:focus{border-color:var(--blue)}
-.refadd{background:var(--blue-soft);border:1.5px solid var(--blue-mid);color:var(--blue);font-size:.85rem;font-weight:700;padding:10px 16px;border-radius:var(--r-md);cursor:pointer;font-family:var(--font);transition:all .15s;white-space:nowrap}
-.refadd:hover{background:var(--blue);color:#fff}
-.chips-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.chip{display:inline-flex;align-items:center;gap:6px;background:var(--blue-soft);border:1px solid var(--blue-mid);color:var(--blue);font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:100px}
-.chip-x{cursor:pointer;font-size:.9rem;opacity:.7}
-.chip-x:hover{opacity:1}
-.success-box{text-align:center;padding:32px 0}
-.success-emoji{font-size:2.5rem;margin-bottom:12px}
-.success-hed{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:8px}
-.success-body{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:380px;margin:0 auto}
-
-/* ══════════════════════
-   DISCLAIMER + FOOTER
-══════════════════════ */
-.disclaimer-bar{background:var(--amber-bg);border-top:1px solid var(--amber-border);padding:16px 24px;text-align:center;font-size:.78rem;color:var(--amber);line-height:1.6}
-.disclaimer-bar a{color:var(--amber);font-weight:600}
-footer{background:var(--navy);color:#fff;padding:40px 24px}
-.foot-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
-.foot-logo{font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
-.foot-logo span{color:#60a5fa}
-.foot-tagline{font-size:.8rem;color:#94a3b8;margin-top:3px}
+/* ── FOOTER ── */
+footer{background:var(--navy);color:#fff;padding:40px 32px}
+.foot-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+.foot-logo{font-weight:800;font-size:1rem;color:#fff;letter-spacing:-.02em}
+.foot-logo span{color:#93c5fd}
 .foot-links{display:flex;gap:20px;flex-wrap:wrap}
-.foot-links a{color:#94a3b8;text-decoration:none;font-size:.85rem;transition:color .15s}
+.foot-links a{color:rgba(255,255,255,.55);font-size:.82rem;font-weight:500;transition:color .15s}
 .foot-links a:hover{color:#fff}
-.foot-copy{width:100%;text-align:center;font-size:.75rem;color:#475569;padding-top:20px;border-top:1px solid #1e3a5f;margin-top:16px}
+.foot-copy{color:rgba(255,255,255,.35);font-size:.74rem;text-align:center;margin-top:20px;max-width:1100px;margin-left:auto;margin-right:auto}
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--navy);color:#fff;border-radius:var(--r-md);padding:10px 20px;font-size:.85rem;font-weight:600;white-space:nowrap;z-index:500;opacity:0;pointer-events:none;transition:all .25s}
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(14px);background:var(--navy);color:#fff;border-radius:var(--r-md);padding:12px 22px;font-size:.84rem;font-weight:600;z-index:500;opacity:0;pointer-events:none;transition:all .3s;box-shadow:var(--sh-lg);white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ══════════════════════
-   RESPONSIVE
-══════════════════════ */
-@media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr;gap:40px}
-  .phone-wrap{padding:0 40px;justify-content:center}
-  .annot{display:none}
-  .phone-frame{width:290px}
-  .db-stats{grid-template-columns:repeat(2,1fr)}
-  .db-row{grid-template-columns:1fr 1fr}
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-wrap{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .stats-wrap{grid-template-columns:repeat(2,1fr)}
+  .who-grid{grid-template-columns:1fr}
 }
-@media(max-width:760px){
-  .section{padding:56px 0}
-  .comp-grid{grid-template-columns:1fr}
-  .nav-links .desktop-only{display:none}
-  .db-stats{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:560px){
-  .hero-btns{flex-direction:column}
-  .hero-btns .btn{width:100%;text-align:center;justify-content:center}
-  .db-stats{grid-template-columns:1fr 1fr}
-  .db-row{grid-template-columns:1fr}
-  .db-row-hd{display:none}
+@media(max-width:640px){
+  .hero{padding:56px 20px 52px}
+  nav{padding:0 20px}
+  .demo-section,.who-section,.cta-section{padding:60px 20px}
+  .stats-bar{padding:48px 20px}
+  footer{padding:36px 20px}
+  .dp-body{padding:20px}
+  .dp-head{padding:16px 20px;flex-direction:column;align-items:flex-start;gap:4px}
+  .dp-foot{padding:14px 20px;flex-direction:column;gap:10px}
+  .dp-foot .btn-primary{width:100%;justify-content:center}
+  .step-line{width:30px}
+  .pkt-actions{flex-direction:column}
+  .vs-cols{flex-direction:column}
+  .form-row{flex-direction:column}
 }
 </style>
 </head>
@@ -467,1269 +301,554 @@ footer{background:var(--navy);color:#fff;padding:40px 24px}
   </div>
 </nav>
 
-<!-- ═══ 1. HERO ═══ -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
+  <div class="hero-wrap">
 
-      <!-- LEFT: COPY -->
-      <div>
-        <div class="hero-eyebrow">
-          <span class="dot-pulse"></span> Built for the First 30 Minutes
-        </div>
-        <h1 class="hero-h1">
-          When a worker gets hurt,<br>
-          your supervisor needs <span>a system</span> —<br>
-          not a paper form.
-        </h1>
-        <p class="hero-sub">
-          KinSignal guides the first 30 minutes of workplace injury response: emergency contacts, response checklist, OSHA reporting risk prompts, contact logs, and a timestamped incident packet.
-        </p>
-        <div class="hero-btns">
-          <a href="#demo" class="btn btn-primary">Run Sample Incident →</a>
-          <a href="#signup" class="btn btn-ghost">Request Pilot</a>
-        </div>
-        <div class="scenario-row">
-          <span class="scenario-label">Try a scenario:</span>
-          <div class="scenario-chips">
-            <button class="scen-chip active" onclick="setScenario(0,this)">🏥 Warehouse fall · Hospitalization</button>
-            <button class="scen-chip" onclick="setScenario(1,this)">⚙️ Equipment injury · Clinic visit</button>
-            <button class="scen-chip" onclick="setScenario(2,this)">🩹 Minor laceration · Low risk</button>
-          </div>
-        </div>
-        <p style="font-size:.78rem;color:var(--faint);margin-top:4px;line-height:1.6">Built for construction, warehouses, staffing agencies, field teams, HR, and safety managers.</p>
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Built for safety managers, HR, and field supervisors
       </div>
-
-      <!-- RIGHT: PHONE MOCKUP WITH ANNOTATIONS -->
-      <div class="phone-wrap">
-        <div class="phone-frame">
-          <!-- Annotation bubbles float outside the phone frame -->
-          <div class="annot annot-1">Emergency contacts auto-load</div>
-          <div class="annot annot-3">OSHA risk prompt before deadlines</div>
-          <div class="annot annot-2">Every contact attempt timestamped</div>
-          <div class="annot annot-4">Packet builds as steps complete</div>
-          <div class="phone-notch"><div class="phone-camera"></div><div class="phone-speaker"></div></div>
-          <div class="phone-screen">
-            <!-- App bar -->
-            <div class="app-bar">
-              <div>
-                <div class="app-bar-t">Incident Response</div>
-                <div class="app-bar-s">Marcus Johnson · Memphis DC</div>
-              </div>
-              <div class="app-chip">⚠ OSHA Flag</div>
-            </div>
-            <!-- Checklist -->
-            <div class="app-section">
-              <div class="app-label">Response Checklist</div>
-              <div class="check-item">
-                <div class="check-icon ci-done">✓</div>
-                <span>Scene secured</span>
-                <span class="check-ts">2:04 PM</span>
-              </div>
-              <div class="check-item">
-                <div class="check-icon ci-done">✓</div>
-                <span>911 called</span>
-                <span class="check-ts">2:06 PM</span>
-              </div>
-              <div class="check-item">
-                <div class="check-icon ci-done">✓</div>
-                <span>Employee transported</span>
-                <span class="check-ts">2:09 PM</span>
-              </div>
-              <div class="check-item">
-                <div class="check-icon ci-todo"></div>
-                <span>Witnesses identified</span>
-                <span class="check-todo-ts">Pending</span>
-              </div>
-            </div>
-            <!-- Contact -->
-            <div class="app-section">
-              <div class="app-label">Primary Contact</div>
-              <div class="contact-card">
-                <div class="cc-name">Sarah Johnson</div>
-                <div class="cc-rel">Mother · (555) 018-2241</div>
-                <div class="cc-btns">
-                  <div class="cc-btn">Call Logged ✓</div>
-                  <div class="cc-btn">Voicemail</div>
-                </div>
-              </div>
-            </div>
-            <!-- OSHA flag -->
-            <div class="app-section">
-              <div class="osha-flag">
-                <span>⚠️</span>
-                <span>Possible 24-hr OSHA report required. Review with safety lead.</span>
-              </div>
-            </div>
-            <!-- Packet progress -->
-            <div class="app-section">
-              <div class="app-label">Incident Packet</div>
-              <div style="font-size:9px;color:var(--muted);margin-bottom:4px">3 of 5 sections complete</div>
-              <div class="pkt-bar"><div class="pkt-fill"></div></div>
-            </div>
-          </div>
-        </div>
+      <h1>The first 10 minutes<br>after an injury<br><em>determine everything.</em></h1>
+      <p class="hero-sub">KinSignal guides supervisors through emergency response, contact logging, and OSHA documentation — automatically, in real time, with a full audit trail.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
+          ▶&nbsp; Run Live Demo
+        </button>
+        <a href="why.html" class="btn-ghost">See the research →</a>
       </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 2. PROBLEM ═══ -->
-<div class="divider"></div>
-<section class="section" style="background:var(--white)">
-  <div class="wrap">
-    <div class="eyebrow">What Breaks Today</div>
-    <h2 class="section-title">The first 30 minutes are where injury response falls apart.</h2>
-    <p class="section-sub">Not from negligence. From chaos, no clear system, and tools that weren't built for the supervisor standing at the scene.</p>
-    <div class="prob-grid">
-      <div class="prob-card">
-        <div class="prob-icon">📵</div>
-        <div class="prob-h">Emergency contacts are buried.</div>
-        <p class="prob-p">Paper binders at the front office. HR systems that need a desktop login. The supervisor has a phone and no number — while the clock is running.</p>
-      </div>
-      <div class="prob-card">
-        <div class="prob-icon">🧠</div>
-        <div class="prob-h">Supervisors document from memory.</div>
-        <p class="prob-p">The incident report gets written hours or days later. Timestamps are guesses. Witness accounts have shifted. That's the record if the case is ever disputed.</p>
-      </div>
-      <div class="prob-card">
-        <div class="prob-icon">⏰</div>
-        <div class="prob-h">OSHA reporting risk is unclear.</div>
-        <p class="prob-p">Fatalities: 8-hour reporting window. In-patient hospitalizations, amputations, eye loss: 24 hours. Most front-line supervisors have never been told these rules exist.</p>
-      </div>
-      <div class="prob-card">
-        <div class="prob-icon">📎</div>
-        <div class="prob-h">Witness notes and photos get scattered.</div>
-        <p class="prob-p">Someone's personal phone. A sticky note. An email thread. When HR or legal asks for everything six months later, nobody can reconstruct it cleanly.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 3. PRODUCT FLOW ═══ -->
-<hr class="divider">
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow">How KinSignal Works</div>
-    <h2 class="section-title">Six steps. One guided flow. Nothing missed.</h2>
-    <p class="section-sub">KinSignal is a step-by-step workflow built for the supervisor at the scene — not a form to fill out later from memory.</p>
-
-    <!-- Real scenario callout -->
-    <div style="background:var(--blue-soft);border:1.5px solid var(--blue-mid);border-radius:var(--r-lg);padding:20px 24px;margin-bottom:44px;display:flex;gap:16px;align-items:flex-start">
-      <div style="font-size:1.4rem;flex-shrink:0;margin-top:2px">📋</div>
-      <div>
-        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:8px">Real Scenario — What This Looks Like</div>
-        <p style="font-size:.9rem;color:var(--slate);line-height:1.75">Marcus Johnson fell near loading bay 4. Supervisor opens KinSignal and selects Marcus — his emergency contacts appear instantly. Scene safety logged. 911 called and timestamped. Hospital transport selected. OSHA reporting risk prompt appears automatically. Family notified and attempt logged. When the dust settles, the incident packet is already built.</p>
+      <div class="hero-proof">
+        <div class="proof-item"><span class="proof-check">✓</span> OSHA Form 301 auto-populated</div>
+        <div class="proof-item"><span class="proof-check">✓</span> Full timestamped audit trail</div>
+        <div class="proof-item"><span class="proof-check">✓</span> Team notified in 12 seconds</div>
       </div>
     </div>
 
-    <div class="flow-wrap">
-      <div class="flow-steps">
-
-        <div class="flow-step">
-          <div class="flow-left"><div class="flow-num">1</div><div class="flow-line"></div></div>
-          <div class="flow-right">
-            <div class="flow-title">Start the incident</div>
-            <div class="flow-desc">Open KinSignal the moment something happens. Every second from this point is logged. Nothing waits until later.</div>
-            <div class="flow-chips">
-              <span class="flow-chip">Instant timestamp</span>
-              <span class="flow-chip">Works on any phone</span>
-              <span class="flow-chip">No login required in the moment</span>
-            </div>
-          </div>
+    <div class="hero-right">
+      <div class="alert-card">
+        <div class="ac-bar">
+          <div class="ac-pulse"></div>
+          <div class="ac-bar-label">Incident Reported</div>
+          <div class="ac-bar-time">Today · 2:06 PM</div>
         </div>
-
-        <div class="flow-step">
-          <div class="flow-left"><div class="flow-num">2</div><div class="flow-line"></div></div>
-          <div class="flow-right">
-            <div class="flow-title">Select the injured employee</div>
-            <div class="flow-desc">Choose from your team roster. Role, site, and emergency contacts load automatically — no searching, no binders, no calling the front office.</div>
-            <div class="flow-chips">
-              <span class="flow-chip">Contacts pre-loaded</span>
-              <span class="flow-chip">Role &amp; site auto-filled</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-left"><div class="flow-num">3</div><div class="flow-line"></div></div>
-          <div class="flow-right">
-            <div class="flow-title">Follow the guided response checklist</div>
-            <div class="flow-desc">Scene safety. 911 status. Medical transport. Injury severity. Witnesses. Each step is prompted in order so nothing gets skipped because of chaos or adrenaline.</div>
-            <div class="flow-preview" style="margin-top:12px">
-              <div class="fp-row"><div class="fp-check">✓</div> Scene secured — 2:04 PM</div>
-              <div class="fp-row"><div class="fp-check">✓</div> 911 called — 2:06 PM</div>
-              <div class="fp-row"><div class="fp-check">✓</div> Transported to hospital — 2:09 PM</div>
-              <div class="fp-row" style="color:var(--muted)"><div class="fp-check" style="background:var(--bg);border-color:var(--border2);color:transparent">✓</div> Witnesses identified — pending</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-left"><div class="flow-num">4</div><div class="flow-line"></div></div>
-          <div class="flow-right">
-            <div class="flow-title">Log emergency contact attempts</div>
-            <div class="flow-desc">Call, voicemail, no answer — every attempt is logged with time, outcome, and who made it. If someone asks six months later who was notified and when, you have the answer.</div>
-            <div class="flow-chips">
-              <span class="flow-chip">One-tap outcome logging</span>
-              <span class="flow-chip">Auto-timestamped</span>
-              <span class="flow-chip">Primary &amp; secondary contacts</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-left"><div class="flow-num">5</div><div class="flow-line"></div></div>
-          <div class="flow-right">
-            <div class="flow-title">Review OSHA reporting risk</div>
-            <div class="flow-desc">Based on what was entered, KinSignal surfaces whether the incident may require OSHA notification — fatality (8-hour window) or in-patient hospitalization, amputation, or eye loss (24-hour window) — and prompts review with a safety lead before the clock runs out.</div>
-            <div class="flow-chips">
-              <span class="flow-chip">8-hr fatality prompt</span>
-              <span class="flow-chip">24-hr hospitalization prompt</span>
-              <span class="flow-chip">May require reporting — not a legal determination</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-left"><div class="flow-num">6</div></div>
-          <div class="flow-right">
-            <div class="flow-title">Export the incident packet</div>
-            <div class="flow-desc">When the response is complete, KinSignal generates a clean, timestamped document — incident summary, response timeline, contact log, witness notes, and OSHA flag status — ready for HR, legal, or your safety lead.</div>
-            <div class="flow-chips">
-              <span class="flow-chip">PDF export</span>
-              <span class="flow-chip">Email to safety lead</span>
-              <span class="flow-chip">Full audit trail</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 4. INTERACTIVE DEMO ═══ -->
-<hr class="divider">
-<section class="section" id="demo" style="background:var(--white)">
-  <div class="wrap">
-    <div class="eyebrow">Live Demo</div>
-    <h2 class="section-title">Click through the supervisor workflow.</h2>
-    <p class="section-sub">This is the actual product flow. Tap each tab to explore Dashboard, Response checklist, Contact log, and Incident Packet.</p>
-
-    <div class="demo-outer">
-      <div class="demo-tabs-bar">
-        <button class="dtab active" onclick="switchTab('tDash',this)">📊 Dashboard</button>
-        <button class="dtab" onclick="switchTab('tResp',this)">📋 Response</button>
-        <button class="dtab" onclick="switchTab('tCont',this)">📞 Contacts</button>
-        <button class="dtab" onclick="switchTab('tPkt',this)">📦 Packet</button>
-      </div>
-
-      <div class="demo-body">
-
-        <!-- DASHBOARD -->
-        <div class="dview active" id="tDash">
-
-          <!-- Dashboard view tabs -->
-          <div class="db-vtabs">
-            <button class="db-vtab active" onclick="switchDbView('dbInc',this)">Incidents</button>
-            <button class="db-vtab" onclick="switchDbView('dbF300',this)">Form 300</button>
-            <button class="db-vtab" onclick="switchDbView('dbF300A',this)">Form 300A</button>
-          </div>
-
-          <!-- ── Incidents view ── -->
-          <div class="db-view active" id="dbInc">
-            <div class="db-stats">
-              <div class="db-stat"><div class="db-sv" style="color:var(--blue)">2</div><div class="db-sl">Open Incidents</div></div>
-              <div class="db-stat"><div class="db-sv" style="color:var(--red)">1</div><div class="db-sl">OSHA Flagged</div></div>
-              <div class="db-stat"><div class="db-sv" style="color:var(--amber-text)">3</div><div class="db-sl">Missing Contacts</div></div>
-              <div class="db-stat"><div class="db-sv" style="color:var(--navy)">41</div><div class="db-sl">Completed Packets</div></div>
-            </div>
-            <div class="db-alert">
-              <div class="db-alert-icon">⚠️</div>
-              <div>
-                <div class="db-alert-t">3 employees missing emergency contact records</div>
-                <div class="db-alert-s">Emergency contacts should be collected before an incident — not during one. Update records now.</div>
-              </div>
-            </div>
-            <div class="db-table">
-              <div class="db-row db-row-hd"><div>ID</div><div>Employee / Site</div><div>Status</div><div>OSHA</div></div>
-              <div class="db-row" onclick="switchTab('tResp',document.querySelectorAll('.dtab')[1])">
-                <div><div class="dbn">INC-0041</div><div class="dbs">2 min ago</div></div>
-                <div><div class="dbn">Marcus Johnson</div><div class="dbs">Memphis DC · Bldg 4</div></div>
-                <div><span class="badge badge-blue">In Progress</span></div>
-                <div><span class="badge badge-red">Flagged</span></div>
-              </div>
-              <div class="db-row">
-                <div><div class="dbn">INC-0040</div><div class="dbs">1 hr ago</div></div>
-                <div><div class="dbn">Tasha Miller</div><div class="dbs">Memphis DC · Bldg 4</div></div>
-                <div><span class="badge badge-amber">Pkt Ready</span></div>
-                <div><span class="badge badge-gray">Low Risk</span></div>
-              </div>
-              <div class="db-row">
-                <div><div class="dbn">INC-0039</div><div class="dbs">3 hrs ago</div></div>
-                <div><div class="dbn">James Carter</div><div class="dbs">Atlanta Jobsite 2</div></div>
-                <div><span class="badge badge-green">Exported</span></div>
-                <div><span class="badge badge-gray">Low Risk</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── Form 300 view ── -->
-          <div class="db-view" id="dbF300">
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
-              <div>
-                <div style="font-size:.95rem;font-weight:800;color:var(--navy)">OSHA Form 300 — Log of Work-Related Injuries and Illnesses</div>
-                <div style="font-size:.75rem;color:var(--muted);margin-top:2px">Establishment: Memphis DC · Year: 2026 · Required to retain for 5 years</div>
-              </div>
-              <button class="btn btn-primary btn-sm" onclick="showToast('Demo: In production, exports a Form 300 PDF or CSV for your OSHA recordkeeper.')">Export Form 300 →</button>
-            </div>
-            <div class="f300-wrap">
-              <table class="f300-table">
-                <thead>
-                  <tr>
-                    <th>Case #</th>
-                    <th>Employee</th>
-                    <th>Job Title</th>
-                    <th>Date</th>
-                    <th>Location</th>
-                    <th>Description / Body Part</th>
-                    <th>Classification</th>
-                    <th>Days Away</th>
-                    <th>Injury Type</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><div class="f300-case">INC-0041</div></td>
-                    <td>Marcus Johnson</td>
-                    <td>Warehouse Associate</td>
-                    <td style="white-space:nowrap">Apr 27</td>
-                    <td>Loading Dock 4</td>
-                    <td>Left forearm laceration/fracture — forklift incident</td>
-                    <td><span class="badge badge-red" style="font-size:.65rem">Days Away</span></td>
-                    <td style="font-weight:700;color:var(--navy);text-align:center">TBD</td>
-                    <td><span class="badge badge-gray" style="font-size:.65rem">Injury</span></td>
-                  </tr>
-                  <tr>
-                    <td><div class="f300-case">INC-0040</div></td>
-                    <td>Tasha Miller</td>
-                    <td>Forklift Operator</td>
-                    <td style="white-space:nowrap">Apr 27</td>
-                    <td>Staging Area B</td>
-                    <td>Right wrist strain — overexertion loading pallet</td>
-                    <td><span class="badge badge-amber" style="font-size:.65rem">Restricted</span></td>
-                    <td style="font-weight:700;color:var(--navy);text-align:center">0</td>
-                    <td><span class="badge badge-gray" style="font-size:.65rem">Injury</span></td>
-                  </tr>
-                  <tr>
-                    <td><div class="f300-case">INC-0039</div></td>
-                    <td>James Carter</td>
-                    <td>Roofing Crew</td>
-                    <td style="white-space:nowrap">Apr 27</td>
-                    <td>Atlanta Jobsite 2</td>
-                    <td>Right hand laceration — utility knife slip</td>
-                    <td><span class="badge badge-green" style="font-size:.65rem">Other Rec.</span></td>
-                    <td style="font-weight:700;color:var(--navy);text-align:center">0</td>
-                    <td><span class="badge badge-gray" style="font-size:.65rem">Injury</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="f300-note">Form 300 must be kept at the establishment and available to employees on request. Retain for minimum 5 years. Privacy cases (sexual assault, mental illness, HIV, etc.) should list "Privacy Case" in place of employee name.</div>
-          </div>
-
-          <!-- ── Form 300A view ── -->
-          <div class="db-view" id="dbF300A">
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
-              <div>
-                <div style="font-size:.95rem;font-weight:800;color:var(--navy)">OSHA Form 300A — Annual Summary</div>
-                <div style="font-size:.75rem;color:var(--muted);margin-top:2px">Establishment: Memphis DC · Must be posted Feb 1 – Apr 30 each year</div>
-              </div>
-              <button class="btn btn-primary btn-sm" onclick="showToast('Demo: In production, generates a Form 300A ready for posting and signature.')">Export Form 300A →</button>
-            </div>
-
-            <div class="f300a-header">Total Recordable Cases — 2026 YTD</div>
-            <div class="f300a-grid">
-              <div class="f300a-cell"><div class="f300a-label">Total Cases</div><div class="f300a-val">41</div><div class="f300a-sub">All recordable</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Days Away</div><div class="f300a-val">8</div><div class="f300a-sub">Cases</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Restricted</div><div class="f300a-val">12</div><div class="f300a-sub">Cases</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Other Recordable</div><div class="f300a-val">21</div><div class="f300a-sub">Cases</div></div>
-            </div>
-
-            <div class="f300a-header">Days Lost</div>
-            <div class="f300a-grid">
-              <div class="f300a-cell"><div class="f300a-label">Days Away From Work</div><div class="f300a-val">47</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Days Restricted</div><div class="f300a-val">89</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Avg Employees</div><div class="f300a-val">127</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Total Hours Worked</div><div class="f300a-val" style="font-size:.95rem">264,160</div></div>
-            </div>
-
-            <div class="f300a-header">Injury &amp; Illness Types</div>
-            <div class="f300a-grid">
-              <div class="f300a-cell"><div class="f300a-label">Injuries</div><div class="f300a-val">35</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Skin Disorders</div><div class="f300a-val">1</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Respiratory</div><div class="f300a-val">0</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Poisoning</div><div class="f300a-val">0</div></div>
-              <div class="f300a-cell"><div class="f300a-label">Hearing Loss</div><div class="f300a-val">2</div></div>
-              <div class="f300a-cell"><div class="f300a-label">All Other</div><div class="f300a-val">3</div></div>
-            </div>
-
-            <div class="f300a-sign">
-              <strong style="color:var(--navy)">Certification:</strong> I certify that I have examined this document and that to the best of my knowledge the entries are true, accurate, and complete.<br>
-              <span style="color:var(--faint)">Signature: ___________________________ &nbsp;·&nbsp; Title: ___________________________ &nbsp;·&nbsp; Date: _______________</span><br>
-              <span style="font-size:.72rem;color:var(--faint)">Must be signed by a company executive. Post in a visible location Feb 1 – Apr 30.</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- RESPONSE CHECKLIST -->
-        <div class="dview" id="tResp">
-          <div class="checklist-header">
+        <div class="ac-body">
+          <div class="ac-employee">
+            <div class="ac-avatar">MJ</div>
             <div>
-              <div class="checklist-name">Marcus Johnson — INC-0041</div>
-              <div class="checklist-sub">Memphis DC Building 4 · Forklift Incident · Supervisor: Mike Torres</div>
-            </div>
-            <span class="badge badge-red">⚠ OSHA Flagged</span>
-          </div>
-          <div class="prog-bar-wrap">
-            <div class="prog-top"><span id="progLbl">3 of 5 steps complete</span><span id="progPct" style="color:var(--blue);font-weight:700">60%</span></div>
-            <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:60%"></div></div>
-          </div>
-          <div id="clItems">
-            <div class="cl-item" onclick="toggleCheck(this,0)">
-              <div class="cl-cb done">✓</div>
-              <div class="cl-text">
-                <div class="cl-t">Scene secured and employees safe</div>
-                <div class="cl-s">Moved to safety before any other steps</div>
-              </div>
-              <div class="cl-ts">2:04 PM</div>
-            </div>
-            <div class="cl-item" onclick="toggleCheck(this,1)">
-              <div class="cl-cb done">✓</div>
-              <div class="cl-text">
-                <div class="cl-t">Emergency services called (911)</div>
-                <div class="cl-s">Paramedics dispatched</div>
-              </div>
-              <div class="cl-ts">2:06 PM</div>
-            </div>
-            <div class="cl-item" onclick="toggleCheck(this,2)">
-              <div class="cl-cb done">✓</div>
-              <div class="cl-text">
-                <div class="cl-t">Employee transported for medical care</div>
-                <div class="cl-s">In-patient hospitalization — admitted to St. Francis Medical</div>
-              </div>
-              <div class="cl-ts">2:09 PM</div>
-            </div>
-            <div class="cl-item" onclick="toggleCheck(this,3)">
-              <div class="cl-cb active-step"></div>
-              <div class="cl-text">
-                <div class="cl-t">Witnesses identified and statements collected</div>
-                <div class="cl-s">Tap to mark complete</div>
-              </div>
-              <div style="font-size:.75rem;color:var(--faint);padding-top:4px">Pending</div>
-            </div>
-            <div class="cl-item" onclick="toggleCheck(this,4)">
-              <div class="cl-cb"></div>
-              <div class="cl-text">
-                <div class="cl-t">Injury severity and OSHA reportability reviewed</div>
-                <div class="cl-s">Review with safety lead before 24-hour deadline</div>
-              </div>
-              <div style="font-size:.75rem;color:var(--faint);padding-top:4px">Pending</div>
+              <div class="ac-name">Marcus Johnson</div>
+              <div class="ac-detail">Warehouse Associate · Memphis DC — Building 4</div>
             </div>
           </div>
-          <div class="osha-inline">
-            <div class="oi-icon">⚠️</div>
+          <div class="ac-location">📍 <strong>Dock Bay 7</strong> — Forklift collision, employee struck while unloading</div>
+          <div class="ac-osha">
+            <span style="font-size:1rem">⚠️</span>
+            <div class="ac-osha-text">OSHA severe injury flagged — 24-hour reporting window started</div>
+          </div>
+          <div class="ac-notifs">
+            <div class="ac-notif">
+              <div class="an-av" style="background:#2563eb">SC</div>
+              <div><span class="an-name">Sarah Chen</span><span class="an-role">· Safety Mgr</span></div>
+              <div class="an-status an-green">✓ Notified</div>
+            </div>
+            <div class="ac-notif">
+              <div class="an-av" style="background:#7c3aed">LJ</div>
+              <div><span class="an-name">Linda Johnson</span><span class="an-role">· Wife</span></div>
+              <div class="an-status an-amber">Calling…</div>
+            </div>
+            <div class="ac-notif">
+              <div class="an-av" style="background:#0d9488">MT</div>
+              <div><span class="an-name">Mike Torres</span><span class="an-role">· HR Dir</span></div>
+              <div class="an-status an-green">✓ Notified</div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-footer">Response checklist started automatically →</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ DEMO ═══ -->
+<section class="demo-section" id="demo">
+  <div class="section-label">Live Demo</div>
+  <div class="section-title">From injury to audit-ready packet — in 90 seconds</div>
+  <div class="section-sub">Walk through a real incident. No login. No setup. Just click through and see how KinSignal works.</div>
+
+  <!-- STEPPER -->
+  <div class="stepper">
+    <div class="step-col"><div class="step-circle active" id="sc1">1</div><div class="step-label active" id="sl1">Incident</div></div>
+    <div class="step-line" id="line1"></div>
+    <div class="step-col"><div class="step-circle" id="sc2">2</div><div class="step-label" id="sl2">Team Notified</div></div>
+    <div class="step-line" id="line2"></div>
+    <div class="step-col"><div class="step-circle" id="sc3">3</div><div class="step-label" id="sl3">Response</div></div>
+    <div class="step-line" id="line3"></div>
+    <div class="step-col"><div class="step-circle" id="sc4">4</div><div class="step-label" id="sl4">Documentation</div></div>
+    <div class="step-line" id="line4"></div>
+    <div class="step-col"><div class="step-circle" id="sc5">5</div><div class="step-label" id="sl5">Packet Ready</div></div>
+  </div>
+
+  <div class="demo-panel-wrap">
+
+    <!-- STEP 1 -->
+    <div class="demo-panel active" id="dp1">
+      <div class="dp-head">
+        <div>
+          <div class="dp-badge">Step 1 of 5</div>
+          <div class="dp-title">Incident Reported</div>
+        </div>
+        <div class="dp-time">Today · 2:06 PM</div>
+      </div>
+      <div class="dp-body">
+        <div class="incident-alert">
+          <div class="ia-top">
+            <div class="ia-pulse"></div>
+            <div class="ia-badge">Active Incident</div>
+            <div class="ia-ts">2:06 PM</div>
+          </div>
+          <div class="ia-emp">
+            <div class="ia-av">MJ</div>
             <div>
-              <div class="oi-t">Possible OSHA 24-Hour Report Required</div>
-              <div class="oi-s">Employee admitted as in-patient. In-patient hospitalization may require reporting to OSHA within 24 hours. Review with your safety lead immediately. Contact OSHA: 1-800-321-6742.</div>
+              <div class="ia-name">Marcus Johnson</div>
+              <div class="ia-role">Warehouse Associate · Memphis DC, Building 4</div>
             </div>
           </div>
-
-          <!-- Form 301 detail capture -->
-          <div class="f301-resp">
-            <div class="f301-resp-hd">
-              📋 Form 301 Details
-              <span class="f301-resp-badge">Required within 7 days</span>
-            </div>
-            <div class="f301-resp-field">
-              <div class="f301-resp-label">What was the employee doing just before the incident?</div>
-              <div class="f301-resp-val">Operating forklift on loading dock, transporting pallets to staging area</div>
-            </div>
-            <div class="f301-resp-field">
-              <div class="f301-resp-label">What body part was injured?</div>
-              <div class="f301-resp-val">Left forearm — laceration and possible fracture</div>
-            </div>
-            <div class="f301-resp-field">
-              <div class="f301-resp-label">What object or substance directly caused the harm?</div>
-              <div class="f301-resp-val">Wet loading dock surface and dock railing</div>
-            </div>
-            <div class="f301-resp-field" style="margin-bottom:0">
-              <div class="f301-resp-label">Treating physician / facility</div>
-              <div class="f301-resp-val">Dr. Patricia Webb · St. Francis Medical Center, Memphis TN</div>
-            </div>
+          <div class="ia-field"><span class="ia-label">Incident type</span><span class="ia-value">Forklift collision — employee struck while unloading cargo</span></div>
+          <div class="ia-field"><span class="ia-label">Location</span><span class="ia-value">Building 4, Dock Bay 7</span></div>
+          <div class="ia-field"><span class="ia-label">Reported by</span><span class="ia-value">Mike Torres, Floor Supervisor</span></div>
+          <div class="ia-field"><span class="ia-label">Status</span><span class="ia-value alert">● Responding now</span></div>
+        </div>
+        <div class="osha-flag">
+          <span style="font-size:1.1rem;flex-shrink:0">⚠️</span>
+          <div>
+            <div class="osha-flag-body">Possible OSHA severe injury — hospitalization likely. This event may require reporting to OSHA.</div>
+            <div class="osha-deadline">24-hour reporting window started · Deadline: Tomorrow, 2:06 PM</div>
           </div>
         </div>
+      </div>
+      <div class="dp-foot">
+        <div class="dp-foot-note">Emergency contacts auto-loaded from Marcus's employee profile</div>
+        <button class="btn-primary" onclick="goStep(2)">Notify Team →</button>
+      </div>
+    </div>
 
-        <!-- CONTACTS -->
-        <div class="dview" id="tCont">
-          <div class="contact-header">
-            <div class="eyebrow" style="margin-bottom:12px">Emergency Contact Activation</div>
-            <div class="emp-chip">
-              <div class="emp-av">MJ</div>
-              <div>
-                <div class="emp-n">Marcus Johnson</div>
-                <div class="emp-s">Warehouse Associate · Memphis DC Building 4</div>
-              </div>
-            </div>
-          </div>
-          <div class="contact-cards">
-            <div class="ccard" id="cc1">
-              <div class="ccard-hd">
-                <div>
-                  <div class="ccard-name">Sarah Johnson</div>
-                  <div class="ccard-rel">Mother · Priority 1</div>
-                </div>
-                <span class="badge badge-amber" id="cc1-status">Attempted</span>
-              </div>
-              <div class="ccard-phone">(555) 018-2241</div>
-              <div class="ccard-btns" style="margin-top:10px">
-                <button class="ccard-btn warn active" onclick="logContact('cc1','voicemail')">Voicemail Left</button>
-                <button class="ccard-btn" onclick="logContact('cc1','reached')">Mark Reached ✓</button>
-                <button class="ccard-btn" onclick="logContact('cc1','noanswer')">No Answer</button>
-              </div>
-            </div>
-            <div class="ccard" id="cc2">
-              <div class="ccard-hd">
-                <div>
-                  <div class="ccard-name">Eric Johnson</div>
-                  <div class="ccard-rel">Brother · Priority 2</div>
-                </div>
-                <span class="badge badge-gray" id="cc2-status">Pending</span>
-              </div>
-              <div class="ccard-phone">(555) 019-4482</div>
-              <div class="ccard-btns" style="margin-top:10px">
-                <button class="ccard-btn" onclick="logContact('cc2','reached')">Mark Reached ✓</button>
-                <button class="ccard-btn" onclick="logContact('cc2','voicemail')">Voicemail Left</button>
-                <button class="ccard-btn" onclick="logContact('cc2','noanswer')">No Answer</button>
-              </div>
-            </div>
-          </div>
-          <div style="font-size:.8rem;font-weight:700;color:var(--slate);margin-bottom:12px">Contact Attempt Log</div>
-          <div class="contact-tl" id="contactTl">
-            <div class="tl-item amber">
-              <strong>Sarah Johnson called by Mike Torres</strong>
-              <div class="tl-time">2:14 PM · No answer — voicemail left</div>
-            </div>
-            <div class="tl-item">
-              <strong>Incident opened by Mike Torres</strong>
-              <div class="tl-time">2:03 PM · Emergency contacts loaded</div>
-            </div>
-          </div>
+    <!-- STEP 2 -->
+    <div class="demo-panel" id="dp2">
+      <div class="dp-head">
+        <div>
+          <div class="dp-badge">Step 2 of 5</div>
+          <div class="dp-title">Team Notified</div>
         </div>
-
-        <!-- PACKET -->
-        <div class="dview" id="tPkt">
-          <div class="pkt-header">
+        <div class="dp-time">2:06 PM · 12 seconds after report</div>
+      </div>
+      <div class="dp-body">
+        <div class="speed-banner">
+          <div class="speed-pill">⚡ Full team reached in 12 seconds</div>
+        </div>
+        <div class="notif-list">
+          <div class="notif-row">
+            <div class="nr-av" style="background:#2563eb">SC</div>
             <div>
-              <div class="pkt-id">INC-0041</div>
-              <div class="pkt-sub">April 27, 2026 · 2:03 PM · Mike Torres, Supervisor</div>
+              <div class="nr-name">Sarah Chen</div>
+              <div class="nr-role">Safety Manager</div>
             </div>
-            <span class="badge badge-amber">⚠ OSHA Review Needed</span>
-          </div>
-          <div class="pkt-tabs">
-            <button class="ptab active" onclick="switchPkt('pkSum',this)">Summary</button>
-            <button class="ptab" onclick="switchPkt('pkTl',this)">Timeline</button>
-            <button class="ptab" onclick="switchPkt('pkCont',this)">Contacts</button>
-            <button class="ptab" onclick="switchPkt('pkOsha',this)">OSHA</button>
-            <button class="ptab" onclick="switchPkt('pkF301',this)" style="color:var(--blue);font-weight:800">Form 301 ↗</button>
-          </div>
-
-          <div class="pkt-section active" id="pkSum">
-            <div class="pkt-field-grid">
-              <div class="pkt-field"><div class="pkt-fl">Employee</div><div class="pkt-fv">Marcus Johnson</div></div>
-              <div class="pkt-field"><div class="pkt-fl">Role</div><div class="pkt-fv">Warehouse Associate</div></div>
-              <div class="pkt-field"><div class="pkt-fl">Site</div><div class="pkt-fv">Memphis DC · Bldg 4</div></div>
-              <div class="pkt-field"><div class="pkt-fl">Incident Type</div><div class="pkt-fv">Equipment Injury</div></div>
-              <div class="pkt-field"><div class="pkt-fl">Supervisor</div><div class="pkt-fv">Mike Torres</div></div>
-              <div class="pkt-field"><div class="pkt-fl">Medical</div><div class="pkt-fv">In-patient hospital</div></div>
-            </div>
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:14px;font-size:.875rem;color:var(--slate);line-height:1.7">
-              <strong style="color:var(--navy);display:block;margin-bottom:6px;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em">Incident Description</strong>
-              Employee slipped while operating forklift on loading dock and sustained injury to left arm. Scene was secured and 911 called. Employee transported by ambulance to St. Francis Medical and admitted as in-patient.
+            <div class="nr-right">
+              <div class="nr-status" style="color:var(--green)">✓ Delivered</div>
+              <div class="nr-ts">Read 2:06 PM</div>
             </div>
           </div>
-
-          <div class="pkt-section" id="pkTl">
-            <div class="pkt-tl">
-              <div class="ptl-item"><div class="ptl-dot" style="background:var(--green-text)"></div><div><div class="ptl-body"><strong>Incident opened</strong> — Scene secured, employee assessed</div><div class="ptl-t">2:03 PM · Mike Torres</div></div></div>
-              <div class="ptl-item"><div class="ptl-dot" style="background:var(--green-text)"></div><div><div class="ptl-body"><strong>911 dispatched</strong> — Paramedics requested</div><div class="ptl-t">2:06 PM · Mike Torres</div></div></div>
-              <div class="ptl-item"><div class="ptl-dot" style="background:var(--blue)"></div><div><div class="ptl-body"><strong>Employee transported</strong> — Admitted in-patient, St. Francis Medical</div><div class="ptl-t">2:09 PM · Mike Torres</div></div></div>
-              <div class="ptl-item"><div class="ptl-dot" style="background:var(--amber-text)"></div><div><div class="ptl-body"><strong>Emergency contact attempted</strong> — Sarah Johnson, voicemail left</div><div class="ptl-t">2:14 PM · Mike Torres</div></div></div>
-              <div class="ptl-item"><div class="ptl-dot" style="background:var(--amber-text)"></div><div><div class="ptl-body"><strong>OSHA risk flagged</strong> — In-patient hospitalization, possible 24-hr report required</div><div class="ptl-t">2:18 PM · System</div></div></div>
+          <div class="notif-row">
+            <div class="nr-av" style="background:#7c3aed">LJ</div>
+            <div>
+              <div class="nr-name">Linda Johnson</div>
+              <div class="nr-role">Wife · Emergency Contact</div>
+            </div>
+            <div class="nr-right">
+              <div class="nr-status" style="color:var(--amber)">Auto-dialing</div>
+              <div class="nr-ts">Called 2:06 PM</div>
             </div>
           </div>
-
-          <div class="pkt-section" id="pkCont">
-            <div style="border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden">
-              <div style="display:grid;grid-template-columns:1fr 1fr 80px 120px;padding:10px 14px;background:var(--bg);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)">
-                <div>Contact</div><div>Phone</div><div>Time</div><div>Outcome</div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr 80px 120px;padding:12px 14px;font-size:.82rem;border-top:1px solid var(--border);align-items:center">
-                <div><div style="font-weight:600">Sarah Johnson</div><div style="font-size:.75rem;color:var(--muted)">Mother</div></div>
-                <div style="color:var(--muted)">(555) 018-2241</div>
-                <div style="color:var(--muted)">2:14 PM</div>
-                <div><span class="badge badge-amber">Voicemail</span></div>
-              </div>
+          <div class="notif-row">
+            <div class="nr-av" style="background:#0d9488">MT</div>
+            <div>
+              <div class="nr-name">Mike Torres</div>
+              <div class="nr-role">HR Director</div>
+            </div>
+            <div class="nr-right">
+              <div class="nr-status" style="color:var(--green)">✓ Delivered</div>
+              <div class="nr-ts">Read 2:07 PM</div>
             </div>
           </div>
-
-          <div class="pkt-section" id="pkOsha">
-            <div class="osha-inline">
-              <div class="oi-icon">⚠️</div>
-              <div>
-                <div class="oi-t">Possible OSHA 24-Hour Report Required</div>
-                <div class="oi-s">In-patient hospitalization identified. Per 29 CFR 1904.39, in-patient hospitalizations may require reporting to OSHA within 24 hours of employer notification. Contact OSHA at 1-800-321-6742 or osha.gov. Final determination should be reviewed by your safety lead or legal counsel.</div>
-              </div>
-            </div>
-            <div style="margin-top:16px;font-size:.82rem;color:var(--muted);line-height:1.7;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-md);padding:14px">
-              <strong style="color:var(--slate)">Note:</strong> This flag is based on information entered during the response. KinSignal surfaces potential OSHA deadlines for review — it does not constitute a legal determination. Your safety lead or legal counsel should make the final call.
-            </div>
-          </div>
-
-          <!-- FORM 301 TAB -->
-          <div class="pkt-section" id="pkF301">
-
-            <!-- Header -->
-            <div class="f301-header">
-              <div>
-                <div class="f301-htitle">OSHA Form 301 — Injury and Illness Incident Report</div>
-                <div class="f301-hmeta">Case INC-0041 · Pre-filled from incident response · April 27, 2026</div>
-              </div>
-              <div style="text-align:right">
-                <div class="f301-hbadge" style="margin-bottom:5px">Case # INC-0041</div>
-                <div style="font-size:.62rem;color:#94a3b8;line-height:1.6">
-                  <span style="color:#86efac">●</span> Auto-filled &nbsp;
-                  <span style="color:#fcd34d">●</span> Review &nbsp;
-                  <span style="color:#64748b">●</span> After incident
-                </div>
-              </div>
-            </div>
-
-            <!-- Deadline + recordable row -->
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-              <div class="f301-deadline" style="flex:1;margin-bottom:0">⏱ Complete within 7 days of learning of a recordable injury — deadline May 4, 2026</div>
-              <div style="display:flex;gap:8px;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 12px;font-size:.75rem;white-space:nowrap">
-                <div class="f301-flag"><div class="f301-flag-box unchecked"></div> Recordable</div>
-                <div class="f301-flag"><div class="f301-flag-box unchecked"></div> Non-recordable</div>
-                <span style="font-size:.65rem;color:var(--faint)">To be determined by EH&amp;S</span>
-              </div>
-            </div>
-
-            <!-- ═══ SECTION: INJURED PERSON ═══ -->
-            <div class="f301-section-hd">Information About the Injured Person</div>
-
-            <div class="f301-field" style="margin-bottom:8px">
-              <div class="f301-fl">① Full Name <span style="color:#16a34a;font-size:.6rem">● auto</span></div>
-              <div class="f301-fv">Marcus Johnson</div>
-            </div>
-            <div class="f301-grid" style="margin-bottom:8px">
-              <div class="f301-field" style="grid-column:span 2">
-                <div class="f301-fl">② Street <span style="color:#d97706;font-size:.6rem">● review</span></div>
-                <div class="f301-fv">4821 Poplar Ave, Apt 3B</div>
-              </div>
-              <div class="f301-field"><div class="f301-fl">City / State / Zip</div><div class="f301-fv">Memphis, TN 38117</div></div>
-            </div>
-            <div class="f301-grid" style="margin-bottom:8px">
-              <div class="f301-field"><div class="f301-fl">③ Employee ID / A# <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">EMP-0113</div></div>
-              <div class="f301-field"><div class="f301-fl">④ Date of Birth <span style="color:#d97706;font-size:.6rem">● review</span></div><div class="f301-fv">March 12, 1991</div></div>
-              <div class="f301-field"><div class="f301-fl">Date Hired <span style="color:#d97706;font-size:.6rem">● review</span></div><div class="f301-fv">June 3, 2019</div></div>
-            </div>
-            <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px">
-              <div class="f301-flag"><span style="font-size:.72rem;font-weight:700;color:var(--muted);margin-right:4px">⑤</span><div class="f301-flag-box checked">✓</div> Male</div>
-              <div class="f301-flag"><div class="f301-flag-box unchecked"></div> Female</div>
-              <div class="f301-flag" style="margin-left:16px"><span style="font-size:.72rem;font-weight:700;color:var(--muted);margin-right:4px">⑥</span><div class="f301-flag-box checked">✓</div> Employee</div>
-              <div class="f301-flag"><div class="f301-flag-box unchecked"></div> Student</div>
-              <div class="f301-flag"><div class="f301-flag-box unchecked"></div> Visitor</div>
-            </div>
-            <div class="f301-grid" style="margin-bottom:8px">
-              <div class="f301-field"><div class="f301-fl">Job Title <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">Warehouse Associate</div></div>
-              <div class="f301-field"><div class="f301-fl">Hrs/Day · Days/Wk</div><div class="f301-fv">8 hrs · 5 days</div></div>
-              <div class="f301-field"><div class="f301-fl">⑦ Phone # <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">(555) 201-3344</div></div>
-            </div>
-            <div class="f301-grid" style="margin-bottom:8px">
-              <div class="f301-field"><div class="f301-fl">⑧ Injured Person Signature</div><div class="f301-fv na">Requires signature</div></div>
-              <div class="f301-field"><div class="f301-fl">⑨ Supervisor <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">Mike Torres</div></div>
-              <div class="f301-field"><div class="f301-fl">Supervisor Phone</div><div class="f301-fv">(555) 210-0011</div></div>
-            </div>
-            <div class="f301-grid" style="margin-bottom:8px">
-              <div class="f301-field"><div class="f301-fl">Supervisor Signature</div><div class="f301-fv na">Requires signature</div></div>
-              <div class="f301-field"><div class="f301-fl">Date Signed</div><div class="f301-fv">April 27, 2026</div></div>
-            </div>
-
-            <!-- ═══ SECTION: MEDICAL TREATMENT ═══ -->
-            <div class="f301-section-hd">Information About the Medical Treatment</div>
-
-            <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px;align-items:center">
-              <span style="font-size:.72rem;font-weight:700;color:var(--muted)">⑩ Extent of treatment:</span>
-              <div class="f301-flag"><div class="f301-flag-box unchecked"></div> None</div>
-              <div class="f301-flag"><div class="f301-flag-box unchecked"></div> First Aid</div>
-              <div class="f301-flag"><div class="f301-flag-box checked">✓</div> Medical Treatment <span style="color:#16a34a;font-size:.6rem">● auto</span></div>
-            </div>
-            <div style="font-size:.75rem;color:var(--muted);margin-bottom:8px;font-weight:600">⑪ If treatment given away from worksite:</div>
-            <div class="f301-grid" style="margin-bottom:8px">
-              <div class="f301-field"><div class="f301-fl">Dr. Name <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">Dr. Patricia Webb</div></div>
-              <div class="f301-field"><div class="f301-fl">Facility <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">St. Francis Medical Center</div></div>
-              <div class="f301-field"><div class="f301-fl">Street</div><div class="f301-fv">5959 Park Ave</div></div>
-              <div class="f301-field"><div class="f301-fl">City / State / Zip</div><div class="f301-fv">Memphis, TN 38119</div></div>
-            </div>
-            <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:10px">
-              <div>
-                <span style="font-size:.72rem;font-weight:700;color:var(--muted)">⑫ Emergency room? </span>
-                <span class="f301-flag"><div class="f301-flag-box checked">✓</div> Yes <span style="color:#16a34a;font-size:.6rem">● auto</span></span>
-                <span class="f301-flag" style="margin-left:8px"><div class="f301-flag-box unchecked"></div> No</span>
-              </div>
-              <div>
-                <span style="font-size:.72rem;font-weight:700;color:var(--muted)">⑬ Hospitalized overnight? </span>
-                <span class="f301-flag"><div class="f301-flag-box checked">✓</div> Yes <span style="color:#16a34a;font-size:.6rem">● auto</span></span>
-                <span class="f301-flag" style="margin-left:8px"><div class="f301-flag-box unchecked"></div> No</span>
-              </div>
-            </div>
-
-            <!-- ═══ SECTION: ABOUT THE CASE ═══ -->
-            <div class="f301-section-hd">Information About the Case</div>
-
-            <div class="f301-grid" style="margin-bottom:8px">
-              <div class="f301-field"><div class="f301-fl">⑭ Date of Injury <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">April 27, 2026</div></div>
-              <div class="f301-field"><div class="f301-fl">⑮ Time of Event <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">2:04 PM</div></div>
-              <div class="f301-field"><div class="f301-fl">⑯ Time Began Work <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">6:00 AM</div></div>
-            </div>
-            <div class="f301-grid" style="margin-bottom:8px">
-              <div class="f301-field"><div class="f301-fl">⑰ Dates Lost From Work <span style="color:#64748b;font-size:.6rem">● after incident</span></div><div class="f301-fv na">To be determined</div></div>
-              <div class="f301-field"><div class="f301-fl">⑱ Dates Restricted Duty <span style="color:#64748b;font-size:.6rem">● after incident</span></div><div class="f301-fv na">To be determined</div></div>
-              <div class="f301-field"><div class="f301-fl">⑲ L&amp;I Report Filed? <span style="color:#64748b;font-size:.6rem">● after incident</span></div><div class="f301-fv na">Claim # TBD</div></div>
-            </div>
-            <div class="f301-grid" style="margin-bottom:8px">
-              <div class="f301-field"><div class="f301-fl">⑳ Date of Death (if applicable)</div><div class="f301-fv na">N/A</div></div>
-              <div class="f301-field"><div class="f301-fl">㉑ Location <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">Loading Dock 4 — Memphis DC Bldg 4</div></div>
-              <div class="f301-field"><div class="f301-fl">㉒ Witness <span style="color:#16a34a;font-size:.6rem">● auto</span></div><div class="f301-fv">Jamal Williams · (555) 201-4456</div></div>
-            </div>
-            <div class="f301-text">
-              <div class="f301-fl">㉓ What was the injured person doing just before the incident? <span style="color:#16a34a;font-size:.6rem">● auto</span></div>
-              <div class="f301-fv">Operating forklift on loading dock, transporting pallets to staging area</div>
-            </div>
-            <div class="f301-text">
-              <div class="f301-fl">㉔ What happened? How did the injury occur? <span style="color:#16a34a;font-size:.6rem">● auto</span></div>
-              <div class="f301-fv">Employee's forklift skidded on wet loading dock surface. Employee lost control and sustained impact to left forearm on dock railing. 911 called immediately, employee transported by ambulance to St. Francis Medical.</div>
-            </div>
-            <div class="f301-text">
-              <div class="f301-fl">㉕ What was the injury or illness? What part of body affected? <span style="color:#16a34a;font-size:.6rem">● auto</span></div>
-              <div class="f301-fv">Laceration and possible fracture — left forearm</div>
-            </div>
-            <div class="f301-text" style="margin-bottom:10px">
-              <div class="f301-fl">㉖ What object or substance directly harmed the person? <span style="color:#16a34a;font-size:.6rem">● auto</span></div>
-              <div class="f301-fv">Wet loading dock surface and dock railing</div>
-            </div>
-
-            <!-- Completed by -->
-            <div style="background:var(--bg);border:1.5px solid var(--border2);border-radius:var(--r-md);padding:12px 14px;margin-bottom:10px">
-              <div style="font-size:.72rem;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Completed By</div>
-              <div class="f301-grid">
-                <div class="f301-field"><div class="f301-fl">Signature</div><div class="f301-fv na">Requires signature</div></div>
-                <div class="f301-field"><div class="f301-fl">Title</div><div class="f301-fv">Safety Manager</div></div>
-                <div class="f301-field"><div class="f301-fl">Phone</div><div class="f301-fv">(555) 210-0002</div></div>
-                <div class="f301-field"><div class="f301-fl">Date</div><div class="f301-fv na">Complete within 7 days</div></div>
-              </div>
-            </div>
-
-            <div class="f301-note">
-              ⚠ Fields marked "review" were pulled from the employee HR profile — verify accuracy before submission. Fields marked "after incident" are completed once medical outcome is known. Retain this form for 5 years. This form does not constitute a legal determination of recordability — final determination by EH&amp;S or safety lead.
-            </div>
-
-          </div>
-
-          <div class="pkt-cta">
-            <button class="btn btn-primary btn-sm" onclick="showToast('Demo: In production, exports a completed OSHA Form 301 PDF pre-filled from this incident.')">Export Form 301 →</button>
-            <button class="btn btn-ghost btn-sm" onclick="showToast('Demo: In production, generates the full incident packet for HR, legal, and safety review.')">Full Packet PDF</button>
-            <button class="btn btn-ghost btn-sm" onclick="showToast('Demo: In production, sends the packet to your designated safety lead.')">Email Safety Lead</button>
-          </div>
-
         </div>
-
+        <div class="auto-note">🔗 Emergency contacts were auto-loaded from Marcus Johnson's employee profile. No manual lookup required.</div>
+      </div>
+      <div class="dp-foot">
+        <div class="dp-foot-note">Supervisor guided response checklist is ready</div>
+        <button class="btn-primary" onclick="goStep(3)">Open Response Checklist →</button>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══ 5. WHY IT MATTERS ═══ -->
-<hr class="divider">
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow">Why It Matters</div>
-    <h2 class="section-title">The deadlines are real. The penalties are real.</h2>
-    <p class="section-sub">OSHA reporting windows don't care that it was hectic. A missed 8-hour or 24-hour deadline is a citation regardless of whether the response was otherwise handled well.</p>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-num blue">2.6M</div>
-        <div class="stat-lbl">Nonfatal workplace injuries and illnesses in private industry (2023)</div>
-        <div class="stat-src">Bureau of Labor Statistics</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num red">8 hrs</div>
-        <div class="stat-lbl">OSHA deadline to report a work-related fatality</div>
-        <div class="stat-src">29 CFR 1904.39</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num amber">24 hrs</div>
-        <div class="stat-lbl">OSHA deadline to report in-patient hospitalization, amputation, or eye loss</div>
-        <div class="stat-src">29 CFR 1904.39</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num navy">$165,514</div>
-        <div class="stat-lbl">Max OSHA penalty per willful or repeat violation</div>
-        <div class="stat-src">OSHA 2025 penalty schedule</div>
-      </div>
-    </div>
-    <div class="why-note">
-      <strong>Important:</strong> KinSignal surfaces OSHA reporting risk flags and supports documentation workflows. Final OSHA recordkeeping and reporting decisions should be reviewed by qualified safety, HR, or legal professionals. Statistics from BLS, OSHA 29 CFR 1904.39, OSHA 2025 penalty schedule, and the National Safety Council. <a href="why.html" style="color:var(--blue);font-weight:600">Read the full research →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 6. WHO IT'S FOR ═══ -->
-<hr class="divider">
-<section class="section" style="background:var(--white)">
-  <div class="wrap">
-    <div class="eyebrow">Who It's For</div>
-    <h2 class="section-title">Built for the people managing workers on the ground.</h2>
-    <p class="section-sub">If someone on your team gets hurt and you're responsible for the response — KinSignal is built for you.</p>
-    <div class="who-grid">
-      <div class="who-card">
-        <div class="who-icon">🏗</div>
-        <div class="who-h">Construction</div>
-        <p class="who-p">Site supervisors, GCs, and subcontractors who manage crews across changing jobsites with no on-site HR support.</p>
-      </div>
-      <div class="who-card">
-        <div class="who-icon">📦</div>
-        <div class="who-h">Warehouses & Logistics</div>
-        <p class="who-p">Distribution centers and 3PLs with high injury rates and supervisors who need emergency contacts available on the floor, not in a binder at the front office.</p>
-      </div>
-      <div class="who-card">
-        <div class="who-icon">👷</div>
-        <div class="who-h">Staffing Agencies</div>
-        <p class="who-p">Temp workers placed across dozens of client sites. Agencies retain OSHA responsibility but need to be notified instantly when an incident happens at a host site.</p>
-      </div>
-      <div class="who-card">
-        <div class="who-icon">⚡</div>
-        <div class="who-h">Field Services & Trades</div>
-        <p class="who-p">Electricians, HVAC, plumbing, and field crews working remotely. One supervisor covering multiple crews, no dedicated safety staff on site.</p>
-      </div>
-      <div class="who-card">
-        <div class="who-icon">🏭</div>
-        <div class="who-h">Manufacturing</div>
-        <p class="who-p">Plant supervisors and floor managers who handle incidents on shifts when safety directors aren't available — nights, weekends, early mornings.</p>
-      </div>
-      <div class="who-card">
-        <div class="who-icon">🛡</div>
-        <div class="who-h">Safety Managers & HR</div>
-        <p class="who-p">EHS leads and HR teams who need clean, audit-ready documentation from the field — without chasing supervisors for incomplete reports the next day.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 7. WHY NOT EXISTING TOOLS ═══ -->
-<hr class="divider">
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow">Why Not Existing Tools</div>
-    <h2 class="section-title">Existing tools were not built for the supervisor standing at the incident scene.</h2>
-    <p class="section-sub">Enterprise EHS platforms are powerful — for safety directors. Not for the supervisor with 30 seconds to think and a shaking hand.</p>
-    <div class="comp-grid">
-      <div class="comp-col">
-        <div class="comp-head">Enterprise EHS Platforms</div>
-        <div class="comp-item"><span class="comp-x">✗</span> Months to implement, requires IT setup</div>
-        <div class="comp-item"><span class="comp-x">✗</span> Designed for safety directors at desks</div>
-        <div class="comp-item"><span class="comp-x">✗</span> $10,000–$100,000/yr starting cost</div>
-        <div class="comp-item"><span class="comp-x">✗</span> Supervisors won't open it during a crisis</div>
-      </div>
-      <div class="comp-col">
-        <div class="comp-head">Paper Forms & Email</div>
-        <div class="comp-item"><span class="comp-x">✗</span> Filled out hours later from memory</div>
-        <div class="comp-item"><span class="comp-x">✗</span> No timestamps or contact log</div>
-        <div class="comp-item"><span class="comp-x">✗</span> No OSHA deadline awareness</div>
-        <div class="comp-item"><span class="comp-x">✗</span> Difficult to use as documentation later</div>
-      </div>
-      <div class="comp-col highlight">
-        <div class="comp-head">KinSignal</div>
-        <div class="comp-item"><span class="comp-ck">✓</span> Mobile-first, works on any phone</div>
-        <div class="comp-item"><span class="comp-ck">✓</span> Step-by-step, no training required</div>
-        <div class="comp-item"><span class="comp-ck">✓</span> Emergency contacts at step one</div>
-        <div class="comp-item"><span class="comp-ck">✓</span> OSHA risk flagged automatically</div>
-        <div class="comp-item"><span class="comp-ck">✓</span> Timestamped packet generated as you go</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 8. ARTICLES ═══ -->
-<hr class="divider">
-<section class="section" style="background:var(--white)">
-  <div class="wrap">
-    <div class="eyebrow">OSHA Knowledge Base</div>
-    <h2 class="section-title">Plain-language answers to the questions supervisors actually search for.</h2>
-    <p class="section-sub">No legalese. Accurate OSHA guidance for the people who need it in the moment.</p>
-    <div class="articles-grid">
-      <a class="art-card" href="articles.html#recordable">
-        <div class="art-cat"><span class="badge badge-blue">Recordable Injuries</span></div>
-        <div class="art-title">What Counts as an OSHA Recordable Injury?</div>
-        <div class="art-desc">The difference between first aid and a recordable — and why getting it wrong creates liability in both directions.</div>
-        <div class="art-meta">5 min read</div>
-      </a>
-      <a class="art-card" href="articles.html#8hour">
-        <div class="art-cat"><span class="badge badge-red">Critical Deadline</span></div>
-        <div class="art-title">The OSHA 8-Hour Fatality Reporting Rule</div>
-        <div class="art-desc">What it requires, how to report, and what happens when the window is missed.</div>
-        <div class="art-meta">3 min read</div>
-      </a>
-      <a class="art-card" href="articles.html#24hour">
-        <div class="art-cat"><span class="badge badge-red">Critical Deadline</span></div>
-        <div class="art-title">The 24-Hour Rule for Hospitalizations, Amputations, and Eye Loss</div>
-        <div class="art-desc">Three injury types with a 24-hour OSHA reporting clock — and exactly what qualifies.</div>
-        <div class="art-meta">3 min read</div>
-      </a>
-      <a class="art-card" href="articles.html#er-vs-hospital">
-        <div class="art-cat"><span class="badge badge-blue">Recordable Injuries</span></div>
-        <div class="art-title">ER Visit vs. Hospital Admission — Why the Difference Matters</div>
-        <div class="art-desc">This single distinction causes more OSHA compliance confusion than almost anything else.</div>
-        <div class="art-meta">4 min read</div>
-      </a>
-      <a class="art-card" href="articles.html#temp-workers">
-        <div class="art-cat"><span class="badge badge-amber">Temp Workers</span></div>
-        <div class="art-title">Temp Workers and OSHA Recordkeeping — Who's Responsible?</div>
-        <div class="art-desc">Two organizations, split OSHA responsibility, and no software built for it.</div>
-        <div class="art-meta">4 min read</div>
-      </a>
-      <a class="art-card" href="articles.html#fines">
-        <div class="art-cat"><span class="badge badge-red">Fines & Penalties</span></div>
-        <div class="art-title">OSHA Fines in 2025 — Current Amounts and How to Reduce Them</div>
-        <div class="art-desc">The actual 2025 penalty schedule, how OSHA calculates citations, and what reduces exposure.</div>
-        <div class="art-meta">4 min read</div>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:28px">
-      <a href="articles.html" class="btn btn-ghost">View All OSHA Articles →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 9. FINAL CTA ═══ -->
-<div class="signup-section" id="signup">
-  <div class="wrap">
-    <div class="signup-wrap">
-      <div class="eyebrow" style="justify-content:center;display:flex;margin-bottom:14px">Pilot Program</div>
-      <h2 class="signup-title">Want to test this with your team's injury response workflow?</h2>
-      <p class="signup-sub">Request a pilot or walk through a sample incident with us. We're hand-selecting 25 teams — no fees, no contracts during the pilot period.</p>
-
-      <div class="waitlist-proof">
-        <div class="wp-avatars">
-          <div class="wp-av" style="background:#2563eb">SM</div>
-          <div class="wp-av" style="background:#16a34a">TR</div>
-          <div class="wp-av" style="background:#d97706">JC</div>
-          <div class="wp-av" style="background:#dc2626">MR</div>
-          <div class="wp-av" style="background:#7c3aed">KL</div>
+    <!-- STEP 3 -->
+    <div class="demo-panel" id="dp3">
+      <div class="dp-head">
+        <div>
+          <div class="dp-badge">Step 3 of 5</div>
+          <div class="dp-title">Guided Response</div>
         </div>
-        <div class="wp-text"><span>47 safety managers &amp; ops leads</span> already on the list</div>
-        <div class="wp-badge">18 spots left</div>
+        <div class="dp-time">2:07 – 2:18 PM</div>
       </div>
-      <div class="signup-box">
-        <div id="sForm">
-          <div class="sfield"><label>Your Name *</label><input type="text" class="sinput" id="sn" placeholder="Mike Torres"/></div>
-          <div class="sfield"><label>Work Email *</label><input type="email" class="sinput" id="se" placeholder="mike@company.com"/></div>
-          <div class="sfield"><label>Company</label><input type="text" class="sinput" id="sc" placeholder="Acme Industrial LLC"/></div>
-          <div class="sfield"><label>Your Role</label>
-            <select class="sinput" id="sr">
-              <option value="">Select role…</option>
-              <option>Safety Manager / EHS</option>
-              <option>Site Supervisor / Foreman</option>
-              <option>HR / People Operations</option>
-              <option>Operations Manager</option>
-              <option>Owner / Founder</option>
-              <option>Staffing Agency</option>
-              <option>Other</option>
-            </select>
+      <div class="dp-body">
+        <div class="cl-header">
+          <div>
+            <div style="font-size:.8rem;color:var(--muted);margin-bottom:2px">Marcus Johnson · Memphis DC</div>
+            <div style="font-size:1rem;font-weight:800;color:var(--navy)">Supervisor Response Checklist</div>
           </div>
-          <div style="margin-bottom:18px">
-            <div class="ref-label">Know someone who should see this?</div>
-            <div class="ref-note">Add a colleague's email — we'll send them a heads-up.</div>
-            <div class="ref-row"><input type="email" class="refinput" id="ri" placeholder="colleague@company.com"/><button class="refadd" onclick="addRef()">Add</button></div>
-            <div class="chips-row" id="rchips"></div>
+          <div style="text-align:right">
+            <div class="cl-count" id="cl-count">0</div>
+            <div class="cl-of">of 5 complete</div>
           </div>
-          <button class="ssubmit" onclick="submitForm()">Request a Pilot Spot →</button>
-          <div class="sfine">No fees during pilot. No long contracts. We'll reach out within 48 hours.<br>Tell us how your team currently handles incidents — we read every reply.</div>
         </div>
-        <div id="sSuccess" style="display:none">
-          <div class="success-box">
-            <div class="success-emoji">✅</div>
-            <div class="success-hed" id="sHed">Request received.</div>
-            <div class="success-body" id="sBody">We'll reach out within 48 hours to walk through a sample incident together. If you want to tell us how your team currently handles this, just reply — we read every one.</div>
+        <div class="cl-items">
+          <div class="cl-item" id="cli1">
+            <div class="cl-box"><span class="cl-check">✓</span></div>
+            <div class="cl-text">
+              <div class="cl-label">Scene secured — area cleared</div>
+              <div class="cl-ts">Logged 2:07 PM by Mike Torres, Floor Supervisor</div>
+            </div>
+          </div>
+          <div class="cl-item" id="cli2">
+            <div class="cl-box"><span class="cl-check">✓</span></div>
+            <div class="cl-text">
+              <div class="cl-label">911 called — EMS dispatched to Building 4</div>
+              <div class="cl-ts">Logged 2:08 PM by Sarah Chen, Safety Manager</div>
+            </div>
+          </div>
+          <div class="cl-item" id="cli3">
+            <div class="cl-box"><span class="cl-check">✓</span></div>
+            <div class="cl-text">
+              <div class="cl-label">Employee transported to Regional Medical Center</div>
+              <div class="cl-ts">Logged 2:11 PM · EMS confirmed</div>
+            </div>
+          </div>
+          <div class="cl-item" id="cli4">
+            <div class="cl-box"><span class="cl-check">✓</span></div>
+            <div class="cl-text">
+              <div class="cl-label">Emergency contact reached — Linda Johnson (wife)</div>
+              <div class="cl-ts">Logged 2:14 PM · 3 call attempts, successful on 3rd</div>
+            </div>
+          </div>
+          <div class="cl-item" id="cli5">
+            <div class="cl-box"><span class="cl-check">✓</span></div>
+            <div class="cl-text">
+              <div class="cl-label">Witness statement collected — James Carter, Dock Operator</div>
+              <div class="cl-ts">Logged 2:18 PM by Sarah Chen, Safety Manager</div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="dp-foot">
+        <div class="dp-foot-note">Every action logged with exact timestamp and supervisor name</div>
+        <button class="btn-primary" onclick="goStep(4)">Generate Documentation →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4 — WOW MOMENT -->
+    <div class="demo-panel" id="dp4">
+      <div class="dp-head">
+        <div>
+          <div class="dp-badge">Step 4 of 5 · ⚡ Wow Moment</div>
+          <div class="dp-title">Auto-Documentation</div>
+        </div>
+        <div class="dp-time">2:21 PM</div>
+      </div>
+      <div class="dp-body">
+
+        <div id="wow-load" class="wow-loading">
+          <div class="wow-spin"></div>
+          <div class="wow-loading-h">Building your incident timeline…</div>
+          <div class="wow-loading-s">Compiling all response actions, timestamps, and contact logs</div>
+        </div>
+
+        <div id="wow-done" style="display:none">
+          <div class="wow-banner">
+            <div class="wow-icon">⚡</div>
+            <div>
+              <div class="wow-title">Built automatically. Zero manual entry.</div>
+              <div class="wow-sub">Every action your team took during the response was captured in real time and assembled into this timeline.</div>
+            </div>
+          </div>
+          <div class="tl-list" id="tl-list">
+            <div class="tl-item"><div class="tl-time">2:06 PM</div><div class="tl-dot td-red"></div><div><div class="tl-event">Incident reported — Forklift collision, Building 4, Dock Bay 7</div><div class="tl-by">Reported by Mike Torres, Floor Supervisor</div></div></div>
+            <div class="tl-item"><div class="tl-time">2:06 PM</div><div class="tl-dot td-amber"></div><div><div class="tl-event">⚠️ OSHA severe-injury flag triggered automatically</div><div class="tl-by">24-hour reporting window opened · Auto-assessed by KinSignal</div></div></div>
+            <div class="tl-item"><div class="tl-time">2:06 PM</div><div class="tl-dot td-navy"></div><div><div class="tl-event">Team notifications sent — Sarah Chen, Mike Torres, Linda Johnson (emergency)</div><div class="tl-by">Delivered 12 seconds after incident report</div></div></div>
+            <div class="tl-item"><div class="tl-time">2:07 PM</div><div class="tl-dot td-green"></div><div><div class="tl-event">Scene secured — area around Dock Bay 7 cleared</div><div class="tl-by">Logged by Mike Torres, Floor Supervisor</div></div></div>
+            <div class="tl-item"><div class="tl-time">2:08 PM</div><div class="tl-dot td-green"></div><div><div class="tl-event">911 called — EMS dispatched to Memphis DC Building 4</div><div class="tl-by">Logged by Sarah Chen, Safety Manager</div></div></div>
+            <div class="tl-item"><div class="tl-time">2:11 PM</div><div class="tl-dot td-navy"></div><div><div class="tl-event">Marcus Johnson transported to Regional Medical Center</div><div class="tl-by">Confirmed by EMS · Logged by supervisor</div></div></div>
+            <div class="tl-item"><div class="tl-time">2:14 PM</div><div class="tl-dot td-green"></div><div><div class="tl-event">Emergency contact reached — Linda Johnson (wife)</div><div class="tl-by">3 attempts · Successful on 3rd · Logged by Sarah Chen</div></div></div>
+            <div class="tl-item"><div class="tl-time">2:18 PM</div><div class="tl-dot td-green"></div><div><div class="tl-event">Witness statement collected — James Carter, Dock Operator</div><div class="tl-by">Logged by Sarah Chen, Safety Manager</div></div></div>
+            <div class="tl-item"><div class="tl-time">2:21 PM</div><div class="tl-dot td-navy"></div><div><div class="tl-event">OSHA 24-hour reporting requirement confirmed · Form 301 pre-populated</div><div class="tl-by">Auto-completed by KinSignal · 26/26 fields filled</div></div></div>
+          </div>
+          <div class="auto-build-note">📋 OSHA Form 301, 300 log entry, and 300A are pre-populated and ready to export.</div>
+        </div>
+
+      </div>
+      <div class="dp-foot">
+        <div class="dp-foot-note">OSHA Form 301: 26 of 26 fields auto-populated</div>
+        <button class="btn-primary" onclick="goStep(5)">View Incident Packet →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5 — PACKET READY -->
+    <div class="demo-panel" id="dp5">
+      <div class="dp-head">
+        <div>
+          <div class="dp-badge">Step 5 of 5 · Complete</div>
+          <div class="dp-title">Incident Packet Ready</div>
+        </div>
+        <div class="dp-time">Today · 2:21 PM</div>
+      </div>
+      <div class="dp-body">
+        <div class="ready-banner">
+          <div class="rb-icon">✅</div>
+          <div class="rb-title">Incident Packet Complete</div>
+          <div class="rb-sub">From report to audit-ready documentation</div>
+          <div class="rb-time">8 min 42 sec</div>
+          <div class="rb-time-label">Total response time</div>
+        </div>
+        <div class="packet-rows">
+          <div class="packet-row">
+            <div class="pr-ico">📋</div>
+            <div><div class="pr-name">OSHA Form 301 — Injury &amp; Illness Report</div><div class="pr-detail">26 of 26 fields complete · Auto-populated from response actions</div></div>
+            <div class="pr-status">✓ Ready</div>
+          </div>
+          <div class="packet-row">
+            <div class="pr-ico">🕐</div>
+            <div><div class="pr-name">Response Timeline</div><div class="pr-detail">9 entries · All timestamped · Supervisor-attributed</div></div>
+            <div class="pr-status">✓ Ready</div>
+          </div>
+          <div class="packet-row">
+            <div class="pr-ico">📞</div>
+            <div><div class="pr-name">Emergency Contact Log</div><div class="pr-detail">3 attempts · 1 reached · Linda Johnson, 2:14 PM</div></div>
+            <div class="pr-status">✓ Ready</div>
+          </div>
+          <div class="packet-row">
+            <div class="pr-ico">📝</div>
+            <div><div class="pr-name">Witness Statement — James Carter</div><div class="pr-detail">Collected 2:18 PM · Signed &amp; timestamped</div></div>
+            <div class="pr-status">✓ Ready</div>
+          </div>
+        </div>
+        <div class="pkt-actions">
+          <button class="btn-export" onclick="toast('PDF export available in production')">📄 Export PDF</button>
+          <button class="btn-send-s" onclick="toast('Sent to HR Director')">📧 Email to HR</button>
+          <button class="btn-send-s" onclick="toast('Sent to Safety Lead')">📤 Safety Lead</button>
+        </div>
+        <div class="vs-box">
+          <div class="vs-label">Without KinSignal vs. With KinSignal</div>
+          <div class="vs-cols">
+            <div class="vs-col">
+              <div class="vs-col-h">❌ Without KinSignal</div>
+              <div class="vs-text vs-bad">Form 301 filled out 3–5 days later from memory. Missing fields. No contact log. No verified timeline. Legal and OSHA exposure.</div>
+            </div>
+            <div class="vs-col">
+              <div class="vs-col-h">✅ With KinSignal</div>
+              <div class="vs-text vs-good">Complete, timestamped packet in 8 minutes. All 26 fields populated. Every contact logged. Audit-ready before the shift ends.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dp-foot">
+        <button class="btn-primary" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})" style="width:100%;justify-content:center">Get Pilot Access to KinSignal →</button>
+      </div>
+    </div>
+
+  </div><!-- /demo-panel-wrap -->
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="stats-bar">
+  <div class="stats-wrap">
+    <div class="stat-block"><div class="stat-num"><span class="stat-accent">2.6M</span></div><div class="stat-label">Nonfatal workplace injuries every year in the U.S.</div></div>
+    <div class="stat-block"><div class="stat-num"><span class="stat-accent">$181B</span></div><div class="stat-label">Annual cost of workplace injuries to U.S. employers</div></div>
+    <div class="stat-block"><div class="stat-num"><span class="stat-accent">8 hr</span></div><div class="stat-label">OSHA window to report a fatality — most teams don't know</div></div>
+    <div class="stat-block"><div class="stat-num"><span class="stat-accent">3–5 days</span></div><div class="stat-label">How long Form 301 typically takes to complete</div></div>
+  </div>
+</section>
+
+<!-- ═══ WHO IT'S FOR ═══ -->
+<section class="who-section">
+  <div class="section-label">Who It's For</div>
+  <div class="section-title" style="margin-bottom:10px">Built for every team that manages workers in the field</div>
+  <div class="section-sub">If an injury can happen on your site, KinSignal belongs in your pocket.</div>
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="who-icon">🏗️</div>
+      <div class="who-title">Construction &amp; Field Teams</div>
+      <div class="who-pain">Supervisors are on site, not at a desk. When something happens, they have no system — just a phone call and a paper form they'll fill out later.</div>
+      <div class="who-fix">KinSignal runs from any phone. Guides the supervisor step by step. Builds the documentation while they respond.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">🏭</div>
+      <div class="who-title">Warehouses &amp; Logistics</div>
+      <div class="who-pain">High injury volume, rotating supervisors, and OSHA logs filled out from memory at the end of the week. Errors are invisible until an audit.</div>
+      <div class="who-fix">Every incident logged in real time. Form 300 and 301 auto-updated. Compliance without the paperwork pile-up.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">👷</div>
+      <div class="who-title">Safety Managers &amp; HR</div>
+      <div class="who-pain">You find out about incidents hours later. By then, evidence is gone, memories have faded, and you're reconstructing a timeline from scratch.</div>
+      <div class="who-fix">Instant alerts the moment an incident is reported. Live response view. Every detail captured at the moment it happens.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">🤝</div>
+      <div class="who-title">Staffing Agencies</div>
+      <div class="who-pain">Workers at client sites get hurt. You're often the last to know — but you're still liable. Your documentation is whatever the client sends you.</div>
+      <div class="who-fix">Unified incident record across all placements. Instant notification. Consistent documentation regardless of client site.</div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- ═══ SIGNUP ═══ -->
+<section class="cta-section" id="signup">
+  <div class="cta-wrap">
+    <div class="section-label">Early Access</div>
+    <div class="cta-title">Get KinSignal before we charge for it</div>
+    <div class="cta-sub">We're running a free pilot with a small group of safety teams. If you manage workers in field or facility environments, you qualify.</div>
+    <div id="form-wrap">
+      <form class="signup-form" onsubmit="submitPilot(event)">
+        <div class="form-row">
+          <input class="finput" id="fn" type="text" placeholder="Your name" required/>
+          <input class="finput" id="fc" type="text" placeholder="Company or site name" required/>
+        </div>
+        <input class="finput" id="fe" type="email" placeholder="Work email" required/>
+        <select class="fselect" id="fr">
+          <option value="">Your role</option>
+          <option>Safety Manager</option>
+          <option>HR Director / Manager</option>
+          <option>Operations Manager</option>
+          <option>Site Owner / Founder</option>
+          <option>Staffing Agency</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" class="btn-submit">Request Pilot Access →</button>
+        <div class="form-note">No commitment. No credit card. We'll reach out within 24 hours.</div>
+      </form>
+    </div>
+    <div id="form-success" style="display:none;text-align:center;padding:40px 0">
+      <div style="font-size:2.5rem;margin-bottom:12px">✅</div>
+      <div style="font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:8px">You're on the list.</div>
+      <div style="font-size:.9rem;color:var(--muted);line-height:1.7;max-width:380px;margin:0 auto">We'll reach out within 24 hours to schedule your pilot. In the meantime, explore our <a href="articles.html" style="color:var(--blue);font-weight:600">OSHA articles</a>.</div>
+    </div>
+  </div>
+</section>
 
 <!-- DISCLAIMER -->
-<div class="disclaimer-bar">
-  KinSignal supports injury response documentation and escalation workflows. It does not provide legal advice or replace qualified safety, HR, or legal professionals. Statistics sourced from BLS, OSHA 29 CFR 1904.39, and the 2025 OSHA penalty schedule — see <a href="why.html">Why It Matters</a> for full citations.
+<div style="background:var(--amber-bg);border-top:1px solid var(--amber-border);padding:13px 32px;text-align:center;font-size:.76rem;color:var(--amber);line-height:1.65">
+  This is a clickable demo for validation purposes. KinSignal is in early development. OSHA information is for guidance only and does not constitute legal advice. Consult your safety or legal team for compliance decisions.
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="foot-inner">
-    <div>
-      <div class="foot-logo">Kin<span>Signal</span></div>
-      <div class="foot-tagline">The first 30-minute injury response system for supervisors.</div>
-    </div>
+    <div class="foot-logo">Kin<span>Signal</span></div>
     <div class="foot-links">
       <a href="why.html">Why It Matters</a>
       <a href="articles.html">OSHA Articles</a>
-      <a href="#signup">Request Pilot</a>
-      <a href="mailto:hello@kinsignal.com">Contact</a>
+      <a href="validate.html">Validation Survey</a>
     </div>
   </div>
-  <div class="foot-inner" style="padding-top:0">
-    <div class="foot-copy">© 2026 KinSignal · <a href="mailto:hello@kinsignal.com" style="color:#64748b">hello@kinsignal.com</a> · Built for the teams who can't afford to get it wrong.</div>
-  </div>
+  <div class="foot-copy">© 2025 KinSignal · Workplace injury response, done right.</div>
 </footer>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast-el"></div>
 
 <script>
-/* ── TAB SWITCHING ── */
-function switchTab(id, btn){
-  document.querySelectorAll('.dview').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.dtab').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if(btn) btn.classList.add('active');
-}
+let step = 1;
 
-/* ── PACKET TABS ── */
-function switchPkt(id, btn){
-  document.querySelectorAll('.pkt-section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if(btn) btn.classList.add('active');
-}
+function goStep(n) {
+  // hide current
+  document.getElementById('dp'+step).classList.remove('active');
 
-/* ── DASHBOARD VIEW TABS ── */
-function switchDbView(id, btn){
-  document.querySelectorAll('#tDash .db-view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.db-vtab').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if(btn) btn.classList.add('active');
-}
-
-/* ── CHECKLIST ── */
-const times=['2:04 PM','2:06 PM','2:09 PM','2:16 PM','2:22 PM'];
-const done=[true,true,true,false,false];
-function toggleCheck(item,idx){
-  done[idx]=!done[idx];
-  const cb=item.querySelector('.cl-cb');
-  const tsEl=item.querySelector('[style*="faint"],.cl-ts');
-  if(done[idx]){
-    cb.classList.remove('active-step');
-    cb.classList.add('done');
-    cb.textContent='✓';
-    if(tsEl){tsEl.className='cl-ts';tsEl.textContent=times[idx]}
-  } else {
-    cb.classList.remove('done');
-    cb.textContent='';
-    if(idx===3) cb.classList.add('active-step');
-    if(tsEl){tsEl.style.cssText='font-size:.75rem;color:var(--faint);padding-top:4px';tsEl.textContent='Pending'}
+  // update stepper
+  for (let i = 1; i <= 5; i++) {
+    const c = document.getElementById('sc'+i);
+    const l = document.getElementById('sl'+i);
+    const ln = document.getElementById('line'+i);
+    if (i < n) {
+      c.className = 'step-circle done'; c.textContent = '✓';
+      l.className = 'step-label done';
+      if (ln) ln.className = 'step-line done';
+    } else if (i === n) {
+      c.className = 'step-circle active'; c.textContent = i;
+      l.className = 'step-label active';
+    } else {
+      c.className = 'step-circle'; c.textContent = i;
+      l.className = 'step-label';
+    }
   }
-  updateProgress();
-}
-function updateProgress(){
-  const completed=done.filter(Boolean).length;
-  const pct=Math.round(completed/done.length*100);
-  document.getElementById('progFill').style.width=pct+'%';
-  document.getElementById('progLbl').textContent=completed+' of '+done.length+' steps complete';
-  document.getElementById('progPct').textContent=pct+'%';
+
+  step = n;
+  document.getElementById('dp'+n).classList.add('active');
+
+  // step animations
+  if (n === 3) animateChecklist();
+  if (n === 4) animateTimeline();
+
+  // scroll to demo top
+  document.getElementById('demo').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-/* ── CONTACT LOG ── */
-function logContact(id, outcome){
-  const card=document.getElementById(id);
-  const status=document.getElementById(id+'-status');
-  const tl=document.getElementById('contactTl');
-  const name=card.querySelector('.ccard-name').textContent;
-  const now=new Date();
-  const t=now.getHours()+':'+(now.getMinutes()<10?'0':'')+now.getMinutes()+' '+(now.getHours()<12?'AM':'PM');
-  const labels={reached:'Reached — confirmed',voicemail:'Voicemail left',noanswer:'No answer'};
-  const cls={reached:'green',voicemail:'amber',noanswer:''};
-  const badgeClass={reached:'badge-green',voicemail:'badge-amber',noanswer:'badge-gray'};
-  const badgeText={reached:'Reached ✓',voicemail:'Voicemail',noanswer:'No Answer'};
-  status.className='badge '+badgeClass[outcome];
-  status.textContent=badgeText[outcome];
-  const item=document.createElement('div');
-  item.className='tl-item'+(cls[outcome]?' '+cls[outcome]:'');
-  item.innerHTML='<strong>'+name+' contacted by Mike Torres</strong><div class="tl-time">'+t+' · '+labels[outcome]+'</div>';
-  tl.insertBefore(item,tl.firstChild);
-  showToast(name+': '+labels[outcome]+' logged at '+t);
+function animateChecklist() {
+  const items = document.querySelectorAll('.cl-item');
+  const counter = document.getElementById('cl-count');
+  let count = 0;
+  items.forEach((item, i) => {
+    setTimeout(() => {
+      item.classList.add('checked');
+      counter.textContent = ++count;
+    }, i * 480);
+  });
 }
 
-/* ── REFERRALS ── */
-const refs=[];
-function addRef(){
-  const inp=document.getElementById('ri');
-  const email=inp.value.trim();
-  if(!email||!email.includes('@')||refs.includes(email)) return;
-  refs.push(email);
-  const wrap=document.getElementById('rchips');
-  const chip=document.createElement('div');
-  chip.className='chip';
-  chip.innerHTML='<span>'+email+'</span><span class="chip-x" onclick="removeRef(this,\''+email+'\')">×</span>';
-  wrap.appendChild(chip);
-  inp.value='';
-}
-function removeRef(el,email){
-  refs.splice(refs.indexOf(email),1);
-  el.parentElement.remove();
+function animateTimeline() {
+  const load = document.getElementById('wow-load');
+  const done = document.getElementById('wow-done');
+  load.style.display = 'block';
+  done.style.display = 'none';
+
+  setTimeout(() => {
+    load.style.display = 'none';
+    done.style.display = 'block';
+    const entries = document.querySelectorAll('#tl-list .tl-item');
+    entries.forEach((e, i) => {
+      setTimeout(() => e.classList.add('visible'), i * 160);
+    });
+  }, 1900);
 }
 
-/* ── FORM SUBMIT ── */
-function submitForm(){
-  const n=document.getElementById('sn').value.trim();
-  const e=document.getElementById('se').value.trim();
-  const c=document.getElementById('sc').value.trim();
-  const r=document.getElementById('sr').value;
-  if(!n){showToast('Please enter your name.');return}
-  if(!e||!e.includes('@')){showToast('Please enter a valid work email.');return}
-
-  const payload={
-    name:n, email:e, company:c, role:r,
-    referrals:refs.join(', '),
-    source:'KinSignal demo — pilot signup',
-    submitted_at:new Date().toISOString()
+function submitPilot(e) {
+  e.preventDefault();
+  const payload = {
+    name: document.getElementById('fn').value,
+    email: document.getElementById('fe').value,
+    company: document.getElementById('fc').value,
+    role: document.getElementById('fr').value,
+    source: 'kinsignal-demo'
   };
-
-  function showSuccess(){
-    document.getElementById('sForm').style.display='none';
-    document.getElementById('sSuccess').style.display='block';
-    document.getElementById('sHed').textContent='Request received, '+n.split(' ')[0]+'!';
-    const extra=refs.length?' We\'ll also reach out to '+refs.length+' colleague'+(refs.length>1?'s':'')+' you added.':'';
-    document.getElementById('sBody').textContent='We\'ll reach out within 48 hours.'+extra+' Reply to our email to tell us how your team currently handles incidents — we read every one.';
-  }
-
-  fetch('https://formsubmit.co/ajax/ashtonellis1000@gmail.com',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify(payload)
-  })
-  .then(r=>{
-    if(r.ok){showSuccess()}
-    else{showToast('Something went wrong — email hello@kinsignal.com directly')}
-  })
-  .catch(()=>showToast('Something went wrong — email hello@kinsignal.com directly'));
+  fetch('https://formsubmit.co/ajax/ashtonellis1000@gmail.com', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+  document.getElementById('form-wrap').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
 }
 
-/* ── TOAST ── */
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
+function toast(msg) {
+  const t = document.getElementById('toast-el');
+  t.textContent = '📋 ' + msg;
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
-}
-
-/* ── SCENARIO SWITCHER ── */
-const SCENARIO_SCREENS=[
-  // 0: Warehouse fall · Hospitalization (OSHA flagged, red)
-  `<div class="app-bar">
-    <div><div class="app-bar-t">Incident Response</div><div class="app-bar-s">Marcus Johnson · Memphis DC</div></div>
-    <div class="app-chip">⚠ OSHA Flag</div>
-  </div>
-  <div class="app-section">
-    <div class="app-label">Response Checklist</div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>Scene secured</span><span class="check-ts">2:04 PM</span></div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>911 called</span><span class="check-ts">2:06 PM</span></div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>Employee transported</span><span class="check-ts">2:09 PM</span></div>
-    <div class="check-item"><div class="check-icon ci-todo"></div><span>Witnesses identified</span><span class="check-todo-ts">Pending</span></div>
-  </div>
-  <div class="app-section">
-    <div class="app-label">Primary Contact</div>
-    <div class="contact-card">
-      <div class="cc-name">Sarah Johnson</div><div class="cc-rel">Mother · (555) 018-2241</div>
-      <div class="cc-btns"><div class="cc-btn">Call Logged ✓</div><div class="cc-btn">Voicemail</div></div>
-    </div>
-  </div>
-  <div class="app-section">
-    <div class="osha-flag"><span>⚠️</span><span>Possible 24-hr OSHA report required. Review with safety lead.</span></div>
-  </div>
-  <div class="app-section">
-    <div class="app-label">Incident Packet</div>
-    <div style="font-size:9px;color:var(--muted);margin-bottom:4px">3 of 5 sections complete</div>
-    <div class="pkt-bar"><div class="pkt-fill" style="width:60%"></div></div>
-  </div>`,
-
-  // 1: Equipment injury · Clinic visit (medium, no OSHA flag)
-  `<div class="app-bar">
-    <div><div class="app-bar-t">Incident Response</div><div class="app-bar-s">Daniel Ruiz · Phoenix Site 7</div></div>
-    <div style="display:inline-flex;align-items:center;gap:4px;background:rgba(21,128,61,.15);border:1px solid rgba(21,128,61,.3);color:#86efac;border-radius:6px;padding:4px 9px;font-size:10px;font-weight:700">✓ Low Risk</div>
-  </div>
-  <div class="app-section">
-    <div class="app-label">Response Checklist</div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>Scene secured</span><span class="check-ts">10:12 AM</span></div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>Transported — urgent care clinic</span><span class="check-ts">10:18 AM</span></div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>Witnesses identified</span><span class="check-ts">10:25 AM</span></div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>OSHA risk reviewed — no report needed</span><span class="check-ts">10:31 AM</span></div>
-  </div>
-  <div class="app-section">
-    <div class="app-label">Primary Contact</div>
-    <div class="contact-card" style="background:var(--green-bg);border-color:var(--green-border)">
-      <div class="cc-name" style="color:var(--green)">Maria Ruiz — Reached ✓</div><div class="cc-rel">Wife · (555) 302-8891</div>
-      <div class="cc-btns"><div class="cc-btn" style="background:var(--green-bg);border-color:var(--green-border);color:var(--green)">Confirmed 10:22 AM</div></div>
-    </div>
-  </div>
-  <div class="app-section">
-    <div class="app-label">Incident Packet</div>
-    <div style="font-size:9px;color:var(--muted);margin-bottom:4px">4 of 5 sections complete</div>
-    <div class="pkt-bar"><div class="pkt-fill" style="width:80%"></div></div>
-  </div>`,
-
-  // 2: Minor laceration · Low risk (all complete, green, ready to export)
-  `<div class="app-bar" style="background:var(--green)">
-    <div><div class="app-bar-t">Incident Complete</div><div class="app-bar-s">Tasha Miller · Memphis DC</div></div>
-    <div style="display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.2);color:#fff;border-radius:6px;padding:4px 9px;font-size:10px;font-weight:700">Packet Ready</div>
-  </div>
-  <div class="app-section">
-    <div class="app-label">Response Checklist — All Complete</div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>Scene secured</span><span class="check-ts">3:41 PM</span></div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>First aid administered</span><span class="check-ts">3:43 PM</span></div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>No transport needed</span><span class="check-ts">3:44 PM</span></div>
-    <div class="check-item"><div class="check-icon ci-done">✓</div><span>OSHA risk — no report required</span><span class="check-ts">3:48 PM</span></div>
-  </div>
-  <div class="app-section">
-    <div class="app-label">Primary Contact</div>
-    <div class="contact-card" style="background:var(--green-bg);border-color:var(--green-border)">
-      <div class="cc-name" style="color:var(--green)">Devon Miller — Reached ✓</div><div class="cc-rel">Husband · (555) 403-7782</div>
-      <div class="cc-btns"><div class="cc-btn" style="background:var(--green-bg);border-color:var(--green-border);color:var(--green)">Notified 3:46 PM</div></div>
-    </div>
-  </div>
-  <div class="app-section">
-    <div class="app-label">Incident Packet</div>
-    <div style="font-size:9px;color:var(--green);font-weight:700;margin-bottom:4px">✓ Audit-ready — ready to export</div>
-    <div class="pkt-bar"><div class="pkt-fill" style="width:100%;background:var(--green)"></div></div>
-  </div>`
-];
-
-function setScenario(idx, btn){
-  document.querySelectorAll('.scen-chip').forEach(c=>c.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelector('.phone-screen').innerHTML=SCENARIO_SCREENS[idx];
+  setTimeout(() => t.classList.remove('show'), 2600);
 }
 </script>
 </body>
